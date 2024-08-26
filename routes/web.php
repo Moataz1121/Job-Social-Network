@@ -37,3 +37,4 @@ Route::get('/admin/login', function () {
 Route::get('/admin/index', function () {
     return view('admin.index');
 })->name('admin.index');
+
