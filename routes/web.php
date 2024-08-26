@@ -18,9 +18,7 @@ Route::get('/register' , function(){
 Route::get('/login' , function(){
     return view('employee.auth.login');
 })->name('employee.login');
-// Auth::routes();
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/index' , function(){
     return view('employee.user.index');
 })->name('employee.index');
@@ -31,3 +29,11 @@ Route::get('/profile' , function(){
 Route::get('/job' , function(){
     return view('employee.user.job');
 })->name('employee.job');
+
+Route::get('/admin/login' , function(){
+    return view('admin.auth.login');
+})->name('admin.login');
+
+Route::get('/admin/index' , function(){
+    return view('admin.index');
+})->name('admin.index');
