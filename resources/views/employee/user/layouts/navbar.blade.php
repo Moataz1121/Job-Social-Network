@@ -2,12 +2,15 @@
     <div class="w-100 justify-content-md-center">
         <ul class="nav navbar-nav enable-mobile px-2">
             <li class="nav-item">
-                <button type="button" class="btn nav-link p-0"><img src="front/assets/images/icons/theme/post-image.png" class="f-nav-icon" alt="Quick make post"></button>
+                <button type="button" class="btn nav-link p-0"><img src="front/assets/images/icons/theme/post-image.png"
+                        class="f-nav-icon" alt="Quick make post"></button>
             </li>
             <li class="nav-item w-100 py-2">
                 <form class="d-inline form-inline w-100 px-4">
                     <div class="input-group">
-                        <input type="text" class="form-control search-input" placeholder="Search for people, companies, events and more..." aria-label="Search" aria-describedby="search-addon">
+                        <input type="text" class="form-control search-input"
+                            placeholder="Search for people, companies, events and more..." aria-label="Search"
+                            aria-describedby="search-addon">
                         <div class="input-group-append">
                             <button class="btn search-button" type="button"><i class='bx bx-search'></i></button>
                         </div>
@@ -15,17 +18,22 @@
                 </form>
             </li>
             <li class="nav-item">
-                <a href="messages.html" class="nav-link nav-icon nav-links message-drop drop-w-tooltip" data-placement="bottom" data-title="Messages">
-                    <img src="front/assets/images/icons/navbar/message.png" class="message-dropdown f-nav-icon" alt="navbar icon">
+                <a href="messages.html" class="nav-link nav-icon nav-links message-drop drop-w-tooltip"
+                    data-placement="bottom" data-title="Messages">
+                    <img src="front/assets/images/icons/navbar/message.png" class="message-dropdown f-nav-icon"
+                        alt="navbar icon">
                 </a>
             </li>
         </ul>
         <ul class="navbar-nav mr-5 flex-row" id="main_menu">
-            <a class="navbar-brand nav-item mr-lg-5" href="index.html"><img src="front/assets/images/logo-64x64.png" width="40" height="40" class="mr-3" alt="Logo"></a>
-            <!-- Collect the nav links, forms, and other content for toggling -->
+            <a class="navbar-brand nav-item mr-lg-5" href="{{route('employee.index')}}"><img
+                    src="front/assets/images/logo-64x64.png" width="40" height="40" class="mr-3" alt="Logo"></a>
             <form class="w-30 mx-2 my-auto d-inline form-inline mr-5 dropdown search-form">
-                <div class="input-group" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="searchDropdown">
-                    <input type="text" class="form-control search-input w-75" placeholder="Search for people, companies, events and more..." aria-label="Search" aria-describedby="search-addon">
+                <div class="input-group" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                    id="searchDropdown">
+                    <input type="text" class="form-control search-input w-75"
+                        placeholder="Search for people, companies, events and more..." aria-label="Search"
+                        aria-describedby="search-addon">
                     <div class="input-group-append">
                         <button class="btn search-button" type="button"><i class='bx bx-search'></i></button>
                     </div>
@@ -33,7 +41,8 @@
                 <ul class="dropdown-menu notify-drop nav-drop shadow-sm" aria-labelledby="searchDropdown">
                     <div class="notify-drop-title">
                         <div class="row">
-                            <div class="col-md-6 col-sm-6 col-xs-6 fs-8">Search Results <span class="badge badge-pill badge-primary ml-2">29</span></div>
+                            <div class="col-md-6 col-sm-6 col-xs-6 fs-8">Search Results <span
+                                    class="badge badge-pill badge-primary ml-2">29</span></div>
                         </div>
                     </div>
                     <!-- end notify title -->
@@ -89,7 +98,9 @@
                                 </div>
                             </div>
                             <div class="col-md-10 col-sm-10 col-xs-10">
-                                <a href="#" class="notification-user">Argon Social Network <img src="front/assets/images/theme/verify.png" width="10px" class="verify" alt="Group verified"></a>
+                                <a href="#" class="notification-user">Argon Social Network <img
+                                        src="front/assets/images/theme/verify.png" width="10px" class="verify"
+                                        alt="Group verified"></a>
                                 <a href="#" class="btn btn-quick-link join-group-btn border text-right float-right">
                                     Join
                                 </a>
@@ -103,7 +114,9 @@
                 </ul>
             </form>
             <li class="nav-item s-nav dropdown d-mobile">
-                <a href="#" class="nav-link nav-icon nav-links drop-w-tooltip" data-toggle="dropdown" data-placement="bottom" data-title="Create" role="button" aria-haspopup="true" aria-expanded="false">
+                <a href="#" class="nav-link nav-icon nav-links drop-w-tooltip" data-toggle="dropdown"
+                    data-placement="bottom" data-title="Create" role="button" aria-haspopup="true"
+                    aria-expanded="false">
                     <img src="front/assets/images/icons/navbar/create.png" alt="navbar icon">
                 </a>
                 <div class="dropdown-menu dropdown-menu-right nav-dropdown-menu">
@@ -114,7 +127,8 @@
                             </div>
                             <div class="col-md-10">
                                 <span class="fs-9">Group</span>
-                                <small id="createGroup" class="form-text text-muted">Find people with shared interests</small>
+                                <small id="createGroup" class="form-text text-muted">Find people with shared
+                                    interests</small>
                             </div>
                         </div>
                     </a>
@@ -125,15 +139,19 @@
                             </div>
                             <div class="col-md-10">
                                 <span class="fs-9">Event</span>
-                                <small id="createEvent" class="form-text text-muted">bring people together with a public or private event</small>
+                                <small id="createEvent" class="form-text text-muted">bring people together with a public
+                                    or private event</small>
                             </div>
                         </div>
                     </a>
                 </div>
             </li>
             <li class="nav-item s-nav dropdown message-drop-li">
-                <a href="#" class="nav-link nav-links message-drop drop-w-tooltip" data-toggle="dropdown" data-placement="bottom" data-title="Messages" role="button" aria-haspopup="true" aria-expanded="false">
-                    <img src="front/assets/images/icons/navbar/message.png" class="message-dropdown" alt="navbar icon"> <span class="badge badge-pill badge-primary">1</span>
+                <a href="#" class="nav-link nav-links message-drop drop-w-tooltip" data-toggle="dropdown"
+                    data-placement="bottom" data-title="Messages" role="button" aria-haspopup="true"
+                    aria-expanded="false">
+                    <img src="front/assets/images/icons/navbar/message.png" class="message-dropdown" alt="navbar icon">
+                    <span class="badge badge-pill badge-primary">1</span>
                 </a>
                 <ul class="dropdown-menu notify-drop dropdown-menu-right nav-drop shadow-sm">
                     <div class="notify-drop-title">
@@ -252,13 +270,17 @@
                 </ul>
             </li>
             <li class="nav-item s-nav dropdown notification">
-                <a href="#" class="nav-link nav-links rm-drop-mobile drop-w-tooltip" data-toggle="dropdown" data-placement="bottom" data-title="Notifications" role="button" aria-haspopup="true" aria-expanded="false">
-                    <img src="front/assets/images/icons/navbar/notification.png" class="notification-bell" alt="navbar icon"> <span class="badge badge-pill badge-primary">3</span>
+                <a href="#" class="nav-link nav-links rm-drop-mobile drop-w-tooltip" data-toggle="dropdown"
+                    data-placement="bottom" data-title="Notifications" role="button" aria-haspopup="true"
+                    aria-expanded="false">
+                    <img src="front/assets/images/icons/navbar/notification.png" class="notification-bell"
+                        alt="navbar icon"> <span class="badge badge-pill badge-primary">3</span>
                 </a>
                 <ul class="dropdown-menu notify-drop dropdown-menu-right nav-drop shadow-sm">
                     <div class="notify-drop-title">
                         <div class="row">
-                            <div class="col-md-6 col-sm-6 col-xs-6 fs-8">Notifications <span class="badge badge-pill badge-primary ml-2">3</span></div>
+                            <div class="col-md-6 col-sm-6 col-xs-6 fs-8">Notifications <span
+                                    class="badge badge-pill badge-primary ml-2">3</span></div>
                             <div class="col-md-6 col-sm-6 col-xs-6 text-right">
                                 <a href="#" class="notify-right-icon">
                                     Mark All as Read
@@ -276,7 +298,8 @@
                                 </div>
                             </div>
                             <div class="col-md-10 col-sm-10 col-xs-10">
-                                <a href="#" class="notification-user">Sean</a> <span class="notification-type">replied to your comment on a post in </span><a href="#" class="notification-for">PHP</a>
+                                <a href="#" class="notification-user">Sean</a> <span class="notification-type">replied
+                                    to your comment on a post in </span><a href="#" class="notification-for">PHP</a>
                                 <a href="#" class="notify-right-icon">
                                     <i class='bx bx-radio-circle-marked'></i>
                                 </a>
@@ -292,7 +315,8 @@
                                 </div>
                             </div>
                             <div class="col-md-10 col-sm-10 col-xs-10">
-                                <a href="#" class="notification-user">Kimberly</a> <span class="notification-type">likes your comment "I would really... </span>
+                                <a href="#" class="notification-user">Kimberly</a> <span class="notification-type">likes
+                                    your comment "I would really... </span>
                                 <a href="#" class="notify-right-icon">
                                     <i class='bx bx-radio-circle-marked'></i>
                                 </a>
@@ -308,7 +332,8 @@
                                 </div>
                             </div>
                             <div class="col-md-10 col-sm-10 col-xs-10">
-                                <span class="notification-type">10 people saw your story before it disappeared. See who saw it.</span>
+                                <span class="notification-type">10 people saw your story before it disappeared. See who
+                                    saw it.</span>
                                 <a href="#" class="notify-right-icon">
                                     <i class='bx bx-radio-circle-marked'></i>
                                 </a>
@@ -324,12 +349,15 @@
                                 </div>
                             </div>
                             <div class="col-md-10 col-sm-10 col-xs-10">
-                                <a href="#" class="notification-user">Michelle</a> <span class="notification-type">posted in </span><a href="#" class="notification-for">Argon Social Design System</a>
+                                <a href="#" class="notification-user">Michelle</a> <span
+                                    class="notification-type">posted in </span><a href="#"
+                                    class="notification-for">Argon Social Design System</a>
                                 <a href="#" class="notify-right-icon">
                                     <i class='bx bx-radio-circle-marked'></i>
                                 </a>
                                 <p class="time">
-                                    <span class="badge badge-pill badge-primary"><i class='bx bxs-quote-right'></i></span> 1d
+                                    <span class="badge badge-pill badge-primary"><i
+                                            class='bx bxs-quote-right'></i></span> 1d
                                 </p>
                             </div>
                         </li>
@@ -340,7 +368,8 @@
                                 </div>
                             </div>
                             <div class="col-md-10 col-sm-10 col-xs-10">
-                                <a href="#" class="notification-user">Karen</a> <span class="notification-type">likes your comment "Sure, here... </span>
+                                <a href="#" class="notification-user">Karen</a> <span class="notification-type">likes
+                                    your comment "Sure, here... </span>
                                 <a href="#" class="notify-right-icon">
                                     <i class='bx bx-radio-circle-marked'></i>
                                 </a>
@@ -356,12 +385,14 @@
                                 </div>
                             </div>
                             <div class="col-md-10 col-sm-10 col-xs-10">
-                                <a href="#" class="notification-user">Irwin</a> <span class="notification-type">posted in </span><a href="#" class="notification-for">Themeforest</a>
+                                <a href="#" class="notification-user">Irwin</a> <span class="notification-type">posted
+                                    in </span><a href="#" class="notification-for">Themeforest</a>
                                 <a href="#" class="notify-right-icon">
                                     <i class='bx bx-radio-circle-marked'></i>
                                 </a>
                                 <p class="time">
-                                    <span class="badge badge-pill badge-primary"><i class='bx bxs-quote-right'></i></span> 3d
+                                    <span class="badge badge-pill badge-primary"><i
+                                            class='bx bxs-quote-right'></i></span> 3d
                                 </p>
                             </div>
                         </li>
@@ -372,7 +403,8 @@
                 </ul>
             </li>
             <li class="nav-item s-nav dropdown d-mobile">
-                <a href="#" class="nav-link nav-links nav-icon drop-w-tooltip" data-toggle="dropdown" data-placement="bottom" data-title="Pages" role="button" aria-haspopup="true" aria-expanded="false">
+                <a href="#" class="nav-link nav-links nav-icon drop-w-tooltip" data-toggle="dropdown"
+                    data-placement="bottom" data-title="Pages" role="button" aria-haspopup="true" aria-expanded="false">
                     <img src="front/assets/images/icons/navbar/flag.png" alt="navbar icon">
                 </a>
                 <div class="dropdown-menu dropdown-menu-right nav-drop">
@@ -382,7 +414,8 @@
                 </div>
             </li>
             <li class="nav-item s-nav d-mobile">
-                <a href="marketplace.html" class="nav-link nav-links nav-icon drop-w-tooltip" data-placement="bottom" data-title="Marketplace">
+                <a href="marketplace.html" class="nav-link nav-links nav-icon drop-w-tooltip" data-placement="bottom"
+                    data-title="Marketplace">
                     <img src="front/assets/images/icons/navbar/market.png" alt="navbar icon">
                 </a>
             </li>
@@ -394,13 +427,18 @@
                 </a>
             </li>
             <li class="nav-item s-nav nav-icon dropdown">
-                <a href="settings.html" data-toggle="dropdown" data-placement="bottom" data-title="Settings" class="nav-link settings-link rm-drop-mobile drop-w-tooltip" id="settings-dropdown"><img src="front/assets/images/icons/navbar/settings.png" class="nav-settings" alt="navbar icon"></a>
-                <div class="dropdown-menu dropdown-menu-right settings-dropdown shadow-sm" aria-labelledby="settings-dropdown">
+                <a href="settings.html" data-toggle="dropdown" data-placement="bottom" data-title="Settings"
+                    class="nav-link settings-link rm-drop-mobile drop-w-tooltip" id="settings-dropdown"><img
+                        src="front/assets/images/icons/navbar/settings.png" class="nav-settings" alt="navbar icon"></a>
+                <div class="dropdown-menu dropdown-menu-right settings-dropdown shadow-sm"
+                    aria-labelledby="settings-dropdown">
                     <a class="dropdown-item" href="#">
                         <img src="front/assets/images/icons/navbar/help.png" alt="Navbar icon"> Help Center</a>
-                    <a class="dropdown-item d-flex align-items-center dark-mode" onClick="event.stopPropagation();" href="#">
+                    <a class="dropdown-item d-flex align-items-center dark-mode" onClick="event.stopPropagation();"
+                        href="#">
                         <img src="front/assets/images/icons/navbar/moon.png" alt="Navbar icon"> Dark Mode
-                        <button type="button" class="btn btn-lg btn-toggle ml-auto" data-toggle="button" aria-pressed="false" autocomplete="off">
+                        <button type="button" class="btn btn-lg btn-toggle ml-auto" data-toggle="button"
+                            aria-pressed="false" autocomplete="off">
                             <div class="handle"></div>
                         </button>
                     </a>
@@ -410,7 +448,8 @@
                         <img src="front/assets/images/icons/navbar/logout.png" alt="Navbar icon"> Log Out</a>
                 </div>
             </li>
-            <button type="button" class="btn nav-link" id="menu-toggle"><img src="front/assets/images/icons/theme/navs.png" alt="Navbar navs"></button>
+            <button type="button" class="btn nav-link" id="menu-toggle"><img
+                    src="front/assets/images/icons/theme/navs.png" alt="Navbar navs"></button>
         </ul>
 
     </div>
