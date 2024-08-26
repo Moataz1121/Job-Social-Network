@@ -18,3 +18,16 @@ Route::get('/register' , function(){
 Route::get('/login' , function(){
     return view('employee.auth.login');
 })->name('employee.login');
+// Auth::routes();
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/index' , function(){
+    return view('employee.user.index');
+})->name('employee.index');
+
+Route::get('/profile' , function(){
+    return view('employee.user.profile');
+})->name('employee.profile');
+Route::get('/job' , function(){
+    return view('employee.user.job');
+})->name('employee.job');
