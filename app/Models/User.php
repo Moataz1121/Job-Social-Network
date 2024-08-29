@@ -20,8 +20,15 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'image',
+        'phone',
+        'date',
+        'gender',
     ];
 
+     public function posts(){
+        return $this->belongsToMany(Post::class);
+     }   
     /**
      * The attributes that should be hidden for serialization.
      *

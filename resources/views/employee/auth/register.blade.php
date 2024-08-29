@@ -1,7 +1,8 @@
 @extends('employee.auth.master')
 @section('title', 'Register')
 @section('content')
-<form action="" method="" class="pt-5">
+<form action="{{route('register')}}" method="" class="pt-5">
+    @csrf
     <div class="row">
         {{-- <div class="col-md-6">
             <div class="form-group">
@@ -47,7 +48,7 @@
         </div>
         <div class="col-md-6 text-right">
             <div class="form-group">
-                <button type="button" class="btn btn-primary sign-up">Sign Up</button>
+                <button type="submit" class="btn btn-primary sign-up">Sign Up</button>
             </div>
         </div>
     </div>
