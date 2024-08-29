@@ -1,6 +1,6 @@
 <nav id="navbar-main" class="navbar navbar-expand-lg shadow-sm sticky-top">
     <div class="w-100 justify-content-md-center">
-        <ul class="nav navbar-nav enable-mobile px-2">
+        {{-- <ul class="nav navbar-nav enable-mobile px-2">
             <li class="nav-item">
                 <button type="button" class="btn nav-link p-0"><img src="front/assets/images/icons/theme/post-image.png"
                         class="f-nav-icon" alt="Quick make post"></button>
@@ -24,8 +24,8 @@
                         alt="navbar icon">
                 </a>
             </li>
-        </ul>
-        <ul class="navbar-nav mr-5 flex-row" id="main_menu">
+        </ul> --}}
+        {{-- <ul class="navbar-nav mr-5 flex-row" id="main_menu">
             <a class="navbar-brand nav-item mr-lg-5" href="{{route('employee.index')}}"><img
                     src="front/assets/images/logo-64x64.png" width="40" height="40" class="mr-3" alt="Logo"></a>
             <form class="w-30 mx-2 my-auto d-inline form-inline mr-5 dropdown search-form">
@@ -450,7 +450,44 @@
             </li>
             <button type="button" class="btn nav-link" id="menu-toggle"><img
                     src="front/assets/images/icons/theme/navs.png" alt="Navbar navs"></button>
+        </ul> --}}
+        {{-- For Logout --}}
+        <ul class="navbar-nav ms-auto">
+            <!-- Authentication Links -->
+            @guest
+                @if (Route::has('login'))
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                    </li>
+                @endif
+
+                @if (Route::has('register'))
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                    </li>
+                @endif
+            @else
+                <li class="nav-item dropdown">
+                    {{-- <a href="">ssss</a> --}}
+                    {{-- <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        {{ Auth::user()->name }}
+                    </a> --}}
+                        {{-- <h1>sssss</h1> --}}
+                    <div aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                                         document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+                            
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </div>
+                </li>
+            @endguest
         </ul>
+        {{-- End For Logout --}}
 
     </div>
 

@@ -18,6 +18,9 @@
                 </div>
             </div>
         </div>
+        {{-- <img src="{{asset('images/user_image/'.$image)}}" alt="no image">
+        <img src="{{asset('images/user_image/'.$image)}}" alt=""> --}}
+        <img src="{{ asset('images/user_images/' .Auth::user()->image) }}" alt="'s profile picture" class="img-fluid">
     </div>
 </div>
 @endsection

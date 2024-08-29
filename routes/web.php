@@ -11,13 +11,13 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/register', function () {
-    return view('employee.auth.register');
-})->name('employee.register');
+// Route::get('/register', function () {
+//     return view('employee.auth.register');
+// })->name('employee.register');
 
-Route::get('/login', function () {
-    return view('employee.auth.login');
-})->name('employee.login');
+// Route::get('/login', function () {
+//     return view('employee.auth.login');
+// })->name('employee.login');
 
 Route::get('/index', function () {
     return view('employee.user.index');
@@ -25,7 +25,10 @@ Route::get('/index', function () {
 
 Route::get('/profile', function () {
     return view('employee.user.profile');
-})->name('employee.profile');
+})->name('employee.profile')->middleware('auth');
+
+
+
 Route::get('/job', function () {
     return view('employee.user.job');
 })->name('employee.job');

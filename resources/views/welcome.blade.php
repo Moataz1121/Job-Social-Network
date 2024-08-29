@@ -181,11 +181,11 @@
 <body>
     <div>
         <h1>User</h1>
-        <a href="{{route('employee.login')}}">User</a>
+        {{-- <a href="{{route('register')}}">User</a> --}}
     </div>
     <div>
         <h1>admin</h1>
-        <a href="{{route('admin.login')}}">Admin</a>
+        {{-- <a href="{{route('login')}}">Admin</a> --}}
     </div>
 </body>
 </html>
