@@ -90,7 +90,13 @@
                     <li>
                       <a class="dropdown-item" href="auth-login-basic.html">
                         <i class="bx bx-power-off me-2"></i>
-                        <span class="align-middle">Log Out</span>
+                        <form action="{{ route('admin.logout') }}" method="POST">
+                            @csrf
+                            <!-- <button type="submit">Logout</button> -->
+                            
+                            <button type="submit" class="btn">LogOut</button>
+                        </form>
+      
                       </a>
                     </li>
                   </ul>
