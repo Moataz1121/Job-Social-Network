@@ -33,11 +33,19 @@ Route::get('/job', function () {
     return view('employee.user.job');
 })->name('employee.job');
 
-Route::get('/admin/login', function () {
-    return view('admin.auth.login');
-})->name('admin.login');
+Route::get('/admin/login', 
+    [App\Http\Controllers\Admin\AdminController::class, 'index']
+)->name('admin.showLogin')->middleware('Adminguest');
+
+Route::post('/admin/login',
+    [App\Http\Controllers\Admin\AdminController::class, 'login']
+)->name('admin.login');
+
+Route::post('/admin/logout',
+    [App\Http\Controllers\Admin\AdminController::class, 'logout']
+)->name('admin.logout');
 
 Route::get('/admin/index', function () {
     return view('admin.index');
-})->name('admin.index');
+})->name('admin.index')->middleware('Admin');
 
