@@ -18,6 +18,7 @@ class AdminFactory extends Factory
     {
         return [
             //
+            
         ];
     }
 }
