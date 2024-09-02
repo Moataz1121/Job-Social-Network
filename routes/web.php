@@ -73,3 +73,7 @@ Route::post('employer/register', [RegisterController::class, 'register'])->name(
 Route::get('/emp', function () {
     return view('emp');
 })->middleware('Employer')->name('emp');
+
+Route::get('/employer/index', function () {
+    return view('employer.index');
+})->name('employer.index');
