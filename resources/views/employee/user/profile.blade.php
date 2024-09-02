@@ -43,7 +43,7 @@
                                     <div class="text-center">
                                         <div class="profile-img w-shadow">
                                             <div class="profile-img-overlay"></div>
-                                            <img src="front/assets/images/users/user-4.jpg" alt="Avatar" class="avatar img-circle">
+                                            <img src="{{asset('images/user_images/'.Auth::user()->image)}}" alt="Avatar" class="avatar img-circle">
                                             <div class="profile-img-caption">
                                                 <label for="updateProfilePic" class="upload">
                                                     <i class='bx bxs-camera'></i> Update
@@ -51,8 +51,8 @@
                                                 </label>
                                             </div>
                                         </div>
-                                        <p class="profile-fullname mt-3">Arthur Minasyan</p>
-                                        <p class="profile-username mb-3 text-muted">@arthur_minasyan</p>
+                                        <p class="profile-fullname mt-3">{{Auth::user()->name}}</p>
+                                        <p class="profile-username mb-3 text-muted">{{Auth::user()->email}}</p>
                                     </div>
                                     <div class="intro mt-4">
                                         <div class="d-flex">
