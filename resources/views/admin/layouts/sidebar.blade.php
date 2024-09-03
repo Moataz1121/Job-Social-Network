@@ -74,6 +74,12 @@
                 <div data-i18n="Analytics">Dashboard</div>
               </a>
             </li>
+            <li class="menu-item ">
+              <a href="{{ route('category.index') }}" class="menu-link">
+                <i class="fa-solid fa-layer-group me-2"></i>
+                    <div data-i18n="Analytics">Category</div>
+              </a>
+            </li>
 
           </ul>
         </aside>
