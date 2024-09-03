@@ -16,7 +16,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $jobPosts = Post::paginate(5);
+        $jobPosts = Post::where('status', 'accepted')->paginate(5);
         return view('employee.user.job', ['jobPosts' => $jobPosts]);
     }
 
