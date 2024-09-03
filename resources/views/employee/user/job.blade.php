@@ -5,7 +5,8 @@
         <div style="" class="mx-5 mb-3">
             <div class="post border-bottom p-3 bg-white w-shadow">
                 <div class="media text-muted pt-1">
-                    <img src="front/assets/images/users/user-4.jpg" alt="Online user" class="mr-3 post-user-image">
+                    <img src="{{ asset('images/employer_images/' . $jobPost->employer->image) }}" alt="Online user"
+                        height="58" width="53" class="mr-3 post-user-image">
                     <div class="media-body pb-3 mb-0 small lh-125">
                         <div class="d-flex justify-content-between align-items-center w-100">
                             <span class="post-type text-muted"><a href="#" class="text-gray-dark post-user-name mr-2">
@@ -75,7 +76,7 @@
                     <input type="checkbox" name="load_more" class="loadMore" id="loadMore{{ $jobPost->id }}">
                     <p class="mb-3">{{ $jobPost->description }}</p>
                     <div id="job-content" class="job-content">
-                        <p class="mb-0">Requirement:</p>
+                        <p class="mb-0"><b>Requirement:</b></p>
                         <ul>
                             @foreach (explode('-', $jobPost->skills) as $key => $skill)
                                 @if ($key > 0)
@@ -83,9 +84,12 @@
                                 @endif
                             @endforeach
                         </ul>
-                        <p> {{ $jobPost->location }} </p>
+                        <p> <b>Location: </b>{{ $jobPost->location }} </p>
+                        <p> <b>Work Type: </b>{{ $jobPost->work_type }} </p>
+                        <p> <b>Deadline for hiring: </b>{{ $formatDate = date('l dS F o', strtotime($jobPost->deadLine)) }}
+                        </p>
                     </div>
-                    <label for="loadMore{{ $jobPost->id }}" class="cursor-pointer">read more...</label>
+                    <label for="loadMore{{ $jobPost->id }}" class="cursor-pointer">Read more...</label>
                 </div>
                 <div class="d-block mt-3">
                     <img src="front/assets/images/users/post/post-1.jpg" class="w-100 mb-3" alt="post image">
