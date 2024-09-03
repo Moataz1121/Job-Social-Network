@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreEmployeeRequest;
 use App\Http\Requests\UpdateEmployeeRequest;
+use App\Models\Employee;
 use App\Models\Employer;
 use App\Models\Post;
-
+use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
 {
@@ -66,4 +67,17 @@ class EmployeeController extends Controller
     {
         //
     }
+    public function search(Request $request)
+{
+    $search = $request->input('search');
+    $posts = Post::query()
+        ->when($search, function ($query, $search) {
+            return $query->where('title', 'like', "%{$search}%")
+                         ->orWhere('description', 'like', "%{$search}%")
+                         ->orWhere('location', 'like', "%{$search}%");
+        })-> paginate(5);
+
+    return view('employee.user.job', ['jobPosts' => $posts]);
+    //return view('posts.index', compact('posts'));
+}
 }
