@@ -1,8 +1,12 @@
 <?php
 
+
+use App\Http\Controllers\CategoryController;
+
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\Employer\LoginController;
 use App\Http\Controllers\Employer\RegisterController;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -53,6 +57,8 @@ Route::get('/admin/index', function () {
     return view('admin.index');
 })->name('admin.index')->middleware('Admin');
 
+Route::resource('category', CategoryController::class)->middleware('Admin');
+
 // =========================================
 
 Route::get('employer/login', [LoginController::class, 'showLoginForm'])
@@ -76,3 +82,4 @@ Route::get('/emp', function () {
 Route::get('/employer/index', function () {
     return view('employer.index');
 })->name('employer.index');
+

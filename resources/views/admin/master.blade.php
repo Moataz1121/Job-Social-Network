@@ -23,15 +23,16 @@
           @include('admin.layouts.navbar')
           <!-- / Navbar -->
           <!-- Content wrapper -->
-          <div class="content-wrapper">
+          {{-- <div class="content-wrapper"> --}}
             <!-- Content -->
-            @yield('content')
+            <div class="container">
+            @yield('content')</div>
             <!-- / Content -->
             <!-- Footer -->
             @include('admin.layouts.footer')
             <!-- / Footer -->
             <div class="content-backdrop fade"></div>
-          </div>
+          {{-- </div> --}}
           <!-- Content wrapper -->
         </div>
         <!-- / Layout page -->
