@@ -1,7 +1,7 @@
 @extends('admin.master')
 
 @section('content')
-             <div class="container-xxl flex-grow-1 container-p-y">
+             {{-- <div class="container-xxl flex-grow-1 container-p-y">
               <div class="row">
                 <div class="col-lg-8 mb-4 order-0">
                   <div class="card">
@@ -526,6 +526,30 @@
                   </div>
                 </div>
               </div>
+            </div> --}}
+            
+            @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
             </div>
+        @endif
+              
+            
+
+            @foreach ($posts as $post )
+            <div class="mt-5">
+              <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                  <h3>By : {{$post->employer->name}}</h3>
+                  <h5 class="card-title">Title : {{$post->title}}</h5>
+                  <h6 class="card-subtitle my-2 text-muted">Category : {{$post->category->name}}</h6>
+                  <p class="card-text"> Work : {{$post->work_type}}.</p>
+                  <a href="{{route('admin.details' , $post->id)}}" class="btn btn-primary">Show Details</a>
+                </div>
+              </div> 
+            </div>
+            @endforeach
+         
+                
 
 @endsection

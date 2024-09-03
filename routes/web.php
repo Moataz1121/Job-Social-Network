@@ -2,7 +2,7 @@
 
 
 use App\Http\Controllers\CategoryController;
-
+use App\Http\Controllers\CustomController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\Employer\LoginController;
 use App\Http\Controllers\Employer\RegisterController;
@@ -52,11 +52,11 @@ Route::post(
     '/admin/logout',
     [App\Http\Controllers\Admin\AdminController::class, 'logout']
 )->name('admin.logout');
-
-Route::get('/admin/index', function () {
-    return view('admin.index');
-})->name('admin.index')->middleware('Admin');
-
+// ==========================================================================
+Route::patch('admin/update/{id}' , [CustomController::class, 'update'])->name('admin.update')->middleware('Admin');
+Route::get('/admin/index', [CustomController::class, 'index'])->name('admin.index')->middleware('Admin');
+Route::get('/admin/details/{id}', [CustomController::class, 'details'])->name('admin.details')->middleware('Admin');
+//====================================================
 Route::resource('category', CategoryController::class)->middleware('Admin');
 
 // =========================================
