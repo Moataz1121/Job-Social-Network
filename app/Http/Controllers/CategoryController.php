@@ -7,13 +7,12 @@ use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 
 class CategoryController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     */
+{ 
+    
     public function index()
     {
-        //
+       $categories = Category::all();
+       return view('category.index',compact('categories'));
     }
 
     /**
@@ -21,7 +20,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+       return view('category.create');
     }
 
     /**
@@ -29,7 +28,9 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        //
+        $validated = $request->validated();
+        Category::create($validated);
+        return to_route('category.index');
     }
 
     /**
@@ -37,7 +38,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+       return view('category.show',compact('category'));
     }
 
     /**
@@ -45,7 +46,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('category.edit',compact('category'));
     }
 
     /**
@@ -53,7 +54,9 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        //
+        $validated = $request->validated();
+         $category->update($validated);
+        return to_route('category.index');
     }
 
     /**
@@ -61,6 +64,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return to_route('category.index');
     }
 }

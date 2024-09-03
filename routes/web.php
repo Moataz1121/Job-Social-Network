@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -49,3 +50,4 @@ Route::get('/admin/index', function () {
     return view('admin.index');
 })->name('admin.index')->middleware('Admin');
 
+Route::resource('category', CategoryController::class)->middleware('Admin');
