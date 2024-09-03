@@ -2,18 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\post;
+use App\Models\Post;
 use App\Http\Requests\StorepostRequest;
 use App\Http\Requests\UpdatepostRequest;
+use App\Models\Category;
+use Illuminate\Container\Attributes\Auth;
 
 class PostController extends Controller
 {
+    public function __construct(){
+        $this->middleware('Employer')->except(['index', 'show']);
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         //
+        $posts = Post::paginate(5);
+        return view('Post.index' , compact('posts'));
     }
 
     /**
@@ -22,6 +29,8 @@ class PostController extends Controller
     public function create()
     {
         //
+        $categories = Category::all();
+        return view('Post.create' , compact('categories'));
     }
 
     /**
@@ -30,6 +39,11 @@ class PostController extends Controller
     public function store(StorepostRequest $request)
     {
         //
+        $post  =  $request->validated();
+        // dd($request->all());
+        // $request['emp_id'] = Auth::guard('employer')->user()->id;
+        Post::create($post);
+        return to_route('post.index');
     }
 
     /**
@@ -38,6 +52,7 @@ class PostController extends Controller
     public function show(post $post)
     {
         //
+        return view('Post.show' , compact('post'));
     }
 
     /**
@@ -45,7 +60,8 @@ class PostController extends Controller
      */
     public function edit(post $post)
     {
-        //
+        $categories = Category::all();
+        return view('Post.edit' , compact('post' , 'categories'));
     }
 
     /**
@@ -53,7 +69,11 @@ class PostController extends Controller
      */
     public function update(UpdatepostRequest $request, post $post)
     {
-        //
+        // dd($post);
+        // dd($request->all());
+        $post->update($request->validated());
+        return to_route('post.index');
+
     }
 
     /**
@@ -62,5 +82,7 @@ class PostController extends Controller
     public function destroy(post $post)
     {
         //
+        $post->delete();
+        return to_route('post.index');
     }
 }

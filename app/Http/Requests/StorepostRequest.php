@@ -11,7 +11,7 @@ class StorepostRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,6 +23,14 @@ class StorepostRequest extends FormRequest
     {
         return [
             //
+            'title'=>'required | min:5 | string',
+            'skills'=> 'required| max:255',
+            'description'=> 'required | max:255',
+            'salary'=> 'required | numeric | min:1000',
+            'category_id' => 'required',
+            'deadline'=> 'required | date',
+            'location'=> 'required | max:100',
+            'emp_id' => 'required',
         ];
     }
 }
