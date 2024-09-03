@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\Employer\LoginController;
 use App\Http\Controllers\Employer\RegisterController;
 use Illuminate\Support\Facades\Auth;
@@ -13,11 +14,11 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// Route::get('/register', function () {
+// Route::get('/employee/register', function () {
 //     return view('employee.auth.register');
 // })->name('employee.register');
 
-// Route::get('/login', function () {
+// Route::get('/employee/login', function () {
 //     return view('employee.auth.login');
 // })->name('employee.login');
 
@@ -30,10 +31,8 @@ Route::get('/profile', function () {
 })->name('employee.profile')->middleware('auth');
 
 
-
-Route::get('/job', function () {
-    return view('employee.user.job');
-})->name('employee.job');
+// Employee Job Page => Index Page.
+Route::get('/jobs', [EmployeeController::class, 'index'])->name('employee.job');
 
 Route::get(
     '/admin/login',
@@ -56,19 +55,19 @@ Route::get('/admin/index', function () {
 
 // =========================================
 
-Route::get('empolyer/login', [LoginController::class, 'showLoginForm'])
-->name('empolyer.login.view')->middleware('Employerguest');
+Route::get('employer/login', [LoginController::class, 'showLoginForm'])
+    ->name('employer.login.view')->middleware('Employerguest');
 
-Route::get('empolyer/register', function () {
+Route::get('employer/register', function () {
     return view('employer.auth.register');
 })->name('employer.register.view');
 
 
-Route::post('empolyer/login', [LoginController::class, 'login'])->name('empolyer.login');
+Route::post('employer/login', [LoginController::class, 'login'])->name('employer.login');
 
-Route::post('empolyer/logout', [LoginController::class, 'logout'])->name('empolyer.logout');
+Route::post('employer/logout', [LoginController::class, 'logout'])->name('employer.logout');
 
-Route::post('employer/register', [RegisterController::class, 'register'])->name('empolyer.register');
+Route::post('employer/register', [RegisterController::class, 'register'])->name('employer.register');
 
 Route::get('/emp', function () {
     return view('emp');

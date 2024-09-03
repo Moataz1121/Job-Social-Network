@@ -16,7 +16,7 @@ return new class extends Migration
             $table->String('title');
             $table->text('description');
             $table->String('location');
-            $table->enum ('work_type', ['onSite', 'Hybrid', 'Remote']);
+            $table->enum('work_type', ['onSite', 'Hybrid', 'Remote']);
             $table->integer('salary');
             $table->date('deadLine');
             $table->text('skills');

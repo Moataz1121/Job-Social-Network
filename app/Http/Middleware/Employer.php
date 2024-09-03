@@ -17,7 +17,7 @@ class Employer
     public function handle(Request $request, Closure $next): Response
     {
         if (!Auth::guard('employer')->check()) {
-            return redirect()->route('empolyer.login.view');
+            return redirect()->route('employer.login.view');
         }
         return $next($request);
     }
