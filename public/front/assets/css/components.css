@@ -246,6 +246,16 @@
     display: block;
 }
 
+.loadMore:checked ~ .cursor-pointer {
+    visibility: hidden;
+}
+
+.loadMore:checked ~ .cursor-pointer:after {
+    content: "Show less";
+    display: block;
+    visibility: visible;
+}
+
 .reaction-like {
     left: 10px;
     transition-delay: 0s;
