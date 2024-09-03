@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreEmployeeRequest;
 use App\Http\Requests\UpdateEmployeeRequest;
-use App\Models\Employee;
+use App\Models\Employer;
+use App\Models\Post;
+
 
 class EmployeeController extends Controller
 {
@@ -13,7 +15,8 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        //
+        $jobPosts = Post::paginate(5);
+        return view('employee.user.job', ['jobPosts' => $jobPosts]);
     }
 
     /**

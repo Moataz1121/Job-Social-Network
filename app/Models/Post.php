@@ -9,15 +9,18 @@ class Post extends Model
 {
     use HasFactory;
 
-    public function users(){
+    public function users()
+    {
         return $this->belongsToMany(User::class);
     }
 
-    public function category(){
+    public function category()
+    {
         return $this->belongsTo(Category::class);
     }
 
-    public function employer(){
-        return $this->belongsTo(Employer::class);
+    public function employer()
+    {
+        return $this->belongsTo(Employer::class, 'emp_id', 'id');
     }
 }
