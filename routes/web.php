@@ -83,3 +83,7 @@ Route::get('/employer/index', function () {
     return view('employer.index');
 })->name('employer.index');
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
