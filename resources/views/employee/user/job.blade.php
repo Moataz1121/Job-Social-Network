@@ -1,10 +1,10 @@
 @extends('employee.user.master')
 
 @section('content')
-<form action="{{ route('jobs.search') }}" method="GET" class="mb-3 d-flex justify-content-center" >
-    <input type="text" name="search" placeholder="Search jobs" class="form-control w-75 me-3" >
-    <button type="submit" class="btn btn-primary">Search</button>
-</form>
+    <form action="{{ route('jobs.search') }}" method="GET" class="mb-3 d-flex justify-content-center">
+        <input type="text" name="search" placeholder="Search jobs" class="form-control w-75 me-3">
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
     @foreach ($jobPosts as $jobPost)
         <div style="" class="mx-5 mb-3">
             <div class="post border-bottom p-3 bg-white w-shadow">
@@ -78,6 +78,7 @@
                 </div>
                 <div class="mb-2">
                     <input type="checkbox" name="load_more" class="loadMore" id="loadMore{{ $jobPost->id }}">
+                    <p class="mt-3 fs-3"><b>Title: </b>{{ $jobPost->title }}</p>
                     <p class="mb-3">{{ $jobPost->description }}</p>
                     <div id="job-content" class="job-content">
                         <p class="mb-0"><b>Requirement:</b></p>
