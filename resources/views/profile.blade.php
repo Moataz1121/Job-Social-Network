@@ -6,8 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" type="image/png" href="front/assets/images/logo-16x16.png" />
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Argon - Social Network</title>
+    <title>Job Hiring Website</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display" rel="stylesheet">

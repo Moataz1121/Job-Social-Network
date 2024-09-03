@@ -1,6 +1,12 @@
 <?php
 
+
 use App\Http\Controllers\CategoryController;
+
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\Employer\LoginController;
+use App\Http\Controllers\Employer\RegisterController;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -12,11 +18,11 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// Route::get('/register', function () {
+// Route::get('/employee/register', function () {
 //     return view('employee.auth.register');
 // })->name('employee.register');
 
-// Route::get('/login', function () {
+// Route::get('/employee/login', function () {
 //     return view('employee.auth.login');
 // })->name('employee.login');
 
@@ -29,20 +35,21 @@ Route::get('/profile', function () {
 })->name('employee.profile')->middleware('auth');
 
 
+// Employee Job Page => Index Page.
+Route::get('/jobs', [EmployeeController::class, 'index'])->name('employee.job');
 
-Route::get('/job', function () {
-    return view('employee.user.job');
-})->name('employee.job');
-
-Route::get('/admin/login', 
+Route::get(
+    '/admin/login',
     [App\Http\Controllers\Admin\AdminController::class, 'index']
 )->name('admin.showLogin')->middleware('Adminguest');
 
-Route::post('/admin/login',
+Route::post(
+    '/admin/login',
     [App\Http\Controllers\Admin\AdminController::class, 'login']
 )->name('admin.login');
 
-Route::post('/admin/logout',
+Route::post(
+    '/admin/logout',
     [App\Http\Controllers\Admin\AdminController::class, 'logout']
 )->name('admin.logout');
 
@@ -51,3 +58,28 @@ Route::get('/admin/index', function () {
 })->name('admin.index')->middleware('Admin');
 
 Route::resource('category', CategoryController::class)->middleware('Admin');
+
+// =========================================
+
+Route::get('employer/login', [LoginController::class, 'showLoginForm'])
+    ->name('employer.login.view')->middleware('Employerguest');
+
+Route::get('employer/register', function () {
+    return view('employer.auth.register');
+})->name('employer.register.view');
+
+
+Route::post('employer/login', [LoginController::class, 'login'])->name('employer.login');
+
+Route::post('employer/logout', [LoginController::class, 'logout'])->name('employer.logout');
+
+Route::post('employer/register', [RegisterController::class, 'register'])->name('employer.register');
+
+Route::get('/emp', function () {
+    return view('emp');
+})->middleware('Employer')->name('emp');
+
+Route::get('/employer/index', function () {
+    return view('employer.index');
+})->name('employer.index');
+

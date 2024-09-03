@@ -63,6 +63,14 @@ return [
             'throw' => false,
         ],
 
+        'employer_image'=>[
+            'driver'=>'local',
+            'root' => public_path('images/employer_image'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
         
 
     ],

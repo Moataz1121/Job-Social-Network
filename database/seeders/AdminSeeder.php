@@ -14,12 +14,15 @@ class AdminSeeder extends Seeder
      */
     public function run(): void
     {
+
         Admin::updateOrCreate(
             [
                 'email' => 'admin@gmail.com',
                 'name' => 'admin',
                 'password' => Hash::make('12345678'),
                 'image' => 'images/user_images/default.png',
+
             ]);
+
     }
 }
