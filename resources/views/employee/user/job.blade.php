@@ -116,32 +116,37 @@
 
                                     <!-- Modal Body -->
                                     <div class="modal-body">
-                                        <form action="{{route('employee.apply' , $jobPost->id)}}" method="POST" enctype="multipart/form-data">
+                                        <form action="{{ route('employee.apply', $jobPost->id) }}" method="POST"
+                                            enctype="multipart/form-data">
                                             @csrf
                                             <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                                             <input type="hidden" name="post_id" value="{{ $jobPost->id }}">
-                                             
+
                                             <label for="" class="form-label">Name</label>
-                                            <input value="{{ Auth::user()->name }}" type="text" name="name" class="form-control" id="">
+                                            <input value="{{ Auth::user()->name }}" type="text" name="name"
+                                                class="form-control" id="">
                                             @error('name')
-                                            <span class="text-danger">{{ $message }}</span>  
-                                             @enderror
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                             <label for="" class="form-label mt-3">Email</label>
-                                            <input value="{{ Auth::user()->email }}" type="text" class="form-control" id="" name="email">
+                                            <input value="{{ Auth::user()->email }}" type="text" class="form-control"
+                                                id="" name="email">
                                             @error('email')
-                                            <span class="text-danger">{{ $message }}</span>  
-                                             @enderror
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                             <label for="" class="form-label mt-3">Phone</label>
-                                            <input type="text" name="phone_number" value="{{ Auth::user()->phone_number }}" class="form-control" id="" >
+                                            <input type="text" name="phone_number"
+                                                value="{{ Auth::user()->phone_number }}" class="form-control"
+                                                id="">
                                             @error('phone_number')
-                                            <span class="text-danger">{{ $message }}</span>  
-                                              @enderror
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                             <label for="" class="form-label mt-3">Resume</label><input
-                                                type="file"  class="form-control" id=""
+                                                type="file" class="form-control" id=""
                                                 name="resume"></label>
-                                                @error('resume')
-                                                <span class="text-danger">{{ $message }}</span>  
-                                                   @enderror
+                                            @error('resume')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
 
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
@@ -236,121 +241,48 @@
                                                     <img src="{{ asset('admin') }}assets/images/users/user-4.jpg"
                                                         alt="" class="img-circle">
                                                 </a>
+                                                {{-- Adding Comment --}}
                                                 <div class="media-body">
-                                                    <form action="" method="" role="form">
+                                                    <form action="{{ route('posts.addComment', $jobPost->id) }}" method="POST">
+                                                        @csrf
                                                         <div class="row">
                                                             <div class="col-md-12">
                                                                 <div class="input-group">
-                                                                    <input type="text"
-                                                                        class="form-control comment-input"
-                                                                        placeholder="Write a comment...">
-
+                                                                    <input type="text" name="body" class="form-control comment-input" placeholder="Write a comment...">
                                                                     <div class="input-group-btn">
-                                                                        <button type="button"
-                                                                            class="btn comment-form-btn"
-                                                                            data-toggle="tooltip" data-placement="top"
-                                                                            title="Tooltip on top"><i
-                                                                                class='bx bxs-smiley-happy'></i></button>
-                                                                        <button type="button"
-                                                                            class="btn comment-form-btn comment-form-btn"
-                                                                            data-toggle="tooltip" data-placement="top"
-                                                                            title="Tooltip on top"><i
-                                                                                class='bx bx-camera'></i></button>
-                                                                        <button type="button"
-                                                                            class="btn comment-form-btn comment-form-btn"
-                                                                            data-toggle="tooltip" data-placement="top"
-                                                                            title="Tooltip on top"><i
-                                                                                class='bx bx-microphone'></i></button>
-                                                                        <button type="button"
-                                                                            class="btn comment-form-btn"
-                                                                            data-toggle="tooltip" data-placement="top"
-                                                                            title="Tooltip on top"><i
-                                                                                class='bx bx-file-blank'></i></button>
+                                                                        <button type="submit" class="btn comment-form-btn" data-toggle="tooltip" data-placement="top" title="Tooltip on top"><i class="fa-solid fa-comment"></i></button>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </form>
+
                                                 </div>
                                             </li>
+                                            @foreach ($jobPost->comments as $comment)
                                             <li class="media">
                                                 <a href="#" class="pull-left">
-                                                    <img src="front/assets/images/users/user-2.jpg" alt=""
+                                                    <img src="{{ asset('images/user_images/' .Auth::user()->image) }}" alt=""
                                                         class="img-circle">
                                                 </a>
                                                 <div class="media-body">
                                                     <div class="d-flex justify-content-between align-items-center w-100">
                                                         <strong class="text-gray-dark"><a href="#"
-                                                                class="fs-8">Karen
-                                                                Minas</a></strong>
+                                                                class="fs-8">{{$comment->user->name}}</a></strong>
                                                         <a href="#"><i
                                                                 class='bx bx-dots-horizontal-rounded'></i></a>
                                                     </div>
-                                                    <span class="d-block comment-created-time">30 min ago</span>
+                                                    <span class="d-block comment-created-time">{{ $comment->created_at->format('F j, Y, g:i a') }}</span>
                                                     <p class="fs-8 pt-2">
-                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                                        Lorem ipsum dolor sit amet, <a
-                                                            href="#">#consecteturadipiscing
-                                                        </a>.
+                                                        {{$comment->body}}
                                                     </p>
                                                     <div class="commentLR">
-                                                        <button type="button" class="btn btn-link fs-8">Like</button>
-                                                        <button type="button" class="btn btn-link fs-8">Reply</button>
+                                                        <button type="button" class="btn btn-link fs-8">Delete</button>
                                                     </div>
                                                 </div>
                                             </li>
-                                            <li class="media">
-                                                <a href="#" class="pull-left">
-                                                    <img src="https://bootdey.com/img/Content/user_2.jpg" alt=""
-                                                        class="img-circle">
-                                                </a>
-                                                <div class="media-body">
-                                                    <div class="d-flex justify-content-between align-items-center w-100">
-                                                        <strong class="text-gray-dark"><a href="#"
-                                                                class="fs-8">Lia
-                                                                Earnest</a></strong>
-                                                        <a href="#"><i
-                                                                class='bx bx-dots-horizontal-rounded'></i></a>
-                                                    </div>
-                                                    <span class="d-block comment-created-time">2 hours ago</span>
-                                                    <p class="fs-8 pt-2">
-                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                                        Lorem ipsum dolor sit amet, <a
-                                                            href="#">#consecteturadipiscing
-                                                        </a>.
-                                                    </p>
-                                                    <div class="commentLR">
-                                                        <button type="button" class="btn btn-link fs-8">Like</button>
-                                                        <button type="button" class="btn btn-link fs-8">Reply</button>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="media">
-                                                <a href="#" class="pull-left">
-                                                    <img src="https://bootdey.com/img/Content/user_3.jpg" alt=""
-                                                        class="img-circle">
-                                                </a>
-                                                <div class="media-body">
-                                                    <div class="d-flex justify-content-between align-items-center w-100">
-                                                        <strong class="text-gray-dark"><a href="#"
-                                                                class="fs-8">Rusty
-                                                                Mickelsen</a></strong>
-                                                        <a href="#"><i
-                                                                class='bx bx-dots-horizontal-rounded'></i></a>
-                                                    </div>
-                                                    <span class="d-block comment-created-time">17 hours ago</span>
-                                                    <p class="fs-8 pt-2">
-                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                                        Lorem ipsum dolor sit amet, <a
-                                                            href="#">#consecteturadipiscing
-                                                        </a>.
-                                                    </p>
-                                                    <div class="commentLR">
-                                                        <button type="button" class="btn btn-link fs-8">Like</button>
-                                                        <button type="button" class="btn btn-link fs-8">Reply</button>
-                                                    </div>
-                                                </div>
-                                            </li>
+                                            @endforeach
+                                            {{-- end comment --}}
                                             <li class="media">
                                                 <div class="media-body">
                                                     <div class="comment-see-more text-center">
