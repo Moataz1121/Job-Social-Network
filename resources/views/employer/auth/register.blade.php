@@ -155,7 +155,7 @@
 @enderror
                 </div>
                 <div class="mb-3">
-                  <label for="phone_number" class="form-label">phone_number</label>
+                  <label for="phone_number" class="form-label">phone number</label>
                   <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="Enter your phone_number" />
                   @error('phone_number')
     <span class="text-danger">{{ $message }}</span>
@@ -171,7 +171,7 @@
                 </div>
 
                 <div class="mb-3">
-                  <label for="company_name" class="form-label">company_name</label>
+                  <label for="company_name" class="form-label">company name</label>
                   <input type="text" class="form-control" id="company_name" name="company_name" placeholder="Enter your company_name" />
                   @error('company_name')
     <span class="text-danger">{{ $message }}</span>
@@ -202,21 +202,12 @@
 @enderror
                 </div>
 
-                <div class="mb-3">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="terms-conditions" name="terms" />
-                    <label class="form-check-label" for="terms-conditions">
-                      I agree to
-                      <a href="javascript:void(0);">privacy policy & terms</a>
-                    </label>
-                  </div>
-                </div>
                 <button class="btn btn-primary d-grid w-100">Sign up</button>
               </form>
 
-              <p class="text-center">
+              <p class="text-center d-flex justify-content-between">
                 <span>Already have an account?</span>
-                <a href="auth-login-basic.html">
+                <a href="{{ route('employer.login') }}">
                   <span>Sign in instead</span>
                 </a>
               </p>

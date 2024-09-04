@@ -53,7 +53,7 @@ Route::post(
     [App\Http\Controllers\Admin\AdminController::class, 'logout']
 )->name('admin.logout');
 // ==========================================================================
-Route::patch('admin/update/{id}' , [CustomController::class, 'update'])->name('admin.update')->middleware('Admin');
+Route::patch('admin/update/{id}', [CustomController::class, 'update'])->name('admin.update')->middleware('Admin');
 Route::get('/admin/index', [CustomController::class, 'index'])->name('admin.index')->middleware('Admin');
 Route::get('/admin/details/{id}', [CustomController::class, 'details'])->name('admin.details')->middleware('Admin');
 //====================================================
@@ -88,6 +88,9 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('post' , PostController::class);
+Route::resource('post', PostController::class);
 
 Route::get('/search', [EmployeeController::class, 'search'])->name('jobs.search');
+
+
+Route::get('/admin/mail/{id}', [CustomController::class, 'mail'])->name('send.mail')->middleware('Admin');
