@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreEmployeeRequest;
 use App\Http\Requests\UpdateEmployeeRequest;
+use App\Models\Category;
 use App\Models\Employee;
 use App\Models\Employer;
 use App\Models\Post;
@@ -18,10 +19,19 @@ class EmployeeController extends Controller
      */
     public function index()
     {
+        $categories = Category::all();
         $jobPosts = Post::where('status', 'accepted')->paginate(5);
-        return view('employee.user.job', ['jobPosts' => $jobPosts]);
+        return view('employee.user.job', ['jobPosts' => $jobPosts, 'categories' => $categories]);
     }
 
+    public function filter_category($id)
+    {
+        $categories = Category::all();
+
+        $category = Category::findOrFail($id);
+        $posts = $category->posts()->paginate(5);
+        return view('employee.user.filter_category' , compact('posts','categories'));
+    }
     /**
      * Show the form for creating a new resource.
      */
