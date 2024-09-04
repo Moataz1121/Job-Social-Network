@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Employer;
 use App\Http\Requests\StoreEmployerRequest;
 use App\Http\Requests\UpdateEmployerRequest;
+use App\Models\PostsEmployee;
 
 class EmployerController extends Controller
 {
@@ -14,6 +15,8 @@ class EmployerController extends Controller
     public function index()
     {
         //
+        $applyed = PostsEmployee::all();
+        return view('employer.applyedJobs' , compact('applyed'));
     }
 
     /**

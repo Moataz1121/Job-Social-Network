@@ -93,6 +93,72 @@
                         <p> <b>Work Type: </b>{{ $jobPost->work_type }} </p>
                         <p> <b>Deadline for hiring: </b>{{ $formatDate = date('l dS F o', strtotime($jobPost->deadLine)) }}
                         </p>
+                        <p> <b>Salary: </b>{{ $jobPost->salary }} </p>
+                        {{-- <a href="" class="btn btn-primary">Apply</a>   --}}
+
+                        {{-- Start apply --}}
+                        <!-- Button to Open the Modal -->
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#applyModal">
+                            Apply Now
+                        </button>
+
+                        <!-- The Modal -->
+                        <div class="modal fade" id="applyModal" tabindex="-1" aria-labelledby="applyModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="applyModalLabel">Confirm Apply</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+
+                                    <!-- Modal Body -->
+                                    <div class="modal-body">
+                                        <form action="{{route('employee.apply' , $jobPost->id)}}" method="POST" enctype="multipart/form-data">
+                                            @csrf
+                                            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                                            <input type="hidden" name="post_id" value="{{ $jobPost->id }}">
+                                             
+                                            <label for="" class="form-label">Name</label>
+                                            <input value="{{ Auth::user()->name }}" type="text" name="name" class="form-control" id="">
+                                            @error('name')
+                                            <span class="text-danger">{{ $message }}</span>  
+                                             @enderror
+                                            <label for="" class="form-label mt-3">Email</label>
+                                            <input value="{{ Auth::user()->email }}" type="text" class="form-control" id="" name="email">
+                                            @error('email')
+                                            <span class="text-danger">{{ $message }}</span>  
+                                             @enderror
+                                            <label for="" class="form-label mt-3">Phone</label>
+                                            <input type="text" name="phone_number" value="{{ Auth::user()->phone_number }}" class="form-control" id="" >
+                                            @error('phone_number')
+                                            <span class="text-danger">{{ $message }}</span>  
+                                              @enderror
+                                            <label for="" class="form-label mt-3">Resume</label><input
+                                                type="file"  class="form-control" id=""
+                                                name="resume"></label>
+                                                @error('resume')
+                                                <span class="text-danger">{{ $message }}</span>  
+                                                   @enderror
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Cancel</button>
+                                                <button type="submit" class="btn btn-primary">Confirm
+                                                    Application</button>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    <!-- Modal Footer -->
+
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- End aplly --}}
                     </div>
                     <label for="loadMore{{ $jobPost->id }}" class="cursor-pointer">Read more...</label>
                 </div>

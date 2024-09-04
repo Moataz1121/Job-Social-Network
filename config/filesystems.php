@@ -70,6 +70,13 @@ return [
             'visibility' => 'public',
             'throw' => false,
         ],
+        'employee_resume'=>[
+            'driver'=>'local',
+            'root' => public_path('images/resume'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
 
         
 
