@@ -18,4 +18,6 @@
     <link href="https://vjs.zencdn.net/7.4.1/video-js.css" rel="stylesheet">
     <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js" type="text/javascript"></script>
     <script src="front/assets/js/load.js" type="text/javascript"></script>
+    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> --}}
+
 </head>

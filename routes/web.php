@@ -6,6 +6,7 @@ use App\Http\Controllers\CustomController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\Employer\LoginController;
 use App\Http\Controllers\Employer\RegisterController;
+use App\Http\Controllers\EmployerController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -37,6 +38,9 @@ Route::get('/profile', function () {
 
 // Employee Job Page => Index Page.
 Route::get('/jobs', [EmployeeController::class, 'index'])->name('employee.job');
+Route::post('/jobs/apply/{id}' , [EmployeeController::class, 'apply'])->name('employee.apply');
+
+//=======================================================
 
 Route::get(
     '/admin/login',
@@ -82,6 +86,15 @@ Route::get('/emp', function () {
 Route::get('/employer/index', function () {
     return view('employer.index');
 })->name('employer.index');
+
+
+// ===========================================
+// Start Employer
+
+Route::get('/employer/data',[EmployerController::class, 'index'])->name('employer.data');
+// End Employer
+// ===========================================
+
 
 
 Auth::routes();
