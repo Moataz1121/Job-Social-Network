@@ -26,9 +26,9 @@ class User extends Authenticatable
         'gender',
     ];
 
-     public function posts(){
+    public function posts(){
         return $this->belongsToMany(Post::class);
-     }   
+    }
     /**
      * The attributes that should be hidden for serialization.
      *

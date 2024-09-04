@@ -1,17 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
 use App\Http\Requests\StorepostRequest;
 use App\Http\Requests\UpdatepostRequest;
 use App\Models\Category;
-use Illuminate\Container\Attributes\Auth;
-
+use App\Models\Comment;
+use Illuminate\Http\Request;
 class PostController extends Controller
 {
     public function __construct(){
-        $this->middleware('Employer')->except(['index', 'show']);
+        $this->middleware('Employer')->except(['index', 'show', 'addComment']);
     }
     /**
      * Display a listing of the resource.
@@ -45,6 +45,7 @@ class PostController extends Controller
         Post::create($post);
         return to_route('post.index');
     }
+
 
     /**
      * Display the specified resource.
@@ -84,5 +85,19 @@ class PostController extends Controller
         //
         $post->delete();
         return to_route('post.index');
+    }
+
+    public function addComment(Request $request, $id)
+    {
+
+        $post = Post::findOrFail($id);
+
+        $comment = new Comment();
+        $comment->body = $request->input('body');
+        $comment->user_id = Auth::id();
+
+        $post->comments()->save($comment);
+
+        return redirect()->back()->with('success', 'Comment added successfully!');
     }
 }
