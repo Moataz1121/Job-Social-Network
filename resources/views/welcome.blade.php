@@ -176,16 +176,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Welcome</title>
+    <link href="{{asset("front/assets/css/bootstrap/bootstrap.min.css")}}" rel="stylesheet">
+
 </head>
 <body>
-    <div>
-        <h1>User</h1>
-        {{-- <a href="{{route('register')}}">User</a> --}}
-    </div>
-    <div>
-        <h1>admin</h1>
-        {{-- <a href="{{route('login')}}">Admin</a> --}}
+         <h1 class="text-center mt-5 " >Welcome to our Page</h1>
+    <div class="container mt-5">
+        <div class="row">
+            <a href="{{route("admin.login")}}" class="col-4">
+                <img
+                    src= "{{asset("/images/1.png")}}"
+                    class="img-fluid rounded-top"
+                    alt=""
+                />
+                
+            </a>
+            <a href="{{route("employer.login")}}" class="col-4">
+                <img
+                    src= "{{asset("/images/2.png")}}"
+                    class="img-fluid rounded-top"
+                    alt=""
+                />
+                
+            </a>
+            <a href="{{route("login")}}" class="col-4">
+                <img
+                    src= "{{asset("/images/3.png")}}"
+                    class="img-fluid rounded-top"
+                    alt=""
+                />
+                
+            </a>
+        </div>
     </div>
 </body>
 </html>

@@ -76,6 +76,17 @@
                 <div data-i18n="Analytics">All Users</div>
             </a>
         </li>
-
+        <li class="menu-item ">
+            <a href="{{ route('admin.employers') }}" class="menu-link">
+                <i class="fa-solid fa-layer-group me-2"></i>
+                <div data-i18n="Analytics">All Employers</div>
+            </a>
+        </li>
+        <li class="menu-item ">
+            <a href="{{ route('admin.index') }}" class="menu-link">
+                <i class="fa-solid fa-layer-group me-2"></i>
+                <div data-i18n="Analytics">All Posts</div>
+            </a>
+        </li>
     </ul>
 </aside>
