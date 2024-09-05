@@ -12,9 +12,22 @@ use Illuminate\Support\Facades\Notification;
 class CustomController extends Controller
 {
     //
-    public function index()
+    // public function index()
+    // {
+    //     $posts = Post::all();
+    //     return view('admin.index', compact('posts'));
+    // }
+
+    public function index(Request $request)
     {
-        $posts = Post::get()->where('status', 'pending');
+        $status = $request->query('status');
+
+        if ($status) {
+            $posts = Post::where('status', $status)->get();
+        } else {
+            $posts = Post::all();
+        }
+
         return view('admin.index', compact('posts'));
     }
 
