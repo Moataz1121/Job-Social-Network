@@ -1,104 +1,142 @@
 @extends('admin.master')
 
+<head>
+    <style>
+        .item1 {
+            grid-area: header;
+            height: 250px;
+            width: 1000px !important;
+        }
+
+        .item2 {
+            grid-area: menu;
+            width: 400px;
+            height: 500px
+        }
+
+        .item3 {
+            grid-area: main;
+            height: fit-content;
+        }
+
+        .item4 {
+            grid-area: comment;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-areas:
+                'header header header header menu menu'
+                'main main main main menu menu'
+                'main main main main comment comment';
+        }
+    </style>
+</head>
+
 @section('content')
-    <div class="card-body bg-light rounded-2 mt-4 shadow">
-        <blockquote class="blockquote mb-0">
-            <div class = "mb-3">
-                <small class="fs-5"><b class="fs-4">Employer name: </b> {{ $post->employer->name }} </small>
+    <div class="grid h-75 mt-3">
+        <div class="item1 mb-3 my-0 bg-light me-3 rounded p-5">
+            <div class="mb-4">
+                <h2>{{ $post->title }}</h2>
+                <h5>{{ $post->category->name }}</h5>
             </div>
-            <div class = "mb-3">
-                <small class="fs-5"><b class="fs-4">Employer email: </b> {{ $post->employer->email }} </small>
-            </div>
-            <div class = "mb-3">
-                <small class="fs-5"><b class="fs-4">Title: </b> {{ $post->title }} </small>
-            </div>
-            <div class = "mb-3">
-                <small class="fs-5"><b class="fs-4">Category: </b>{{ $post->category->name }}</small>
-            </div>
-            <div class = "mb-3">
-                <small class="fs-5"><b class="fs-4">Description : </b>{{ $post->description }}</small>
-            </div>
+            <div class="d-flex mb-2">
+                <h5 class="me-4"><i class="fa-regular fa-calendar-days me-2"></i>Post Date: <small class="text-info">
+                        {{ $post->created_at->format('Y-m-d') }}</small></h5>
+                <h5 class="me-4"><i class="fa-regular fa-calendar-days me-2"></i>Post End: <small class="text-info">
+                        {{ $post->deadLine }}</small></h5>
+                <h5 class="me-4"><i class="fa-regular fa-user me-2"></i>Employer: <small class="text-info">
+                        {{ $post->employer->name }}</small></h5>
 
-            <div class = "mb-3">
-                <div class="fs-5"><b class="fs-4">Skills: </b>
-                    <ul>
-                        @foreach (explode('-', $post->skills) as $key => $skill)
-                            @if ($key > 0)
-                                <li>{{ $skill }}</li>
-                            @endif
-                        @endforeach
-                    </ul>
-                </div>
             </div>
-            <div class = "mb-3">
-                <small class="fs-5"><b class="fs-4">Location: </b>{{ $post->location }}</small>
-            </div>
-            <div class = "mb-3">
-                <small class="fs-5"><b class="fs-4">Work Type: </b>{{ $post->work_type }}</small>
-            </div>
-            <div class = "mb-3">
-                <small class="fs-5"><b class="fs-4">Salary: </b>{{ $post->salary }} USD</small>
-            </div>
-            <div class = "mb-3">
-                <small class="fs-5"><b class="fs-4">Created At:</b>
-                    {{ $post->created_at->format('l dS F o H:i:s A') }}
-                </small>
-            </div>
-
-        </blockquote>
-
-        <form action="{{ route('admin.update', $post->id) }}" method="POST">
-            @csrf
-            @method('PATCH')
-            <div>
-                <select class="form-select form-control" name="status" aria-label="Default select example">
-                    <option disabled value="{{ $post->status }}" selected>{{ $post->status }}</option>
-
-                    <option value="accepted">Accepted</option>
-                    <option value="rejected">Rejected</option>
-
-
-                </select>
-
-                @error('status')
-                    <span class="alert alert-danger my-5">{{ $message }}</span>
-                @enderror
-            </div>
-            <input type="submit" class="btn btn-primary mt-3" value="Submit & Mail">
-        </form>
-
-        <div class="card mt-4">
-            <div class="card-header">
-                <h5>Comments</h5>
-            </div>
-            <div class="card-body">
-                @if ($post->comments->count() > 0)
-                    @foreach ($post->comments as $comment)
-                        <div class="d-flex justify-content-between aligin-items-center">
-                            <div class="comment mb-3">
-                                <strong>{{ $comment->user->name }}:</strong>
-                                <!-- Assuming you have a user associated with the comment -->
-                                <p>{{ $comment->body }}</p> <!-- Assuming 'content' is the column for comment text -->
-                            </div>
-                            <div class="commentLR">
-                                <form action="{{ route('comments.delete', $comment->id) }}" method="POST"
-                                    style="display:inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-link btn-danger fs-8"
-                                        onclick="return confirm('Are you sure you want to delete this comment?')">
-                                        {{-- <i class="fas text-danger fa-trash-alt"></i> --}}
-                                        Delete
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    @endforeach
-                @else
-                    <p>No comments yet.</p>
-                @endif
+            <div class="d-flex">
+                <h5 class="me-4"><i class="fa-regular fa-building me-2"></i>Company name: <small class="text-info">
+                        {{ $post->employer->company_name }}</small></h5>
+                <h5 class="me-4"><i class="fa-solid fa-at me-2"></i>Employer email: <small class="text-info">
+                        {{ $post->employer->email }}</small></h5>
+                <h5 class="me-4"><i class="fa-solid fa-phone me-2"></i>Phone: <small class="text-info">
+                        {{ $post->employer->phone_number }}</small></h5>
             </div>
         </div>
-
+        <div class="item2 bg-light rounded p-5">
+            <div class="mb-5">
+                <form action="{{ route('admin.update', $post->id) }}" method="POST">
+                    @csrf
+                    @method('PATCH')
+                    @error('status')
+                        <span class="alert alert-danger">{{ $message }}</span>
+                    @enderror
+                    <div>
+                        <select class="form-select form-control" name="status" aria-label="Default select example">
+                            <option disabled value="{{ $post->status }}">{{ $post->status }}</option>
+                            <option value="accepted">Accept</option>
+                            <option value="rejected">Reject</option>
+                        </select>
+                    </div>
+                    <input type="submit" class="btn btn-primary mt-3 fs-5 w-100" height="200px" value="Submit & Mail">
+                </form>
+            </div>
+            <div class="mb-4">
+                <h5 class="mb-2 me-4"><i class="fa-solid fa-briefcase me-4 text-danger"></i>Job Type</h5>
+                @if ($post->work_type === 'onSite')
+                    <p class="text-secondary" style="margin-left: 40px">On Site</p>
+                @elseif ($post->work_type === 'Hybrid')
+                    <p class="text-secondary" style="margin-left: 40px">Hybrid</p>
+                @elseif ($post->work_type === 'Remote')
+                    <p class="text-secondary" style="margin-left: 40px">Remote</p>
+                @endif
+            </div>
+            <div class="mb-4">
+                <h5 class="mb-2 me-4"><i class="fa-regular fa-money-bill-1 me-3 text-danger"></i>Salary</h5>
+                <p class="text-secondary" style="margin-left: 40px">{{ $post->salary }}$</p>
+            </div>
+            <div class="mb-4">
+                <h5 class="mb-2 me-4"><i class="fa-solid fa-location-dot me-4 text-danger"></i>Location</h5>
+                <p class="text-secondary" style="margin-left: 40px">{{ $post->location }}</p>
+            </div>
+        </div>
+        <div class="item3 bg-light me-3 rounded p-5">
+            <div class="mb-4">
+                <h4 class="mb-3">Job Description</h4>
+                <p>{{ $post->description }}</p>
+            </div>
+            <div class="mb-4">
+                <h4 class="mb-3">Job Requirement</h4>
+                <p>{!! nl2br($post->skills) !!}</p>
+            </div>
+        </div>
+        <div class="item4 bg-light mt-3 rounded p-4">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Comments</h4>
+                </div>
+                <div class="card-body">
+                    @if ($post->comments->count() > 0)
+                        @foreach ($post->comments as $comment)
+                            <div class="d-flex justify-content-between aligin-items-center">
+                                <div class="comment mb-3">
+                                    <strong>{{ $comment->user->name }}:</strong>
+                                    <p>{{ $comment->body }}</p>
+                                </div>
+                                <div class="commentLR">
+                                    <form action="{{ route('comments.delete', $comment->id) }}" method="POST"
+                                        style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-link btn-danger fs-8"
+                                            onclick="return confirm('Are you sure you want to delete this comment?')">
+                                            {{-- <i class="fas text-danger fa-trash-alt"></i> --}}
+                                            Delete
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        @endforeach
+                    @else
+                        <p>No comments yet.</p>
+                    @endif
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
