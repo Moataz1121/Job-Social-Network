@@ -104,4 +104,16 @@ class PostController extends Controller
         $comment->delete();
         return redirect()->back()->with('success', 'Comment deleted successfully!');
     }
+    public function editComment($id, Request $request){
+
+        $comment = Comment::findOrFail($id);
+        $request->validate([
+            'body' => 'required',
+
+        ]);
+        //$comment->update($request->validated());
+        $comment->body = $request->input('body');
+        $comment->save();
+        return redirect()->back();
+    }
 }
