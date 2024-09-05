@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateStatus;
+use App\Models\Comment;
 use App\Models\Employer;
 use App\Models\Post;
 use Illuminate\Http\Request;
@@ -33,8 +34,15 @@ class CustomController extends Controller
 
     public function details($id)
     {
-        $post = Post::findOrFail($id);
+        $post = Post::with('comments.user')->findOrFail($id);
         return view('admin.details', compact('post'));
+    }
+
+    public function DeleteComment($id){
+
+        $comment = Comment::findOrFail($id);
+        $comment->delete();
+        return redirect()->back()->with('success', 'Comment deleted successfully!');
     }
 
     public function update(UpdateStatus $request, $id)

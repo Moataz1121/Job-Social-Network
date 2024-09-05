@@ -248,7 +248,7 @@
                                                         <div class="row">
                                                             <div class="col-md-12">
                                                                 <div class="input-group">
-                                                                    <input type="text" name="body" class="form-control comment-input" placeholder="Write a comment...">
+                                                                    <input type="text" name="body" value="{{ old('body') }}" class="form-control comment-input" placeholder="Write a comment...">
                                                                     <div class="input-group-btn">
                                                                         <button type="submit" class="btn text-primary comment-form-btn" data-toggle="tooltip" data-placement="top" title="Tooltip on top"><i class="fa fa-paper-plane"></i></button>
                                                                     </div>
