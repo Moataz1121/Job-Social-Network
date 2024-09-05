@@ -26,5 +26,6 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('delete-comment', function (User $user, Comment $comment) {
             return $user->id === $comment->user->id;});
         Paginator::useBootstrap();
+        
     }
 }

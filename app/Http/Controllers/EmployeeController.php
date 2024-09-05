@@ -106,11 +106,17 @@ class EmployeeController extends Controller
 {
     $categories = Category::all();
     $search = $request->input('search');
+    if($search == null){
+        $posts=Post::where('status', 'accepted')->paginate(5);
+        return view('employee.user.job', ['jobPosts' => $posts,'categories' => $categories]);
+    }
     $posts = Post::query()
         ->when($search, function ($query, $search) {
             return $query->where('title', 'like', "%{$search}%")
                         ->orWhere('description', 'like', "%{$search}%")
-                        ->orWhere('location', 'like', "%{$search}%");
+                        ->orWhere('location', 'like', "%{$search}%")
+                        ->orWhere('salary', 'like', "%{$search}%")
+                        ->orWhere('created_at', 'like', "%{$search}%");
         })-> paginate(5);
 
     return view('employee.user.job', ['jobPosts' => $posts,'categories' => $categories]);

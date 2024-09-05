@@ -110,3 +110,4 @@ Route::get('/admin/mail/{id}', [CustomController::class, 'mail'])->name('send.ma
 Route::get('/posts/filter_category/{id}', [EmployeeController::class, 'filter_category'])->name('posts.filter_category');
 Route::post('/posts/{post}/comments', [PostController::class, 'addComment'])->name('posts.addComment');
 Route::delete('/comments/{comment}', [PostController::class, 'DeleteComment'])->name('comments.delete');
+Route::put('/comments/{comment}', [PostController::class, 'EditComment'])->name('comments.edit');
