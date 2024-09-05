@@ -120,3 +120,7 @@ Route::get('admin/detailsUser/{id}', [CustomController::class, 'usersdetails'])-
 Route::delete('/admin/delete/{id}', [CustomController::class, 'usersdelete'])->name('users.delete')->middleware('Admin');
 
 //=======================================
+
+Route::get('admin/detailsEmployer/{id}', [CustomController::class, 'employersdetails'])->name('employers.details')->middleware('Admin');
+Route::delete('/admin/deleteemp/{id}', [CustomController::class, 'employersdelete'])->name('employers.delete')->middleware('Admin');
+Route::get('/admin/employers' , [CustomController::class, 'employers'])->name('admin.employers')->middleware('Admin');

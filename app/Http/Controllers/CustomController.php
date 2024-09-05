@@ -32,6 +32,29 @@ class CustomController extends Controller
         $user->delete();
         return redirect()->back()->with('success', 'User deleted successfully!');
     }
+
+
+    public function employers(){
+        $employers = Employer::all();
+        return view('admin.manage.employers' , compact('employers'));
+    }
+    //
+    public function employersdetails($id){
+
+        $employer = Employer::findOrFail($id);
+        return view('admin.manage.detalisEmployer' , compact('employer'));
+
+    }
+
+    public function employersdelete($id){
+
+        $employer = Employer::findOrFail($id);
+        $employer->delete();
+        return redirect()->back()->with('success', 'Employer deleted successfully!');
+
+
+
+    }
     public function index(Request $request)
     {
         $status = $request->query('status');
