@@ -33,14 +33,15 @@
                         <h5>{{ $post->title }}</h5>
                         <h6 class="mb-3">{{ $post->category->name }}</h6>
                         <p class="mb-3"><i class="fa-regular fa-user me-1"></i>Employer:
-                            <b>{{ $post->employer->name }}</b></p>
+                            <b>{{ $post->employer->name }}</b>
+                        </p>
                     </div>
                     <div>
                         <a href="{{ route('admin.details', $post->id) }}" class="btn btn-outline-dark btn-dark">Show
                             Details</a>
                     </div>
                 </div>
-                <div class="w-100 p-2 d-flex align-items-center justify-content-evenly"
+                <div class="w-100 p-2 d-flex align-items-center justify-content-evenly rounded-bottom"
                     style="background-color: hsl(0, 0%, 95%); height:40px;">
                     <div>
                         <i class="fa-solid fa-briefcase text-secondary me-2"></i>
