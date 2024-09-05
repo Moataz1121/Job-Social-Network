@@ -109,3 +109,4 @@ Route::get('/search', [EmployeeController::class, 'search'])->name('jobs.search'
 Route::get('/admin/mail/{id}', [CustomController::class, 'mail'])->name('send.mail')->middleware('Admin');
 Route::get('/posts/filter_category/{id}', [EmployeeController::class, 'filter_category'])->name('posts.filter_category');
 Route::post('/posts/{post}/comments', [PostController::class, 'addComment'])->name('posts.addComment');
+Route::delete('/comments/{comment}', [PostController::class, 'DeleteComment'])->name('comments.delete');

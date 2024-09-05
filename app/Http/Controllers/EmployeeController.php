@@ -104,6 +104,7 @@ class EmployeeController extends Controller
     }
     public function search(Request $request)
 {
+    $categories = Category::all();
     $search = $request->input('search');
     $posts = Post::query()
         ->when($search, function ($query, $search) {
@@ -112,7 +113,7 @@ class EmployeeController extends Controller
                         ->orWhere('location', 'like', "%{$search}%");
         })-> paginate(5);
 
-    return view('employee.user.job', ['jobPosts' => $posts]);
-    //return view('posts.index', compact('posts'));
+    return view('employee.user.job', ['jobPosts' => $posts,'categories' => $categories]);
+
 }
 }

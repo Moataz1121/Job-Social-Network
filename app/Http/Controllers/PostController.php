@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
     public function __construct(){
-        $this->middleware('Employer')->except(['index', 'show', 'addComment']);
+        $this->middleware('Employer')->except(['index', 'show', 'addComment','DeleteComment']);
     }
     /**
      * Display a listing of the resource.
@@ -40,8 +40,6 @@ class PostController extends Controller
     {
         //
         $post  =  $request->validated();
-        // dd($request->all());
-        // $request['emp_id'] = Auth::guard('employer')->user()->id;
         Post::create($post);
         return to_route('post.index');
     }
@@ -70,8 +68,7 @@ class PostController extends Controller
      */
     public function update(UpdatepostRequest $request, post $post)
     {
-        // dd($post);
-        // dd($request->all());
+
         $post->update($request->validated());
         return to_route('post.index');
 
@@ -99,5 +96,12 @@ class PostController extends Controller
         $post->comments()->save($comment);
 
         return redirect()->back()->with('success', 'Comment added successfully!');
+    }
+
+    public function DeleteComment($id){
+
+        $comment = Comment::findOrFail($id);
+        $comment->delete();
+        return redirect()->back()->with('success', 'Comment deleted successfully!');
     }
 }

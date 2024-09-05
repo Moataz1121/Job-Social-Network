@@ -176,7 +176,7 @@
                     <div class="argon-reaction">
                         <span class="like-btn">
                             <a href="#" class="post-card-buttons" id="reactions"><i class='bx bxs-like mr-2'></i>
-                                67</a>
+                                </a>
                             <ul class="reactions-box dropdown-shadow">
                                 <li class="reaction reaction-like" data-reaction="Like"></li>
                                 <li class="reaction reaction-love" data-reaction="Love"></li>
@@ -189,7 +189,7 @@
                     </div>
 
                     <a href="javascript:void(0)" class="post-card-buttons" id="show-comments"><i
-                            class='bx bx-message-rounded mr-2'></i> 5</a>
+                            class='bx bx-message-rounded mr-2'></i>{{count($jobPost->comments)}}</a>
                     <div class="dropdown dropup share-dropup">
                         <a href="#" class="post-card-buttons" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
@@ -250,7 +250,7 @@
                                                                 <div class="input-group">
                                                                     <input type="text" name="body" class="form-control comment-input" placeholder="Write a comment...">
                                                                     <div class="input-group-btn">
-                                                                        <button type="submit" class="btn comment-form-btn" data-toggle="tooltip" data-placement="top" title="Tooltip on top"><i class="fa-solid fa-comment"></i></button>
+                                                                        <button type="submit" class="btn text-primary comment-form-btn" data-toggle="tooltip" data-placement="top" title="Tooltip on top"><i class="fa fa-paper-plane"></i></button>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -262,23 +262,32 @@
                                             @foreach ($jobPost->comments as $comment)
                                             <li class="media">
                                                 <a href="#" class="pull-left">
-                                                    <img src="{{ asset('images/user_images/' .Auth::user()->image) }}" alt=""
+                                                    <img src="{{ asset('images/user_images/' . $comment->user->image) }}" alt=""
                                                         class="img-circle">
                                                 </a>
                                                 <div class="media-body">
                                                     <div class="d-flex justify-content-between align-items-center w-100">
                                                         <strong class="text-gray-dark"><a href="#"
                                                                 class="fs-8">{{$comment->user->name}}</a></strong>
-                                                        <a href="#"><i
-                                                                class='bx bx-dots-horizontal-rounded'></i></a>
+                                                        {{-- <a href="#"><i
+                                                                class='bx bx-dots-horizontal-rounded'></i></a> --}}
+                                                        @can('delete-comment', $comment)
+                                                        <div class="commentLR">
+                                                            <form action="{{ route('comments.delete', $comment->id) }}" method="POST" style="display:inline;">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="btn btn-link fs-8" onclick="return confirm('Are you sure you want to delete this comment?')">
+                                                                    <i class="fas text-danger fa-trash-alt"></i>
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                        @endcan
                                                     </div>
                                                     <span class="d-block comment-created-time">{{ $comment->created_at->format('F j, Y, g:i a') }}</span>
                                                     <p class="fs-8 pt-2">
                                                         {{$comment->body}}
                                                     </p>
-                                                    <div class="commentLR">
-                                                        <button type="button" class="btn btn-link fs-8">Delete</button>
-                                                    </div>
+
                                                 </div>
                                             </li>
                                             @endforeach

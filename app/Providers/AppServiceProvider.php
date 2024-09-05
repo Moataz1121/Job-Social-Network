@@ -2,8 +2,11 @@
 
 namespace App\Providers;
 
+use App\Models\Comment;
+use App\Models\User;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Gate;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -20,6 +23,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Gate::define('delete-comment', function (User $user, Comment $comment) {
+            return $user->id === $comment->user->id;});
         Paginator::useBootstrap();
     }
 }
