@@ -111,3 +111,12 @@ Route::get('/posts/filter_category/{id}', [EmployeeController::class, 'filter_ca
 Route::post('/posts/{post}/comments', [PostController::class, 'addComment'])->name('posts.addComment');
 Route::delete('/comments/{comment}', [PostController::class, 'DeleteComment'])->name('comments.delete');
 Route::put('/comments/{comment}', [PostController::class, 'EditComment'])->name('comments.edit');
+
+
+
+//Admin Customize =====================================
+Route::get('/admin/users' , [CustomController::class, 'users'])->name('admin.users')->middleware('Admin');
+Route::get('admin/detailsUser/{id}', [CustomController::class, 'usersdetails'])->name('users.details')->middleware('Admin');
+Route::delete('/admin/delete/{id}', [CustomController::class, 'usersdelete'])->name('users.delete')->middleware('Admin');
+
+//=======================================

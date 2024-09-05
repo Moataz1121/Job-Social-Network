@@ -70,5 +70,12 @@
             </a>
         </li>
 
+        <li class="menu-item ">
+            <a href="{{ route('admin.users') }}" class="menu-link">
+                <i class="fa-solid fa-layer-group me-2"></i>
+                <div data-i18n="Analytics">All Users</div>
+            </a>
+        </li>
+
     </ul>
 </aside>
