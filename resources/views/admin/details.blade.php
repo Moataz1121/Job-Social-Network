@@ -66,5 +66,39 @@
             </div>
             <input type="submit" class="btn btn-primary mt-3" value="Submit & Mail">
         </form>
+
+        <div class="card mt-4">
+            <div class="card-header">
+                <h5>Comments</h5>
+            </div>
+            <div class="card-body">
+                @if ($post->comments->count() > 0)
+                    @foreach ($post->comments as $comment)
+                        <div class="d-flex justify-content-between aligin-items-center">
+                            <div class="comment mb-3">
+                                <strong>{{ $comment->user->name }}:</strong>
+                                <!-- Assuming you have a user associated with the comment -->
+                                <p>{{ $comment->body }}</p> <!-- Assuming 'content' is the column for comment text -->
+                            </div>
+                            <div class="commentLR">
+                                <form action="{{ route('comments.delete', $comment->id) }}" method="POST"
+                                    style="display:inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-link btn-danger fs-8"
+                                        onclick="return confirm('Are you sure you want to delete this comment?')">
+                                        {{-- <i class="fas text-danger fa-trash-alt"></i> --}}
+                                        Delete
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    @endforeach
+                @else
+                    <p>No comments yet.</p>
+                @endif
+            </div>
+        </div>
+
     </div>
 @endsection
