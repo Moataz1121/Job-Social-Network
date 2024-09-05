@@ -73,7 +73,7 @@
                         </div>
                     </div>
                 </div>
-                <span class="d-block">3 hours ago <i class='bx bx-globe ml-3'></i></span>
+                <span class="d-block">{{ $jobPost->created_at }} <i class='bx bx-globe ml-3'></i></span>
             </div>
         </div>
         <div class="mb-2">
@@ -173,28 +173,34 @@
         <div class="mb-2">
 
             <!-- Reactions -->
-            <div class="argon-reaction">
-                <span class="like-btn">
-                    <a href="#" class="post-card-buttons" id="reactions"><i class='bx bxs-like mr-2'></i>
+            <div class="row">
+                <div class="argon-reaction col-md-4 text-center">
+                    <span class="like-btn">
+                        <a href="#" class="post-card-buttons" id="reactions"><i class='bx bxs-like mr-2'></i>
+                        </a>
+                        <ul class="reactions-box dropdown-shadow">
+                            <li class="reaction reaction-like" data-reaction="Like"></li>
+                            <li class="reaction reaction-love" data-reaction="Love"></li>
+                            <li class="reaction reaction-haha" data-reaction="HaHa"></li>
+                            <li class="reaction reaction-wow" data-reaction="Wow"></li>
+                            <li class="reaction reaction-sad" data-reaction="Sad"></li>
+                            <li class="reaction reaction-angry" data-reaction="Angry"></li>
+                        </ul>
+                    </span>
+                </div>
+                <div class="col-md-4   text-center">
+                    <a href="javascript:void(0)" class="post-card-buttons" id="show-comments"><i
+                            class='bx bx-message-rounded mr-2'></i>{{count($jobPost->comments)}}</a>
+                </div>
+                <div class="col-md-4  text-center">
+                    <div class="dropdown dropup share-dropup">
+                    <a href="#" class="post-card-buttons" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <i class='bx bx-share-alt mr-2'></i>
                     </a>
-                    <ul class="reactions-box dropdown-shadow">
-                        <li class="reaction reaction-like" data-reaction="Like"></li>
-                        <li class="reaction reaction-love" data-reaction="Love"></li>
-                        <li class="reaction reaction-haha" data-reaction="HaHa"></li>
-                        <li class="reaction reaction-wow" data-reaction="Wow"></li>
-                        <li class="reaction reaction-sad" data-reaction="Sad"></li>
-                        <li class="reaction reaction-angry" data-reaction="Angry"></li>
-                    </ul>
-                </span>
+                </div>
             </div>
 
-            <a href="javascript:void(0)" class="post-card-buttons" id="show-comments"><i
-                    class='bx bx-message-rounded mr-2'></i>{{count($jobPost->comments)}}</a>
-            <div class="dropdown dropup share-dropup">
-                <a href="#" class="post-card-buttons" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
-                    <i class='bx bx-share-alt mr-2'></i> Share
-                </a>
                 <div class="dropdown-menu post-dropdown-menu">
                     <a href="#" class="dropdown-item">
                         <div class="row">
@@ -269,9 +275,6 @@
                                             <div class="d-flex justify-content-between align-items-center w-100">
                                                 <strong class="text-gray-dark"><a href="#"
                                                         class="fs-8">{{$comment->user->name}}</a></strong>
-                                                {{-- <a href="#"><i
-                                                                class='bx bx-dots-horizontal-rounded'></i></a> --}}
-
                                                                 <div class="d-flex flex-column justify-content-center align-items-center">
                                                 @can('delete-comment', $comment)
                                                 <div class="commentLR ">
@@ -284,7 +287,7 @@
                                                     </form>
                                                 </div>
                                                 @endcan
-                                                
+
                                                 @can('delete-comment', $comment)
                                                 <div class="commentEdit">
                                                     <button type="button" class="btn btn-link fs-8 " onclick="document.getElementById('edit-comment-{{ $comment->id }}').style.display='block'">
