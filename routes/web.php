@@ -30,15 +30,16 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/index', function () {
     return view('employee.user.index');
 })->name('employee.index');
+//====================Test For Show Job to user======================
+Route::get('/profile', [EmployeeController::class, 'showProfileDetails'])->name('employee.profile')->middleware('auth');
+Route::delete('/profile/{id}', [EmployeeController::class, 'cancel'])->name('employee.cancel')->middleware('auth');
 
-Route::get('/profile', function () {
-    return view('employee.user.profile');
-})->name('employee.profile')->middleware('auth');
+//==================== End Test For Show Job to user======================
 
 
 // Employee Job Page => Index Page.
 Route::get('/jobs', [EmployeeController::class, 'index'])->name('employee.job');
-Route::post('/jobs/apply/{id}' , [EmployeeController::class, 'apply'])->name('employee.apply');
+Route::post('/jobs/apply/{id}', [EmployeeController::class, 'apply'])->name('employee.apply');
 
 //=======================================================
 
@@ -91,7 +92,7 @@ Route::get('/employer/index', function () {
 // ===========================================
 // Start Employer
 
-Route::get('/employer/data',[EmployerController::class, 'index'])->name('employer.data');
+Route::get('/employer/data', [EmployerController::class, 'index'])->name('employer.data');
 // End Employer
 // ===========================================
 
@@ -115,7 +116,7 @@ Route::put('/comments/{comment}', [PostController::class, 'EditComment'])->name(
 
 
 //Admin Customize =====================================
-Route::get('/admin/users' , [CustomController::class, 'users'])->name('admin.users')->middleware('Admin');
+Route::get('/admin/users', [CustomController::class, 'users'])->name('admin.users')->middleware('Admin');
 Route::get('admin/detailsUser/{id}', [CustomController::class, 'usersdetails'])->name('users.details')->middleware('Admin');
 Route::delete('/admin/delete/{id}', [CustomController::class, 'usersdelete'])->name('users.delete')->middleware('Admin');
 
@@ -123,4 +124,4 @@ Route::delete('/admin/delete/{id}', [CustomController::class, 'usersdelete'])->n
 
 Route::get('admin/detailsEmployer/{id}', [CustomController::class, 'employersdetails'])->name('employers.details')->middleware('Admin');
 Route::delete('/admin/deleteemp/{id}', [CustomController::class, 'employersdelete'])->name('employers.delete')->middleware('Admin');
-Route::get('/admin/employers' , [CustomController::class, 'employers'])->name('admin.employers')->middleware('Admin');
+Route::get('/admin/employers', [CustomController::class, 'employers'])->name('admin.employers')->middleware('Admin');
