@@ -73,26 +73,26 @@
                             <option value="rejected">Reject</option>
                         </select>
                     </div>
-                    <input type="submit" class="btn btn-primary mt-3 fs-5 w-100" height="200px" value="Submit & Mail">
+                    <input type="submit" class="btn btn-primary mt-3 fs-5 w-100" height="12.5rem" value="Submit & Mail">
                 </form>
             </div>
             <div class="mb-4">
                 <h5 class="mb-2 me-4"><i class="fa-solid fa-briefcase me-4 text-danger"></i>Job Type</h5>
                 @if ($post->work_type === 'onSite')
-                    <p class="text-secondary" style="margin-left: 40px">On Site</p>
+                    <p class="text-secondary" style="margin-left: 2.5rem">On Site</p>
                 @elseif ($post->work_type === 'Hybrid')
-                    <p class="text-secondary" style="margin-left: 40px">Hybrid</p>
+                    <p class="text-secondary" style="margin-left: 2.5rem">Hybrid</p>
                 @elseif ($post->work_type === 'Remote')
-                    <p class="text-secondary" style="margin-left: 40px">Remote</p>
+                    <p class="text-secondary" style="margin-left: 2.5rem">Remote</p>
                 @endif
             </div>
             <div class="mb-4">
                 <h5 class="mb-2 me-4"><i class="fa-regular fa-money-bill-1 me-3 text-danger"></i>Salary</h5>
-                <p class="text-secondary" style="margin-left: 40px">{{ $post->salary }}$</p>
+                <p class="text-secondary" style="margin-left: 2.5rem">{{ $post->salary }}$</p>
             </div>
             <div class="mb-4">
                 <h5 class="mb-2 me-4"><i class="fa-solid fa-location-dot me-4 text-danger"></i>Location</h5>
-                <p class="text-secondary" style="margin-left: 40px">{{ $post->location }}</p>
+                <p class="text-secondary" style="margin-left: 2.5rem">{{ $post->location }}</p>
             </div>
         </div>
         <div class="item3 bg-light me-3 rounded p-5 shadow">
