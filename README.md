@@ -7,51 +7,55 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## About Our Application
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Job Hiring Platform, It serves as a online hiring platform to make it easier for both employees and employers, using our application finding a job will be much easier than it was before, Employees are able to see Job Posts that has been approved by our administration department, Employers are able to see who applied for their jobs and what was the employees response in the comments, and further more. Have Fun Experiencing Our Application:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## How to install our application successfully
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+1. ```git clone <git@github.com>:Moataz1121/Job-Social-Network.git```
 
-## Learning Laravel
+2. ```cd Job-Social-Network```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+3. ```composer install```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+4. ```cp .env.example .env, and past/replace the following```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- DB_CONNECTION=mysql
+- DB_HOST=127.0.0.1
+- DB_PORT=3306
+- DB_DATABASE=linked
+- DB_USERNAME=newuser
+- DB_PASSWORD=password
+- MAIL_MAILER=smtp
+- MAIL_HOST=smtp.gmail.com
+- MAIL_PORT=465
+- MAIL_USERNAME=Your Gmail Account
+- MAIL_PASSWORD='(Your Google App Password)'
+- MAIL_ENCRYPTION=ssl
+- MAIL_FROM_ADDRESS="Your Gmail Account"
+- MAIL_FROM_NAME="Your Google App Name"
 
-## Laravel Sponsors
+5. ```php artisan key:generate```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+6. ```php artisan migrate```
 
-### Premium Partners
+7. ```composer require laravel/ui```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+8. ```php artisan ui bootstrap --auth```
 
-## Contributing
+9. ```npm install```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+10. ```npm run dev```
+
+## Contributors
+
+- **[Abdelrahman Abdelhady](https://github.com/Abdelrahman120)**
+- **[Moataz Ibrahiem](https://github.com/Moataz1121)**
+- **[Ahmad Hamdy](https://github.com/ahmed-fawzy-hub)**
+- **[Ahmad Fawzy](https://github.com/ahmed-fawzy-hub)**
+- **[Mostafa Jaafar](https://github.com/MHJaafar9869)**
+
 
 ## Code of Conduct
 
