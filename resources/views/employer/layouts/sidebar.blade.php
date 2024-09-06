@@ -58,7 +58,7 @@
     <ul class="menu-inner py-1">
         <!-- Dashboard -->
         <li class="menu-item active">
-            <a href="index.html" class="menu-link">
+            <a href="{{route('employer.index')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
             </a>
@@ -67,6 +67,12 @@
             <a href="{{ route('post.create') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Post a Job</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="{{ route('employer.data') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Analytics">Applications</div>
             </a>
         </li>
     </ul>
