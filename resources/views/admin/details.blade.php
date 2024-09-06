@@ -1,6 +1,9 @@
 @extends('admin.master')
 
 <head>
+    <title>
+        Admin | Post
+    </title>
     <style>
         .item1 {
             grid-area: header;
@@ -33,6 +36,7 @@
     </style>
 </head>
 
+
 @section('content')
     <div class="grid h-75 mt-3">
         <div class="item1 mb-3 my-0 bg-light me-3 rounded p-5 shadow">
@@ -42,16 +46,16 @@
             </div>
             <div class="d-flex mb-2">
                 <h5 class="me-4"><i class="fa-regular fa-calendar-days me-2"></i>Post Date: <small class="text-info">
-                        {{ $post->created_at->format('Y-m-d') }}</small></h5>
+                        {{ $post->created_at->format('D, dS M Y') }}</small></h5>
                 <h5 class="me-4"><i class="fa-regular fa-calendar-days me-2"></i>Post End: <small class="text-info">
-                        {{ $post->deadLine }}</small></h5>
+                        {{ date('D, dS M Y', strtotime($post->deadLine)) }}</small></h5>
                 <h5 class="me-4"><i class="fa-regular fa-user me-2"></i>Employer: <small class="text-info">
-                        {{ $post->employer->name }}</small></h5>
+                        {{ Str::apa($post->employer->name) }}</small></h5>
 
             </div>
             <div class="d-flex">
                 <h5 class="me-4"><i class="fa-regular fa-building me-2"></i>Company name: <small class="text-info">
-                        {{ $post->employer->company_name }}</small></h5>
+                        {{ Str::apa($post->employer->company_name) }}</small></h5>
                 <h5 class="me-4"><i class="fa-solid fa-at me-2"></i>Employer email: <small class="text-info">
                         {{ $post->employer->email }}</small></h5>
                 <h5 class="me-4"><i class="fa-solid fa-phone me-2"></i>Phone: <small class="text-info">
@@ -59,23 +63,35 @@
             </div>
         </div>
         <div class="item2 bg-light rounded p-5 shadow">
-            <div class="mb-5">
-                <form action="{{ route('admin.update', $post->id) }}" method="POST">
-                    @csrf
-                    @method('PATCH')
-                    @error('status')
-                        <span class="alert alert-danger">{{ $message }}</span>
-                    @enderror
-                    <div>
-                        <select class="form-select form-control" name="status" aria-label="Default select example">
-                            <option disabled value="{{ $post->status }}">{{ $post->status }}</option>
-                            <option value="accepted">Accept</option>
-                            <option value="rejected">Reject</option>
-                        </select>
-                    </div>
-                    <input type="submit" class="btn btn-primary mt-3 fs-5 w-100" height="12.5rem" value="Submit & Mail">
-                </form>
-            </div>
+
+            @if ($post->status == 'pending')
+                <div class="mb-5">
+                    <form action="{{ route('admin.update', $post->id) }}" method="POST">
+                        @csrf
+                        @method('PATCH')
+                        @error('status')
+                            <span class="alert alert-danger">{{ $message }}</span>
+                        @enderror
+                        <div>
+                            <select class="form-select form-control" name="status" aria-label="Default select example">
+                                <option disabled value="{{ $post->status }}">{{ $post->status }}</option>
+                                <option value="accepted">Accept</option>
+                                <option value="rejected">Reject</option>
+                            </select>
+                            <input type="submit" class="btn btn-primary mt-3 fs-5 w-100" height="12.5rem"
+                                value="Submit & Mail">
+                        </div>
+                    </form>
+                </div>
+            @elseif ($post->status == 'accepted')
+                <h4 class="text-white bg-success rounded p-3 text-center mb-5">
+                    Job has been accepted.
+                </h4>
+            @elseif ($post->status == 'rejected')
+                <h4 class="text-white bg-danger rounded p-3 text-center mb-5">
+                    Job has been rejected.
+                </h4>
+            @endif
             <div class="mb-4">
                 <h5 class="mb-2 me-4"><i class="fa-solid fa-briefcase me-4 text-danger"></i>Job Type</h5>
                 @if ($post->work_type === 'onSite')
@@ -100,12 +116,12 @@
                 <h4 class="mb-3">Description</h4>
                 <p>{{ $post->description }}</p>
             </div>
-            <div class="mb-5">
+            <div>
                 <h4 class="mb-3">Requirement</h4>
                 <p>{!! nl2br($post->skills) !!}</p>
             </div>
         </div>
-        <div class="item4 bg-light mt-3 rounded p-4 shadow">
+        <div class="item4 bg-light mt-3 mb-5 rounded p-4 shadow">
             <div class="card">
                 <div class="card-header">
                     <h4>Comments</h4>
@@ -115,7 +131,7 @@
                         @foreach ($post->comments as $comment)
                             <div class="d-flex justify-content-between aligin-items-center">
                                 <div class="comment mb-3">
-                                    <strong>{{ $comment->user->name }}:</strong>
+                                    <strong>{{ Str::apa($comment->user->name) }}:</strong>
                                     <p>{{ $comment->body }}</p>
                                 </div>
                                 <div class="commentLR">

@@ -21,11 +21,16 @@
                     <div>
                         <h5>{{ $post->title }}</h5>
                         <h6 class="mb-3">{{ $post->category->name }}</h6>
-                        <p class="mb-3"><i class="fa-regular fa-user me-1"></i>Employer:
-                            <b>{{ $post->employer->name }}</b>
-                        </p>
+                        <div class="d-flex justify-content-between w-100">
+                            <div class="mb-4"><i class="fa-regular fa-user me-2"></i>Employer:
+                                <b>{{ $post->employer->name }}</b>
+                            </div>
+                            <div class="mb-4 ms-4"><i class="fa-solid fa-chart-column me-2"></i>status:
+                                <b>{{ $post->status }}</b>
+                            </div>
+                        </div>
                     </div>
-                    <div>
+                    <div class="position-absolute" style="margin-left: 17rem">
                         <a href="{{ route('admin.details', $post->id) }}" class="btn btn-outline-dark btn-dark">Show
                             Details</a>
                     </div>
@@ -50,7 +55,9 @@
                     </div>
                 </div>
             </div>
+            @if ($post->status == 'success')
+                {{ $posts->links() }}
+            @endif
         @endforeach
     </div>
-    {{ $posts->links() }}
 @endsection
