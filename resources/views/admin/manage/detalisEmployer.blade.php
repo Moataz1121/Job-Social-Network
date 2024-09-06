@@ -10,9 +10,6 @@
                 <p class="card-text">{{ $employer->phone_number }}</p>
                 <p class="card-text">{{ $employer->birth_date }}</p>
                 <p class="card-text">{{ $employer->gender }}</p>
-
-
-
                 <a href="{{ route('admin.employers') }}" class="btn btn-primary">Go Back</a>
             </div>
         </div>

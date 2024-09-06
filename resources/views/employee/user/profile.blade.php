@@ -23,7 +23,7 @@
 </head>
 
 <body class="profile">
-  
+
     <div class="container-fluid newsfeed d-flex" id="wrapper">
         <div class="row newsfeed-size">
             <div class="col-md-12 p-0">
@@ -179,31 +179,13 @@
                                             <ul class="list-unstyled" style="margin-bottom: 0;">
                                                 <li class="media post-form w-shadow">
                                                     <div class="media-body">
-                                                    
+
                                                     </div>
                                                 </li>
                                             </ul>
-                                            {{-- <div
-                                                class="bg-white profile-posts-options mt-5 mb-4 py-3 d-flex justify-content-between shadow-sm">
-                                                <div class="col-md-3 col-sm-12">
-                                                    <h6 class="timeline-title">Posts</h6>
-                                                </div>
-                                                <div class="col-md-9 col-sm-12">
-                                                    <div class="timeline-manage">
-                                                        <button type="button"
-                                                            class="btn btn-quick-link join-group-btn border btn-sm tmo-buttons"><i
-                                                                class='bx bxs-cog'></i> Manage Posts</button>
-                                                        <button type="button"
-                                                            class="btn btn-quick-link join-group-btn border btn-sm tmo-buttons"><i
-                                                                class='bx bx-align-middle'></i> List View</button>
-                                                        <button type="button"
-                                                            class="btn btn-quick-link join-group-btn border btn-sm tmo-buttons"><i
-                                                                class='bx bxs-grid-alt'></i> Grid View</button>
-                                                    </div>
-                                                </div>
-                                            </div> --}}
+
                                             <h3 class="timeline-title text-center">Your Posts Job</h3>
-                                            @foreach ($posts as $post) 
+                                            @foreach ($posts as $post)
                                             <div class="post border-bottom p-3 bg-white w-shadow my-3">
                                                 <div class="media text-muted pt-3">
                                                     <img src="{{ asset('images/user_images/' . Auth::user()->image) }}" alt="Online user"
@@ -212,7 +194,7 @@
                                                         <div
                                                             class="d-flex justify-content-between align-items-center w-100">
                                                             <span class="post-type text-muted ">{{$user->name}} </span>
-                                                         
+
                                                         </div>
                                                         <span class="d-block">{{$post->created_at}}<i
                                                                 class='bx bx-globe ml-3'></i></span>
@@ -228,7 +210,7 @@
                                                         @method('DELETE')
                                                         <input type="submit" value="Cancel" class="btn btn-danger">
                                                     </form>
-                                                   
+
                                                 </div>
                                                 <div class="d-block mt-3">
                                                     <img src="{{ asset('images/employer_images/' . $post->post->employer->image) }}"
@@ -424,7 +406,7 @@
                                                 </div>
                                             </div>
                                             @endforeach
-                                            
+
                                         </div>
                                         <div class="col-md-3 profile-quick-media">
                                             <h6 class="text-muted timeline-title">Recent Media</h6>
@@ -659,7 +641,7 @@
         function confirmCancel() {
             return confirm('Are you sure you want to cancel this application?');
         }
-        </script> 
+        </script>
 </body>
 
 </html>

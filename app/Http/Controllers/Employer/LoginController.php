@@ -28,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/emp';
+    protected $redirectTo = '/employer/index';
 
     public function login(Request $request)
     {
@@ -56,7 +56,7 @@ class LoginController extends Controller
 
         return $request->wantsJson()
             ? new JsonResponse([], 204)
-            : redirect()->route('employer.login.view'); // تأكد من صحة اسم الـ route هنا
+            : redirect()->route('employer.login.view');
     }
     public function showLoginForm()
     {
