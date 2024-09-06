@@ -10,23 +10,27 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Notifications\SendEmailNotification;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Pagination\Paginator;
+
 
 class CustomController extends Controller
 {
 
-    public function users(){
+    public function users()
+    {
         $users = User::all();
-        return view('admin.manage.users' , compact('users'));
+        return view('admin.manage.users', compact('users'));
     }
     //
-    public function usersdetails($id){
+    public function usersdetails($id)
+    {
 
         $user = User::findOrFail($id);
-        return view('admin.manage.detalisUser' , compact('user'));
-
+        return view('admin.manage.detalisUser', compact('user'));
     }
 
-    public function usersdelete($id){
+    public function usersdelete($id)
+    {
 
         $user = User::findOrFail($id);
         $user->delete();
@@ -34,35 +38,33 @@ class CustomController extends Controller
     }
 
 
-    public function employers(){
+    public function employers()
+    {
         $employers = Employer::all();
-        return view('admin.manage.employers' , compact('employers'));
+        return view('admin.manage.employers', compact('employers'));
     }
     //
-    public function employersdetails($id){
+    public function employersdetails($id)
+    {
 
         $employer = Employer::findOrFail($id);
-        return view('admin.manage.detalisEmployer' , compact('employer'));
-
+        return view('admin.manage.detalisEmployer', compact('employer'));
     }
 
-    public function employersdelete($id){
-
+    public function employersdelete($id)
+    {
         $employer = Employer::findOrFail($id);
         $employer->delete();
         return redirect()->back()->with('success', 'Employer deleted successfully!');
-
-
-
     }
     public function index(Request $request)
     {
         $status = $request->query('status');
 
         if ($status) {
-            $posts = Post::where('status', $status)->get();
+            $posts = Post::where('status', $status)->get()->paginate(9);
         } else {
-            $posts = Post::all();
+            $posts = Post::paginate(9);
         }
 
         return view('admin.index', compact('posts'));
@@ -74,7 +76,8 @@ class CustomController extends Controller
         return view('admin.details', compact('post'));
     }
 
-    public function DeleteComment($id){
+    public function DeleteComment($id)
+    {
 
         $comment = Comment::findOrFail($id);
         $comment->delete();

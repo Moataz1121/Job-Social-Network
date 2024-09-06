@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
 use App\Http\Requests\StorepostRequest;
@@ -8,10 +9,12 @@ use App\Http\Requests\UpdatepostRequest;
 use App\Models\Category;
 use App\Models\Comment;
 use Illuminate\Http\Request;
+
 class PostController extends Controller
 {
-    public function __construct(){
-        $this->middleware('Employer')->except(['index', 'show', 'addComment','DeleteComment']);
+    public function __construct()
+    {
+        $this->middleware('Employer')->except(['index', 'show', 'addComment', 'DeleteComment']);
     }
     /**
      * Display a listing of the resource.
@@ -19,8 +22,8 @@ class PostController extends Controller
     public function index()
     {
         //
-        $posts = Post::paginate(5);
-        return view('Post.index' , compact('posts'));
+        $posts = Post::paginate(10);
+        return view('Post.index', compact('posts'));
     }
 
     /**
@@ -30,7 +33,7 @@ class PostController extends Controller
     {
         //
         $categories = Category::all();
-        return view('Post.create' , compact('categories'));
+        return view('Post.create', compact('categories'));
     }
 
     /**
@@ -39,7 +42,7 @@ class PostController extends Controller
     public function store(StorepostRequest $request)
     {
         //
-        $post  =  $request->validated();
+        $post = $request->validated();
         Post::create($post);
         return to_route('post.index');
     }
@@ -51,7 +54,7 @@ class PostController extends Controller
     public function show(post $post)
     {
         //
-        return view('Post.show' , compact('post'));
+        return view('Post.show', compact('post'));
     }
 
     /**
@@ -60,7 +63,7 @@ class PostController extends Controller
     public function edit(post $post)
     {
         $categories = Category::all();
-        return view('Post.edit' , compact('post' , 'categories'));
+        return view('Post.edit', compact('post', 'categories'));
     }
 
     /**
@@ -71,7 +74,6 @@ class PostController extends Controller
 
         $post->update($request->validated());
         return to_route('post.index');
-
     }
 
     /**
@@ -98,13 +100,15 @@ class PostController extends Controller
         return redirect()->back()->with('success', 'Comment added successfully!');
     }
 
-    public function DeleteComment($id){
+    public function DeleteComment($id)
+    {
 
         $comment = Comment::findOrFail($id);
         $comment->delete();
         return redirect()->back()->with('success', 'Comment deleted successfully!');
     }
-    public function editComment($id, Request $request){
+    public function editComment($id, Request $request)
+    {
 
         $comment = Comment::findOrFail($id);
         $request->validate([

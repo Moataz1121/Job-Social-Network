@@ -16,17 +16,6 @@
 
     <div class=" row d-flex flex-row">
         @foreach ($posts as $post)
-            {{-- <div class="card mt-5 col-md-4 mx-auto" style="width: 18rem;">
-                <div class="card-body">
-                    <h3>By : {{ $post->employer->name }}</h3>
-                    <h5 class="card-title">Title : {{ $post->title }}</h5>
-                    <h6 class="card-subtitle my-2 text-muted">Category : {{ $post->category->name }}</h6>
-                    <p class="card-text"> Work : {{ $post->work_type }}.</p>
-                    <p class="card-text"> Status : {{ $post->status }}.</p>
-                    <a href="{{ route('admin.details', $post->id) }}" class="btn btn-primary">Show Details</a>
-                </div>
-            </div> --}}
-
             <div class="col-3 m-3 bg-white p-0 shadow rounded" style="width: 439px;">
                 <div class="d-flex justify-content-between p-3" style="height:120px;">
                     <div>
@@ -63,4 +52,5 @@
             </div>
         @endforeach
     </div>
+    {{ $posts->links() }}
 @endsection
