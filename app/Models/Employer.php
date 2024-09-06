@@ -14,7 +14,7 @@ class Employer extends Authenticatable
         'name', 'email', 'password', 'image', 'phone_number', 'company_name'
     ];
     public function posts(){
-        return $this->hasMany(Post::class);
+        return $this->hasMany(Post::class , 'employer_id');
     }
 
 

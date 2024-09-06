@@ -4,6 +4,7 @@
     <form action="{{ route('jobs.search') }}" method="GET" class="mb-3 d-flex justify-content-center">
         <input type="text" name="search" placeholder="Search jobs" class="form-control w-75 me-3">
         <button type="submit" class="btn btn-primary">Search</button>
+       
     </form>
     @foreach ($jobPosts as $jobPost)
         <div style="" class="mx-5 mb-3">

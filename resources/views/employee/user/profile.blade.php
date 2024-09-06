@@ -23,6 +23,7 @@
 </head>
 
 <body class="profile">
+  
     <div class="container-fluid newsfeed d-flex" id="wrapper">
         <div class="row newsfeed-size">
             <div class="col-md-12 p-0">
@@ -178,35 +179,11 @@
                                             <ul class="list-unstyled" style="margin-bottom: 0;">
                                                 <li class="media post-form w-shadow">
                                                     <div class="media-body">
-                                                        <div class="form-group post-input">
-                                                            <textarea class="form-control" id="postForm" rows="2" placeholder="What's on your mind?"></textarea>
-                                                        </div>
-                                                        <div class="row post-form-group">
-                                                            <div class="col-md-9">
-                                                                <button type="button"
-                                                                    class="btn btn-link post-form-btn btn-sm">
-                                                                    <i class='bx bx-images'></i>
-                                                                    <span>Photo/Video</span>
-                                                                </button>
-                                                                <button type="button"
-                                                                    class="btn btn-link post-form-btn btn-sm">
-                                                                    <i class='bx bxs-group'></i> <span>Tag
-                                                                        Friends</span>
-                                                                </button>
-                                                                <button type="button"
-                                                                    class="btn btn-link post-form-btn btn-sm">
-                                                                    <i class='bx bxs-map'></i> <span>Check In</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="col-md-3 text-right">
-                                                                <button type="button"
-                                                                    class="btn btn-primary btn-sm">Publish</button>
-                                                            </div>
-                                                        </div>
+                                                    
                                                     </div>
                                                 </li>
                                             </ul>
-                                            <div
+                                            {{-- <div
                                                 class="bg-white profile-posts-options mt-5 mb-4 py-3 d-flex justify-content-between shadow-sm">
                                                 <div class="col-md-3 col-sm-12">
                                                     <h6 class="timeline-title">Posts</h6>
@@ -224,170 +201,41 @@
                                                                 class='bx bxs-grid-alt'></i> Grid View</button>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="post border-bottom p-3 bg-white w-shadow">
+                                            </div> --}}
+                                            <h3 class="timeline-title text-center">Your Posts Job</h3>
+                                            @foreach ($posts as $post) 
+                                            <div class="post border-bottom p-3 bg-white w-shadow my-3">
                                                 <div class="media text-muted pt-3">
-                                                    <img src="front/assets/images/users/user-4.jpg" alt="Online user"
+                                                    <img src="{{ asset('images/user_images/' . Auth::user()->image) }}" alt="Online user"
                                                         class="mr-3 post-user-image">
                                                     <div class="media-body pb-3 mb-0 small lh-125">
                                                         <div
                                                             class="d-flex justify-content-between align-items-center w-100">
-                                                            <span class="post-type text-muted"><a href="#"
-                                                                    class="text-gray-dark post-user-name mr-2">Arthur
-                                                                    Minasyan</a> updated his cover photo.</span>
-                                                            <div class="dropdown">
-                                                                <a href="#" class="post-more-settings"
-                                                                    role="button" data-toggle="dropdown"
-                                                                    id="postOptions" aria-haspopup="true"
-                                                                    aria-expanded="false">
-                                                                    <i class='bx bx-dots-horizontal-rounded'></i>
-                                                                </a>
-                                                                <div
-                                                                    class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left post-dropdown-menu">
-                                                                    <a href="#" class="dropdown-item"
-                                                                        aria-describedby="savePost">
-                                                                        <div class="row">
-                                                                            <div class="col-md-2">
-                                                                                <i
-                                                                                    class='bx bx-bookmark-plus post-option-icon'></i>
-                                                                            </div>
-                                                                            <div class="col-md-10">
-                                                                                <span class="fs-9">Save post</span>
-                                                                                <small id="savePost"
-                                                                                    class="form-text text-muted">Add
-                                                                                    this to your saved items</small>
-                                                                            </div>
-                                                                        </div>
-                                                                    </a>
-                                                                    <a href="#" class="dropdown-item"
-                                                                        aria-describedby="hidePost">
-                                                                        <div class="row">
-                                                                            <div class="col-md-2">
-                                                                                <i
-                                                                                    class='bx bx-hide post-option-icon'></i>
-                                                                            </div>
-                                                                            <div class="col-md-10">
-                                                                                <span class="fs-9">Hide post</span>
-                                                                                <small id="hidePost"
-                                                                                    class="form-text text-muted">See
-                                                                                    fewer posts like this</small>
-                                                                            </div>
-                                                                        </div>
-                                                                    </a>
-                                                                    <a href="#" class="dropdown-item"
-                                                                        aria-describedby="snoozePost">
-                                                                        <div class="row">
-                                                                            <div class="col-md-2">
-                                                                                <i
-                                                                                    class='bx bx-time post-option-icon'></i>
-                                                                            </div>
-                                                                            <div class="col-md-10">
-                                                                                <span class="fs-9">Snooze Arthur for
-                                                                                    30 days</span>
-                                                                                <small id="snoozePost"
-                                                                                    class="form-text text-muted">Temporarily
-                                                                                    stop seeing posts</small>
-                                                                            </div>
-                                                                        </div>
-                                                                    </a>
-                                                                    <a href="#" class="dropdown-item"
-                                                                        aria-describedby="reportPost">
-                                                                        <div class="row">
-                                                                            <div class="col-md-2">
-                                                                                <i
-                                                                                    class='bx bx-block post-option-icon'></i>
-                                                                            </div>
-                                                                            <div class="col-md-10">
-                                                                                <span class="fs-9">Report</span>
-                                                                                <small id="reportPost"
-                                                                                    class="form-text text-muted">I'm
-                                                                                    concerned about this post</small>
-                                                                            </div>
-                                                                        </div>
-                                                                    </a>
-                                                                </div>
-                                                            </div>
+                                                            <span class="post-type text-muted ">{{$user->name}} </span>
+                                                         
                                                         </div>
-                                                        <span class="d-block">3 hours ago <i
+                                                        <span class="d-block">{{$post->created_at}}<i
                                                                 class='bx bx-globe ml-3'></i></span>
                                                     </div>
                                                 </div>
                                                 <div class="mt-3">
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis
-                                                        voluptatem veritatis harum, tenetur, quibusdam voluptatum,
-                                                        incidunt saepe minus maiores ea atque sequi illo veniam sint
-                                                        quaerat corporis totam et. Culpa?</p>
+                                                    <h3>Title: {{$post->post->title}}</h3>
+                                                    <p>The Job Description: {{$post->post->description}}</p>
+                                                    <p>The Location: {{$post->post->location}}</p>
+                                                    <p>The Salary: {{$post->post->salary}}</p>
+                                                    <form action="{{ route('employee.cancel', $post->id) }}" method="post" onsubmit="return confirmCancel();">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <input type="submit" value="Cancel" class="btn btn-danger">
+                                                    </form>
+                                                   
                                                 </div>
                                                 <div class="d-block mt-3">
-                                                    <img src="front/assets/images/users/post/post-1.jpg"
+                                                    <img src="{{ asset('images/employer_images/' . $post->post->employer->image) }}"
                                                         class="w-100 mb-3" alt="post image">
                                                 </div>
                                                 <div class="mb-2">
 
-                                                    <!-- Reactions -->
-                                                    <div class="argon-reaction">
-                                                        <span class="like-btn">
-                                                            <a href="#" class="post-card-buttons"
-                                                                id="reactions"><i class='bx bxs-like mr-2'></i> 67</a>
-                                                            <ul class="reactions-box dropdown-shadow">
-                                                                <li class="reaction reaction-like"
-                                                                    data-reaction="Like"></li>
-                                                                <li class="reaction reaction-love"
-                                                                    data-reaction="Love"></li>
-                                                                <li class="reaction reaction-haha"
-                                                                    data-reaction="HaHa"></li>
-                                                                <li class="reaction reaction-wow" data-reaction="Wow">
-                                                                </li>
-                                                                <li class="reaction reaction-sad" data-reaction="Sad">
-                                                                </li>
-                                                                <li class="reaction reaction-angry"
-                                                                    data-reaction="Angry"></li>
-                                                            </ul>
-                                                        </span>
-                                                    </div>
-
-                                                    <a href="javascript:void(0)" class="post-card-buttons"
-                                                        id="show-comments"><i class='bx bx-message-rounded mr-2'></i>
-                                                        5</a>
-                                                    <div class="dropdown dropup share-dropup">
-                                                        <a href="#" class="post-card-buttons"
-                                                            data-toggle="dropdown" aria-haspopup="true"
-                                                            aria-expanded="false">
-                                                            <i class='bx bx-share-alt mr-2'></i> Share
-                                                        </a>
-                                                        <div class="dropdown-menu post-dropdown-menu">
-                                                            <a href="#" class="dropdown-item">
-                                                                <div class="row">
-                                                                    <div class="col-md-2">
-                                                                        <i class='bx bx-share-alt'></i>
-                                                                    </div>
-                                                                    <div class="col-md-10">
-                                                                        <span>Share Now (Public)</span>
-                                                                    </div>
-                                                                </div>
-                                                            </a>
-                                                            <a href="#" class="dropdown-item">
-                                                                <div class="row">
-                                                                    <div class="col-md-2">
-                                                                        <i class='bx bx-share-alt'></i>
-                                                                    </div>
-                                                                    <div class="col-md-10">
-                                                                        <span>Share...</span>
-                                                                    </div>
-                                                                </div>
-                                                            </a>
-                                                            <a href="#" class="dropdown-item">
-                                                                <div class="row">
-                                                                    <div class="col-md-2">
-                                                                        <i class='bx bx-message'></i>
-                                                                    </div>
-                                                                    <div class="col-md-10">
-                                                                        <span>Send as Message</span>
-                                                                    </div>
-                                                                </div>
-                                                            </a>
-                                                        </div>
-                                                    </div>
                                                 </div>
                                                 <div class="border-top pt-3 hide-comments" style="display: none;">
                                                     <div class="row bootstrap snippets">
@@ -402,7 +250,7 @@
                                                                                         alt=""
                                                                                         class="img-circle">
                                                                                 </a>
-                                                                                <div class="media-body">
+                                                                                {{-- <div class="media-body">
                                                                                     <form action=""
                                                                                         method="" role="form">
                                                                                         <div class="row">
@@ -449,7 +297,7 @@
                                                                                             </div>
                                                                                         </div>
                                                                                     </form>
-                                                                                </div>
+                                                                                </div> --}}
                                                                             </li>
                                                                             <li class="media">
                                                                                 <a href="#" class="pull-left">
@@ -575,6 +423,8 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            @endforeach
+                                            
                                         </div>
                                         <div class="col-md-3 profile-quick-media">
                                             <h6 class="text-muted timeline-title">Recent Media</h6>
@@ -805,6 +655,11 @@
     <!-- Optional -->
     <script src="front/assets/js/app.js"></script>
     <script src="front/assets/js/components/components.js"></script>
+    <script>
+        function confirmCancel() {
+            return confirm('Are you sure you want to cancel this application?');
+        }
+        </script> 
 </body>
 
 </html>

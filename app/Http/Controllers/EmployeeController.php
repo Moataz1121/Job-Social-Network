@@ -2,11 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreEmployeeRequest;
-use App\Http\Requests\UpdateEmployeeRequest;
 use App\Models\Category;
-use App\Models\Employee;
-use App\Models\Employer;
 use App\Models\Post;
 use App\Models\PostsEmployee;
 use Illuminate\Http\Request;
@@ -58,50 +54,66 @@ class EmployeeController extends Controller
         return to_route('employee.job', ['post' => $post,'categories' => $categories]);
     }
 
-    public function create()
-    {
-        //
+    // public function create()
+    // {
+    //     //
+    // }
+
+    // /**
+    //  * Store a newly created resource in storage.
+    //  */
+    // public function store(StoreEmployeeRequest $request)
+    // {
+    //     //
+    // }
+
+    // /**
+    //  * Display the specified resource.
+    //  */
+    // public function show(Employee $employee)
+    // {
+    //     //
+    // }
+
+    // /**
+    //  * Show the form for editing the specified resource.
+    //  */
+    // public function edit(Employee $employee)
+    // {
+    //     //
+    // }
+
+    // /**
+    //  * Update the specified resource in storage.
+    //  */
+    // public function update(UpdateEmployeeRequest $request, Employee $employee)
+    // {
+    //     //
+    // }
+
+    // /**
+    //  * Remove the specified resource from storage.
+    //  */
+    // public function destroy(Employee $employee)
+    // {
+    //     //
+    // }
+    public function showProfileDetails(){
+        $user = Auth::user();        
+        // $posts = PostsEmployee::where('user_id', $user->id)->get();
+        $posts = PostsEmployee::where('user_id', $user->id)->with('post')->get(); 
+        return view('employee.user.profile' , compact('user','posts')); 
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreEmployeeRequest $request)
-    {
-        //
+    public function cancel($id){
+        $post = PostsEmployee::find($id);
+        $post->delete();
+        return to_route('employee.profile');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Employee $employee)
-    {
-        //
-    }
+    // show all jobs that the user apply for it 
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Employee $employee)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateEmployeeRequest $request, Employee $employee)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Employee $employee)
-    {
-        //
-    }
+    //end show all jobs that the user apply for it
     public function search(Request $request)
 {
     $categories = Category::all();
