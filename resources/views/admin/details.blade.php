@@ -4,14 +4,14 @@
     <style>
         .item1 {
             grid-area: header;
-            height: 250px;
-            width: 1000px !important;
+            height: 15.625rem;
+            width: 62.5rem;
         }
 
         .item2 {
             grid-area: menu;
-            width: 400px;
-            height: 500px
+            width: 23.125rem;
+            height: 27.5rem;
         }
 
         .item3 {
@@ -35,7 +35,7 @@
 
 @section('content')
     <div class="grid h-75 mt-3">
-        <div class="item1 mb-3 my-0 bg-light me-3 rounded p-5">
+        <div class="item1 mb-3 my-0 bg-light me-3 rounded p-5 shadow">
             <div class="mb-4">
                 <h2>{{ $post->title }}</h2>
                 <h5>{{ $post->category->name }}</h5>
@@ -58,7 +58,7 @@
                         {{ $post->employer->phone_number }}</small></h5>
             </div>
         </div>
-        <div class="item2 bg-light rounded p-5">
+        <div class="item2 bg-light rounded p-5 shadow">
             <div class="mb-5">
                 <form action="{{ route('admin.update', $post->id) }}" method="POST">
                     @csrf
@@ -95,17 +95,17 @@
                 <p class="text-secondary" style="margin-left: 40px">{{ $post->location }}</p>
             </div>
         </div>
-        <div class="item3 bg-light me-3 rounded p-5">
-            <div class="mb-4">
-                <h4 class="mb-3">Job Description</h4>
+        <div class="item3 bg-light me-3 rounded p-5 shadow">
+            <div class="mb-5">
+                <h4 class="mb-3">Description</h4>
                 <p>{{ $post->description }}</p>
             </div>
-            <div class="mb-4">
-                <h4 class="mb-3">Job Requirement</h4>
+            <div class="mb-5">
+                <h4 class="mb-3">Requirement</h4>
                 <p>{!! nl2br($post->skills) !!}</p>
             </div>
         </div>
-        <div class="item4 bg-light mt-3 rounded p-4">
+        <div class="item4 bg-light mt-3 rounded p-4 shadow">
             <div class="card">
                 <div class="card-header">
                     <h4>Comments</h4>
@@ -125,7 +125,6 @@
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-link btn-danger fs-8"
                                             onclick="return confirm('Are you sure you want to delete this comment?')">
-                                            {{-- <i class="fas text-danger fa-trash-alt"></i> --}}
                                             Delete
                                         </button>
                                     </form>
