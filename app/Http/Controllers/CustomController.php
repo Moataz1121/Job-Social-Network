@@ -62,7 +62,7 @@ class CustomController extends Controller
         $status = $request->query('status');
 
         if ($status) {
-            $posts = Post::where('status', $status)->get()->paginate(9);
+            $posts = Post::where('status', $status)->get();
         } else {
             $posts = Post::paginate(9);
         }
