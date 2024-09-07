@@ -29,18 +29,19 @@ class EmployeeController extends Controller
         $categories = Category::all();
 
         $category = Category::findOrFail($id);
-        $posts = $category->posts()->paginate(5);
-        return view('employee.user.filter_category' , compact('posts','categories'));
+        $posts = $category->posts()->where('status', 'accepted')->paginate(5);
+        return view('employee.user.filter_category', compact('posts', 'categories'));
     }
 
-    public function apply($id , Request $request){
+    public function apply($id, Request $request)
+    {
         $post = Post::find($id);
         $categories = Category::all();
         $request_data = $request->validate([
             'user_id' => 'required',
             'post_id' => 'required',
             'resume' => 'required|mimes:pdf',
-            'phone_number'=> 'required',
+            'phone_number' => 'required',
         ]);
         $resume_path = null;
         if ($request->hasFile('resume')) {
@@ -55,7 +56,7 @@ class EmployeeController extends Controller
 
         PostsEmployee::create($request_data);
 
-        return to_route('employee.job', ['post' => $post,'categories' => $categories]);
+        return to_route('employee.job', ['post' => $post, 'categories' => $categories]);
     }
 
     public function create()
@@ -103,45 +104,44 @@ class EmployeeController extends Controller
         //
     }
     public function search(Request $request)
-{
-    $categories = Category::all();
-    $search=$request->validate([
-        'search' => 'nullable|string|max:255',
-    ]);
-    $search = $request->input('search');
-    if($search == null){
-        $posts=Post::where('status', 'accepted')->paginate(5);
+    {
+        $categories = Category::all();
+        $search = $request->validate([
+            'search' => 'nullable|string|max:255',
+        ]);
+        $search = $request->input('search');
+        if ($search == null) {
+            $posts = Post::where('status', 'accepted')->paginate(5);
 
-        return view('employee.user.job', ['jobPosts' => $posts,'categories' => $categories]);
+            return view('employee.user.job', ['jobPosts' => $posts, 'categories' => $categories]);
+        }
+        $posts = Post::query()
+            ->where('status', 'accepted')
+            ->when($search, function ($query, $search) {
+                return $query->where(function ($query) use ($search) {
+                    $query->where('title', 'like', "%{$search}%")
+                        ->orWhere('description', 'like', "%{$search}%")
+                        ->orWhere('location', 'like', "%{$search}%")
+                        ->orWhere('salary', 'like', "%{$search}%")
+                        ->orWhere('created_at', 'like', "%{$search}%");
+                });
+            })->paginate(5);
+
+        return view('employee.user.job', ['jobPosts' => $posts, 'categories' => $categories]);
     }
-    $posts = Post::query()
-    ->where('status', 'accepted')
-    ->when($search, function ($query, $search) {
-        return $query->where(function ($query) use ($search) {
-            $query->where('title', 'like', "%{$search}%")
-                ->orWhere('description', 'like', "%{$search}%")
-                ->orWhere('location', 'like', "%{$search}%")
-                ->orWhere('salary', 'like', "%{$search}%")
-                ->orWhere('created_at', 'like', "%{$search}%");
-        });
-    })->paginate(5);
-
-    return view('employee.user.job', ['jobPosts' => $posts,'categories' => $categories]);
-
-}
-public function showProfileDetails(){
-    $user = Auth::user();
-    // $posts = PostsEmployee::where('user_id', $user->id)->get();
-    $posts = PostsEmployee::where('user_id', $user->id)->with('post')->get();
-    return view('employee.user.profile' , compact('user','posts'));
-}
-public function cancel($id){
-    $post = PostsEmployee::find($id);
-    $post->delete();
-    return to_route('employee.profile');
-}
 
 
-
-
+    public function showProfileDetails()
+    {
+        $user = Auth::user();
+        // $posts = PostsEmployee::where('user_id', $user->id)->get();
+        $posts = PostsEmployee::where('user_id', $user->id)->with('post')->get();
+        return view('employee.user.profile', compact('user', 'posts'));
+    }
+    public function cancel($id)
+    {
+        $post = PostsEmployee::find($id);
+        $post->delete();
+        return to_route('employee.profile');
+    }
 }
