@@ -29,45 +29,60 @@
     <div class="container-fluid" id="wrapper">
         <div class="row newsfeed-size">
             <div class="col-md-12 newsfeed-right-side">
-                <nav id="navbar-main" class="navbar navbar-expand-lg shadow-sm sticky-top">
-                    <div class="w-100 justify-content-md-center">
+                <nav class="nav navbar navbar-light bg-light shadow-sm sticky-top">
+                    <div class="container-fluid">
+                        <ul class="nav navbar pe-0">
+                            <ul class="d-content nav">
+                                <li class="nav-item" style="margin-left: 10px">
+                                    <a class="btn btn-outline-dark nav-link"
+                                        href="{{ route('employee.profile') }}">Profile</a>
+                                </li>
+                                <li class="nav-item" style="margin-left: 10px">
+                                    <a class="btn btn-outline-dark nav-link" href="{{ route('employee.job') }}">Posts
+                                        Jobs</a>
+                                </li>
+                                <li class="nav-item" style="margin-left: 10px">
+                                    <a class="btn btn-outline-dark nav-link"
+                                        href="{{ route('employee.editProfile') }}">Edit Profile</a>
+                                </li>
+                            </ul>
 
-                        <ul class="navbar-nav ms-auto">
-                            <!-- Authentication Links -->
                             @guest
                                 @if (Route::has('login'))
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <li class="nav-item me-3">
+                                        <a class="btn btn-outline-success nav-link"
+                                            href="{{ route('login') }}">{{ __('Login') }}</a>
                                     </li>
                                 @endif
 
                                 @if (Route::has('register'))
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <li class="nav-item me-3">
+                                        <a class="btn btn-outline-info nav-link"
+                                            href="{{ route('register') }}">{{ __('Register') }}</a>
                                     </li>
                                 @endif
                             @else
-                                <li class="nav-item dropdown">
-
-                                    <div aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                         document.getElementById('logout-form').submit();">
-                                            {{ __('Logout') }}
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                            class="d-none">
-                                            @csrf
-                                        </form>
-                                    </div>
+                                <li class="nav-item dropdown me-3">
+                                    <a class="btn btn-outline-danger dropdown-toggle nav-link" href="#"
+                                        id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        {{ Auth::user()->name }}
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <li>
+                                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                                onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                                                {{ __('Logout') }}
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
                                 </li>
                             @endguest
                         </ul>
-                        {{-- End For Logout --}}
-
                     </div>
-
                 </nav>
                 <div class="row newsfeed-right-side-content mt-3">
                     <div class="col-md-3 newsfeed-left-side sticky-top shadow-sm" id="sidebar-wrapper">
