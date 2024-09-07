@@ -17,7 +17,7 @@ class EmployeGuest
     public function handle(Request $request, Closure $next): Response
     {
         if (Auth::guard('employer')->check()) {
-            return redirect()->route('emp');
+            return redirect()->route('employer.index');
         }
         return $next($request);
     }

@@ -16,6 +16,8 @@
             </thead>
             <tbody>
                 @foreach ($posts as $item)
+                @if (Auth::guard('employer')->user()->can('show-post', $item))
+
                     <tr>
                         <td>{{ $item->id }}</td>
                         <td>{{ $item->title }}</td>
@@ -33,7 +35,7 @@
                                 <input type="submit" class="btn btn-danger" value="Delete">
                             </form>
                         </td>
-
+@endif
                     </tr>
                 @endforeach
                 {{ $posts->links() }}
