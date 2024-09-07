@@ -57,25 +57,25 @@
 
     <ul class="menu-inner py-1">
         <!-- Dashboard -->
-        <li class="menu-item active">
+        <li class="menu-item @yield('dasboard.active')">
             <a href="{{route('employer.index')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
             </a>
         </li>
-        <li class="menu-item">
+        <li class="menu-item @yield('create.active')">
             <a href="{{ route('post.create') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Post a Job</div>
             </a>
         </li>
-        <li class="menu-item">
+        <li class="menu-item @yield('app.active')">
             <a href="{{ route('employer.data') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Applications</div>
             </a>
         </li>
-        <li class="menu-item">
+        <li class="menu-item @yield('my.active')">
             <a href="{{ route('post.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">My Posts</div>

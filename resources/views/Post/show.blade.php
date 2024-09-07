@@ -18,13 +18,16 @@
                     <small class="fs-5"><b class="fs-4">Category: </b>{{ $post->category->name }}</small>
                 </div>
                 <div>
+                    <small class="fs-5"><b class="fs-4">Status: </b>{{ $post->status }}</small>
+                </div>
+                <div>
                     <small class="fs-5"><b class="fs-4">Created At:</b>
-                        {{ $post->created_at->format('l dS F o H:i:s A') }}
+                        {{ $post->created_at->format('l dS F o ') }}
                     </small>
                 </div>
                 <div>
                     <small class="fs-5"><b class="fs-4">Updated At:</b>
-                        {{ $post->updated_at->format('l dS F o H:i:s A') }}
+                        {{ $post->updated_at->format('l dS F o ') }}
                     </small>
                 </div>
     

@@ -5,7 +5,7 @@
         <div class="card mt-2 " style="width: 18rem;">
             <img src="{{ asset('images/employer_images/' . $employer->image) }}" class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title">{{ $employer->name }}</h5>
+                <h5 class="card-title">{{ $employer->name }} </h5>
                 <p class="card-text">{{ $employer->email }}</p>
                 <p class="card-text">{{ $employer->phone_number }}</p>
                 <p class="card-text">{{ $employer->birth_date }}</p>

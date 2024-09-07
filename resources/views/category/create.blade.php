@@ -1,6 +1,8 @@
 
 @extends('admin.master')
 
+{{-- @section('category' , 'active') --}}
+
 @section('title')
     Create Category
 @endsection

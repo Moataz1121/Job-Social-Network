@@ -57,32 +57,32 @@
 
     <ul class="menu-inner py-1">
         <!-- Dashboard -->
-        <li class="menu-item active">
+        {{-- <li class="menu-item active">
             <a href="index.html" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
             </a>
-        </li>
-        <li class="menu-item ">
+        </li> --}}
+        <li class="menu-item @yield('category')">
             <a href="{{ route('category.index') }}" class="menu-link">
                 <i class="fa-solid fa-layer-group me-2"></i>
                 <div data-i18n="Analytics">Category</div>
             </a>
         </li>
 
-        <li class="menu-item ">
+        <li class="menu-item  @yield('users')">
             <a href="{{ route('admin.users') }}" class="menu-link">
                 <i class="fa-solid fa-layer-group me-2"></i>
                 <div data-i18n="Analytics">All Users</div>
             </a>
         </li>
-        <li class="menu-item ">
+        <li class="menu-item @yield('employers')">
             <a href="{{ route('admin.employers') }}" class="menu-link">
                 <i class="fa-solid fa-layer-group me-2"></i>
                 <div data-i18n="Analytics">All Employers</div>
             </a>
         </li>
-        <li class="menu-item ">
+        <li class="menu-item @yield('posts')">
             <a href="{{ route('admin.index') }}" class="menu-link">
                 <i class="fa-solid fa-layer-group me-2"></i>
                 <div data-i18n="Analytics">All Posts</div>

@@ -1,5 +1,5 @@
 @extends('admin.master')
-
+@section('posts' , 'active')
 @section('content')
     @if (session('success'))
         <div class="alert alert-success">
@@ -15,6 +15,7 @@
     </div>
 
     <div class=" row d-flex flex-row">
+    
         @foreach ($posts as $post)
             <div class="col-3 m-3 bg-white p-0 shadow rounded" style="width: 439px;">
                 <div class="d-flex justify-content-between p-3" style="height:120px;">
