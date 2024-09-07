@@ -1,5 +1,5 @@
 @extends('employee.user.master')
-
+@section('title', 'Jobs')
 @section('content')
     <form action="{{ route('jobs.search') }}" method="GET" class="mb-3 d-flex justify-content-center">
         <input type="text" name="search" placeholder="Search jobs" class="form-control w-75 me-3">
@@ -169,7 +169,7 @@
                     <label for="loadMore{{ $jobPost->id }}" class="cursor-pointer">Read more...</label>
                 </div>
                 <div class="d-block mt-3">
-                    <img src="front/assets/images/users/post/post-1.jpg" class="w-100 mb-3" alt="post image">
+                    <img src="{{ asset('images/employer_images/' . $jobPost->employer->image) }}" class="w-100 mb-3" alt="post image">
                 </div>
                 <div class="mb-2">
 
@@ -191,7 +191,7 @@
                             </span>
                         </div>
                         <div class="col-md-4   text-center">
-                            <a href="javascript:void(0)" class="post-card-buttons" id="show-comments"><i
+                            <a href="javascript:void(0)" class="post-card-buttons"id="show-comments-{{ $jobPost->id }}"><i
                                     class='bx bx-message-rounded mr-2'></i>{{ count($jobPost->comments) }}</a>
                         </div>
                         <div class="col-md-4  text-center">
@@ -237,7 +237,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="border-top pt-3 hide-comments" style="display: none;">
+                <div class="border-top pt-3 hide-comments-{{ $jobPost->id}}" style="display: none;">
                     <div class="row bootstrap snippets">
                         <div class="col-md-12">
                             <div class="comment-wrapper">
@@ -335,14 +335,15 @@
 
                                                     </div>
                                                 </li>
-                                                <li class="media">
-                                                    <div class="media-body">
-                                                        <div class="comment-see-more text-center">
-                                                            <button type="button" class="btn btn-link fs-8">See More</button>
-                                                        </div>
-                                                    </div>
-                                                </li>
+
                                             @endforeach
+                                            <li class="media">
+                                                <div class="media-body">
+                                                    <div class="comment-see-more text-center">
+                                                        <button type="button" class="btn btn-link fs-8">See More</button>
+                                                    </div>
+                                                </div>
+                                            </li>
                                             {{-- end comment --}}
                                         </ul>
                                     </div>

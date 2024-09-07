@@ -1,51 +1,48 @@
-<nav id="navbar-main" class="navbar navbar-expand-lg shadow-sm sticky-top">
-    <div class="w-100 justify-content-md-center">
-        <ul class="navbar-nav mr-5 flex-row" id="main_menu">
+<nav id="navbar-main" class="navbar navbar-expand-lg navbar-light bg-light shadow-sm sticky-top">
+    <div class="container-fluid">
+        <ul class="navbar-nav mr-auto" id="main_menu">
             <li class="nav-item">
-                <a type="button" class="btn  nav-link p-0" href="{{ route('employee.profile') }}">Profile</a>
+                <a type="button" class="btn btn-outline-primary nav-link p-2" href="{{ route('employee.profile') }}">Profile</a>
             </li>
             <li class="nav-item">
-                <a type="button" class="btn nav-link p-0" href="{{ route('employee.job') }}">Posts Jobs</a>
+                <a type="button" class="btn btn-outline-primary nav-link p-2" href="{{ route('employee.job') }}">Posts Jobs</a>
             </li>
-            <button type="button" class="btn nav-link" id="menu-toggle"><img
-                    src="front/assets/images/icons/theme/navs.png" alt="Navbar navs"></button>
+            <li class="nav-item">
+                <a type="button" class="btn btn-outline-primary nav-link p-2" href="{{ route('employee.editProfile') }}">Edit Profile</a>
+            </li>
+        </ul>
 
-                    @guest
-                    @if (Route::has('login'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                        </li>
-                    @endif
+        <ul class="navbar-nav ml-auto">
+            @guest
+                @if (Route::has('login'))
+                    <li class="nav-item">
+                        <a class="btn btn-outline-success nav-link p-2" href="{{ route('login') }}">{{ __('Login') }}</a>
+                    </li>
+                @endif
 
-                    @if (Route::has('register'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                        </li>
-                    @endif
-                @else
-                    <li class="nav-item dropdown">
-
-                        <div aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
+                @if (Route::has('register'))
+                    <li class="nav-item">
+                        <a class="btn btn-outline-info nav-link p-2" href="{{ route('register') }}">{{ __('Register') }}</a>
+                    </li>
+                @endif
+            @else
+                <li class="nav-item dropdown">
+                    <a class="btn btn-outline-danger dropdown-toggle nav-link p-2" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{ Auth::user()->name }}
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <li>
+                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
-
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
-                        </div>
-                    </li>
-                @endguest
+                        </li>
+                    </ul>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </li>
+            @endguest
         </ul>
-        {{-- For Logout --}}
-        <ul class="navbar-nav ms-auto">
-            <!-- Authentication Links -->
-
-        </ul>
-        {{-- End For Logout --}}
-
     </div>
-
 </nav>

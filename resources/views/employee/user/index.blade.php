@@ -1,10 +1,10 @@
 @extends('employee.user.master')
 
-
+@section('title', 'User')
 @section('content')
 
 <div class="col-md-6 second-section" id="page-content-wrapper">
-                       
+
     <ul class="list-unstyled" style="margin-bottom: 0;">
         <li class="media post-form w-shadow">
             <div class="media-body">

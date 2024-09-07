@@ -7,11 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" type="image/png" href="front/assets/images/logo-16x16.png" />
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Argon - Social Network</title>
+    <title>Profile</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display" rel="stylesheet">
     <link href='https://cdn.jsdelivr.net/npm/boxicons@1.9.2/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
 
     <!-- Styles -->
     <link href="front/assets/css/bootstrap/bootstrap.min.css" rel="stylesheet">
@@ -185,6 +187,7 @@
                                             </ul>
 
                                             <h3 class="timeline-title text-center">Your Posts Job</h3>
+                                            <div class="w-75">
                                             @foreach ($posts as $post)
                                             <div class="post border-bottom p-3 bg-white w-shadow my-3">
                                                 <div class="media text-muted pt-3">
@@ -406,7 +409,7 @@
                                                 </div>
                                             </div>
                                             @endforeach
-
+                                            </div>
                                         </div>
                                         <div class="col-md-3 profile-quick-media">
                                             <h6 class="text-muted timeline-title">Recent Media</h6>

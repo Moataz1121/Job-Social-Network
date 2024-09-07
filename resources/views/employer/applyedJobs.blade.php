@@ -1,5 +1,5 @@
 @extends('employer.master')
-
+@extends('title', 'Applyed Jobs')
 @section('app.active', 'active')
 @section('content')
 <div class="container mt-3">
@@ -30,8 +30,8 @@
                         <a href="{{ asset($item->resume) }}">Open the pdf!</a></td>
 
                     </td>
-                    
-                    <td> 
+
+                    <td>
                     <div class="mb-5">
                     <form action="{{ route('employer.sendMail', $item->user->id) }}" method="POST">
                         @csrf

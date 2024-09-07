@@ -6,6 +6,10 @@ use App\Models\Employer;
 use App\Http\Requests\StoreEmployerRequest;
 use App\Http\Requests\UpdateEmployerRequest;
 use App\Models\PostsEmployee;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class EmployerController extends Controller
 {
@@ -16,7 +20,7 @@ class EmployerController extends Controller
     {
         //
         $applyed = PostsEmployee::all();
-        return view('employer.applyedJobs' , compact('applyed'));
+        return view('employer.applyedJobs', compact('applyed'));
     }
 
     /**
@@ -66,5 +70,56 @@ class EmployerController extends Controller
     {
         //
     }
-    
+
+    public function editProfile()
+    {
+        $employer = Auth::guard('employer')->user();
+        return view('employer.layouts.editprofile', compact('employer'));
+    }
+
+    public function updateprofile(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => ['required'],
+            'email' => ['required'],
+            'password' => ['nullable'],
+            'phone_number' => ['required'],
+            'company_name' => ['required'],
+            'image' => ['nullable'],
+        ]);
+
+        if ($validator->fails()) {
+            dd($validator->errors());
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $user = Employer::findOrFail($id);
+
+        if ($request->hasFile('image')) {
+            if ($user->image) {
+                $oldImagePath = public_path('images/employer_images/' . $user->image);
+                if (file_exists($oldImagePath)) {
+                    unlink($oldImagePath);
+                }
+            }
+
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('images/employer_images'), $imageName);
+            $user->image = $imageName;
+        }
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone_number = $request->phone_number;
+        $user->company_name = $request->company_name;
+
+
+        if ($request->filled('password')) {
+            $user->password = Hash::make($request->password);
+        }
+
+        $user->save();
+
+        return to_route('employer.index');
+    }
 }

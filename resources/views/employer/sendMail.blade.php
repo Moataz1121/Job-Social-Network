@@ -1,5 +1,5 @@
 @extends('employer.master')
-
+@section('title', 'Send Mail')
 @section('content')
     <h1 class="mt-3 text-center">Send mail to {{ $postsEmployee->user->name }}</h1>
     <form action="{{ route('employer.mail', $postsEmployee->user->id) }}" method="Post">

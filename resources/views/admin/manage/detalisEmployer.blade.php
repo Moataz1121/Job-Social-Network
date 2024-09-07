@@ -1,5 +1,5 @@
 @extends('admin.master')
-
+@section('title' , 'Employer Details')
 @section('content')
     <div class="d-flex justify-content-center aligin-items-center mt-4">
         <div class="card mt-2 " style="width: 18rem;">

@@ -1,5 +1,5 @@
 @extends('admin.master')
-
+@section('title', 'Post Details')
 <head>
     <title>
         Admin | Post
