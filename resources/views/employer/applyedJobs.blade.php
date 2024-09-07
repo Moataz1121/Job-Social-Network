@@ -14,6 +14,7 @@
                 <th>Phone</th>
                 <th>Title</th>
                 <th>View CV</th>
+                <th>Action</th>
             </tr>
 
         </thead>
@@ -28,6 +29,26 @@
                     <td>
                         <a href="{{ asset($item->resume) }}">Open the pdf!</a></td>
 
+                    </td>
+                    
+                    <td> 
+                    <div class="mb-5">
+                    <form action="{{ route('employer.sendMail', $item->user->id) }}" method="POST">
+                        @csrf
+                        @error('status')
+                            <span class="alert alert-danger">{{ $message }}</span>
+                        @enderror
+                        <div>
+                            <select class="form-select form-control" name="status" aria-label="Default select example">
+                                <option disabled value="{{ $item->post->status }}">{{ $item->post->status }}</option>
+                                <option value="accepted">Accept</option>
+                                <option value="rejected">Reject</option>
+                            </select>
+                            <input type="submit" class="btn btn-primary mt-3 fs-5 w-100" height="12.5rem"
+                                value="Submit & Mail">
+                        </div>
+                    </form>
+                </div>
                     </td>
 
 

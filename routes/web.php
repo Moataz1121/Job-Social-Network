@@ -106,3 +106,7 @@ Route::delete('/admin/deleteemp/{id}', [CustomController::class, 'employersdelet
 Route::get('/admin/employers' , [CustomController::class, 'employers'])->name('admin.employers')->middleware('Admin');
 Route::get('/profile', [EmployeeController::class, 'showProfileDetails'])->name('employee.profile')->middleware('auth');
 Route::delete('/profile/{id}', [EmployeeController::class, 'cancel'])->name('employee.cancel')->middleware('auth');
+
+
+Route::post('employer/sendmail/{id}', [CustomController::class, 'employerSendMail'])->name('employer.sendMail')->middleware('Employer');
+Route::patch('employer/mail/{id}', [CustomController::class, 'employerMail'])->name('employer.mail')->middleware('Employer');

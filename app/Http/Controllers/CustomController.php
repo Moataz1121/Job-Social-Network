@@ -6,6 +6,7 @@ use App\Http\Requests\UpdateStatus;
 use App\Models\Comment;
 use App\Models\Employer;
 use App\Models\Post;
+use App\Models\PostsEmployee;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Notifications\SendEmailNotification;
@@ -92,10 +93,16 @@ class CustomController extends Controller
         $post->save();
         return view('admin.sendMail', ['posts' => $post])->with('success', 'Status updated successfully!');
     }
+    public function employerSendMail($id){
+        $postsEmployee= PostsEmployee::findOrFail($id);
+        $post = Post::findOrFail($id);
+        return view('employer.sendMail', compact('postsEmployee', 'post'));
+    }
 
     public function mail(Request $request, $id)
     {
         $contact = Employer::find($id);
+       
 
         $details = [
             'mail_greeting' => $request->mail_greeting,
@@ -107,4 +114,25 @@ class CustomController extends Controller
         Notification::send($contact, new SendEmailNotification($details));
         return to_route('admin.index');
     }
+    public function employerMail(Request $request, $id)
+    {
+        // $contact = PostsEmployee::find($id);
+        // $userContact = $contact->user;
+
+        $contact = User::find($id);
+        // dd($contact);
+       
+        $details = [
+            'mail_greeting' => $request->mail_greeting,
+            'mail_body' => $request->mail_body,
+            'mail_action_text' => $request->mail_action_text,
+            'mail_action_url' => $request->mail_action_url,
+            'mail_end_line' => $request->mail_end_line,
+        ];
+
+        Notification::send($contact, new SendEmailNotification($details));
+        return to_route('employer.index');
+    }
 }
+
+
