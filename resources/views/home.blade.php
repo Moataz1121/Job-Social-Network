@@ -1,26 +1,10 @@
-@extends('layouts.app')
+@extends('employee.user.master')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
-        </div>
-        {{-- <img src="{{asset('images/user_image/'.$image)}}" alt="no image">
-        <img src="{{asset('images/user_image/'.$image)}}" alt=""> --}}
-        <img src="{{ asset('images/user_images/' .Auth::user()->image) }}" alt="'s profile picture" class="img-fluid">
+       <div class="dd  text-center d-flex justify-content-center flex-column">
+        <h1 class="text-center mt-5 " >Welcome to Home Page</h1>
+        <div class="text-center ">
+        <a href="{{ route('employee.job') }}" class="btn btn-primary">show our jobs</a></div>
+       
     </div>
-</div>
 @endsection
