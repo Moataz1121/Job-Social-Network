@@ -66,4 +66,5 @@ class EmployerController extends Controller
     {
         //
     }
+    
 }
