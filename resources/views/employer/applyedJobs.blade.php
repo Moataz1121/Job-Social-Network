@@ -1,5 +1,5 @@
 @extends('employer.master')
-@extends('title', 'Applyed Jobs')
+@section('title', 'Applyed Jobs')
 @section('app.active', 'active')
 @section('content')
 <div class="container mt-3">

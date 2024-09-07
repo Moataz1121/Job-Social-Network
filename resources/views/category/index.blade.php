@@ -23,12 +23,12 @@
                     <td> <a href="{{ route('category.edit', $item) }}" class="btn btn-success"> Update</a>
                     </td>
                     <td>
-                        <form action="{{ route('category.destroy', $item) }}" method="POST" onsubmit="confirm('Are you sure?')">
+                        <form action="{{ route('category.destroy', $item) }}" method="POST" >
 
                             @csrf
                             @method('DELETE')
 
-                            <input type="submit" class="btn btn-danger" value="Delete">
+                            <input onclick="return confirm('Are you sure?')" type="submit" class="btn btn-danger" value="Delete">
                         </form>
                     </td>
 

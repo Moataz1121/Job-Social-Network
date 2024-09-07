@@ -32,7 +32,7 @@ Route::get('/profile', function () {
 
 // Employee Job Page => Index Page.
 Route::get('/jobs', [EmployeeController::class, 'index'])->name('employee.job')->middleware('auth');
-Route::post('/jobs/apply/{id}' , [EmployeeController::class, 'apply'])->name('employee.apply');
+Route::post('/jobs/apply/{id}' , [EmployeeController::class, 'apply'])->name('employee.apply')->middleware('auth');
 
 
 //=================Admin login & logout Page================================
@@ -51,6 +51,11 @@ Route::post(
     [App\Http\Controllers\Admin\AdminController::class, 'logout']
 )->name('admin.logout');
 
+
+Route::get('/employee/editprofile/', [EmployeeController::class, 'editProfile'])->name('employee.editProfile')->middleware('auth');
+Route::put('/employee/updateProfile/{id}', [EmployeeController::class, 'updateprofile'])->name('employee.updateprofile')->middleware('auth');
+
+
 // =======================Admin Customize  =================================
 Route::patch('admin/update/{id}', [CustomController::class, 'update'])->name('admin.update')->middleware('Admin');
 Route::get('/admin/index', [CustomController::class, 'index'])->name('admin.index')->middleware('Admin');
@@ -65,7 +70,7 @@ Route::get('employer/login', [LoginController::class, 'showLoginForm'])
 
 Route::get('employer/register', function () {
     return view('employer.auth.register');
-})->name('employer.register.view');
+})->name('employer.register.view')->middleware('Employerguest');
 
 Route::post('employer/login', [LoginController::class, 'login'])->name('employer.login');
 Route::post('employer/logout', [LoginController::class, 'logout'])->name('employer.logout');
@@ -78,7 +83,7 @@ Route::post('employer/register', [RegisterController::class, 'register'])->name(
 // Start Employer
 Route::get('/employer/index', function () {
     return view('employer.index');
-})->name('employer.index');
+})->name('employer.index')->middleware('Employer');
 Route::get('/employer/data',[EmployerController::class, 'index'])->name('employer.data')->middleware('Employer');
 Route::get('/employer/editprofile/', [EmployerController::class, 'editProfile'])->name('employer.editProfile')->middleware('Employer');
 Route::put('/employer/updateProfile/{id}', [EmployerController::class, 'updateprofile'])->name('employer.updateprofile')->middleware('Employer');
@@ -94,7 +99,7 @@ Route::get('/admin/mail/{id}', [CustomController::class, 'mail'])->name('send.ma
 Route::get('/posts/filter_category/{id}', [EmployeeController::class, 'filter_category'])->name('posts.filter_category');
 Route::post('/posts/{post}/comments', [PostController::class, 'addComment'])->name('posts.addComment');
 Route::delete('/comments/{comment}', [PostController::class, 'DeleteComment'])->name('comments.delete');
-Route::put('/comments/{comment}', [PostController::class, 'EditComment'])->name('comments.edit');
+Route::put('/comments/{comment}', [PostController::class, 'editComment'])->name('comments.edit');
 
 //Admin Customize =====================================
 Route::get('/admin/users' , [CustomController::class, 'users'])->name('admin.users')->middleware('Admin');
@@ -112,6 +117,3 @@ Route::delete('/profile/{id}', [EmployeeController::class, 'cancel'])->name('emp
 
 Route::post('employer/sendmail/{id}', [CustomController::class, 'employerSendMail'])->name('employer.sendMail')->middleware('Employer');
 Route::patch('employer/mail/{id}', [CustomController::class, 'employerMail'])->name('employer.mail')->middleware('Employer');
-
-Route::get('/employee/editprofile/', [EmployeeController::class, 'editProfile'])->name('employee.editProfile')->middleware('auth');
-Route::put('/employee/updateProfile/{id}', [EmployeeController::class, 'updateprofile'])->name('employee.updateprofile')->middleware('auth');

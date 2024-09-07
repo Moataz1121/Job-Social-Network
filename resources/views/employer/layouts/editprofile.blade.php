@@ -1,4 +1,6 @@
 @extends('employer.master')
+@section('edit.active', 'active')
+
 @section('title', 'Edit Profile')
 @section('content')
 <div class="container-fluid mt-5">
