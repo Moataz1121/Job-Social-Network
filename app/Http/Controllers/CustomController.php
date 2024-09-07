@@ -93,10 +93,15 @@ class CustomController extends Controller
         $post->save();
         return view('admin.sendMail', ['posts' => $post])->with('success', 'Status updated successfully!');
     }
-    public function employerSendMail($id){
+    public function employerSendMail(Request $request,$id){
         $postsEmployee= PostsEmployee::findOrFail($id);
-        $post = Post::findOrFail($id);
-        return view('employer.sendMail', compact('postsEmployee', 'post'));
+        $postsEmployee = PostsEmployee::findOrFail($id);
+        $request_data = $request->all();
+      
+        
+        $postsEmployee->status = $request_data['status'];
+        $postsEmployee->save();
+        return view('employer.sendMail', compact('postsEmployee'));
     }
 
     public function mail(Request $request, $id)
