@@ -169,7 +169,8 @@
                     <label for="loadMore{{ $jobPost->id }}" class="cursor-pointer">Read more...</label>
                 </div>
                 <div class="d-block mt-3">
-                    <img src="{{ asset('images/employer_images/' . $jobPost->employer->image) }}" class="w-100 mb-3" alt="post image">
+                    <img src="{{ asset('images/employer_images/' . $jobPost->employer->image) }}" class="w-100 mb-3"
+                        alt="post image">
                 </div>
                 <div class="mb-2">
 
@@ -191,7 +192,8 @@
                             </span>
                         </div>
                         <div class="col-md-4   text-center">
-                            <a href="javascript:void(0)" class="post-card-buttons"id="show-comments-{{ $jobPost->id }}"><i
+                            <a href="javascript:void(0)"
+                                class="post-card-buttons"id="show-comments-{{ $jobPost->id }}"><i
                                     class='bx bx-message-rounded mr-2'></i>{{ count($jobPost->comments) }}</a>
                         </div>
                         <div class="col-md-4  text-center">
@@ -237,7 +239,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="border-top pt-3 hide-comments-{{ $jobPost->id}}" style="display: none;">
+                <div class="border-top pt-3 hide-comments-{{ $jobPost->id }}" style="display: none;">
                     <div class="row bootstrap snippets">
                         <div class="col-md-12">
                             <div class="comment-wrapper">
@@ -276,71 +278,77 @@
                                                 </div>
                                             </li>
                                             @foreach ($jobPost->comments as $comment)
-                                                <li class="media">
-                                                    <a href="#" class="pull-left">
-                                                        <img src="{{ asset('images/user_images/' . $comment->user->image) }}"
-                                                            alt="" class="img-circle">
-                                                    </a>
-                                                    <div class="media-body">
-                                                        <div
-                                                            class="d-flex justify-content-between align-items-center w-100">
-                                                            <strong class="text-gray-dark"><a href="#"
-                                                                    class="fs-8">{{ $comment->user->name }}</a></strong>
-                                                            <div
-                                                                class="d-flex flex-column justify-content-center align-items-center">
-                                                                @can('delete-comment', $comment)
-                                                                    <div class="commentLR ">
-                                                                        <form
-                                                                            action="{{ route('comments.delete', $comment->id) }}"
-                                                                            method="POST" style="display:inline;">
-                                                                            @csrf
-                                                                            @method('DELETE')
-                                                                            <button type="submit" class="btn btn-link fs-8"
-                                                                                onclick="return confirm('Are you sure you want to delete this comment?')">
-                                                                                <i class="fas text-danger fa-trash-alt"></i>
-                                                                            </button>
-                                                                        </form>
-                                                                    </div>
-                                                                @endcan
-
-                                                                @can('delete-comment', $comment)
-                                                                    <div class="commentEdit">
-                                                                        <button type="button" class="btn btn-link fs-8 "
-                                                                            onclick="document.getElementById('edit-comment-{{ $comment->id }}').style.display='block'">
-                                                                            <i class="fas text-primary fa-edit"></i>
-                                                                        </button>
-                                                                    </div>
-
-                                                                    <form id="edit-comment-{{ $comment->id }}"
-                                                                        action="{{ route('comments.edit', $comment->id) }}"
-                                                                        method="POST" style="display:none;">
-                                                                        @csrf
-                                                                        @method('PUT')
-                                                                        <div class="form-group">
-                                                                            <input type="text" name="body"
-                                                                                class="form-control"
-                                                                                value="{{ $comment->body }}" required>
-                                                                        </div>
-                                                                        <button type="submit"
-                                                                            class="btn btn-primary">Save</button>
-                                                                    </form>
-                                                                @endcan
+                                                <div class="p-2 mb-2"
+                                                    style="border-radius: 1.5rem; background-color:rgb(241, 242, 245);">
+                                                    <div class="d-flex justify-content-between">
+                                                        <div class="d-flex">
+                                                            <div>
+                                                                <span>
+                                                                    <img src="{{ asset('images/user_images/' . $comment->user->image) }}"
+                                                                        alt="{{ $comment->user->name }} image"
+                                                                        width="45" height="45"
+                                                                        style="border-radius: 50%">
+                                                                </span>
+                                                            </div>
+                                                            <div class="mx-2">
+                                                                <strong class="text-gray-dark"><a href="#"
+                                                                        class="fs-8">{{ $comment->user->name }}</a></strong>
+                                                                <span
+                                                                    class="d-block comment-created-time">{{ $comment->created_at->format('F j, Y, g:i a') }}</span>
                                                             </div>
                                                         </div>
-                                                        <span
-                                                            class="d-block comment-created-time">{{ $comment->created_at->format('F j, Y, g:i a') }}</span>
-                                                        <p class="fs-8 pt-2">
-                                                            {{ $comment->body }}
-                                                        </p>
+                                                        <div class="d-flex">
+                                                            @can('delete-comment', $comment)
+                                                                <div class="">
+                                                                    <form
+                                                                        action="{{ route('comments.delete', $comment->id) }}"
+                                                                        method="POST" style="display:inline;">
+                                                                        @csrf
+                                                                        @method('DELETE')
+                                                                        <button type="submit" class="btn btn-link fs-8"
+                                                                            onclick="return confirm('Are you sure you want to delete this comment?')">
+                                                                            <i class="fas text-danger fa-trash-alt"></i>
+                                                                        </button>
+                                                                    </form>
+                                                                </div>
+                                                            @endcan
 
+                                                            @can('delete-comment', $comment)
+                                                                <div class="">
+                                                                    <button type="button" class="btn btn-link fs-8 "
+                                                                        onclick="document.getElementById('edit-comment-{{ $comment->id }}').style.display='block'">
+                                                                        <i class="fas text-primary fa-edit"></i>
+                                                                    </button>
+                                                                </div>
+
+                                                                <form id="edit-comment-{{ $comment->id }}"
+                                                                    action="{{ route('comments.edit', $comment->id) }}"
+                                                                    method="POST" style="display:none;">
+                                                                    @csrf
+                                                                    @method('PUT')
+                                                                    <div class="form-group">
+                                                                        <input type="text" name="body"
+                                                                            class="form-control" value="{{ $comment->body }}"
+                                                                            required>
+                                                                    </div>
+                                                                    <button type="submit"
+                                                                        class="btn btn-primary">Save</button>
+                                                                </form>
+                                                            @endcan
+                                                        </div>
                                                     </div>
-                                                </li>
-
+                                                    <div class="p-3 mt-2 d-flex align-items-center fw-bolder"
+                                                        style="background-color: rgba(219, 219, 219, 0.719); border-radius: 1.5rem; height: 50px">
+                                                        <span style="font-weight: 400">{{ $comment->body }}</span>
+                                                    </div>
+                                                </div>
+                                                <hr>
                                             @endforeach
                                             <li class="media">
                                                 <div class="media-body">
                                                     <div class="comment-see-more text-center">
-                                                        <button type="button" class="btn btn-link fs-8">See More</button>
+                                                        <button type="button" class="btn btn-link fs-8">See
+                                                            More</button>
                                                     </div>
                                                 </div>
                                             </li>
