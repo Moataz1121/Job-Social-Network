@@ -12,7 +12,8 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display" rel="stylesheet">
     <link href='https://cdn.jsdelivr.net/npm/boxicons@1.9.2/css/boxicons.min.css' rel='stylesheet'>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
 
     <!-- Styles -->
@@ -29,7 +30,53 @@
     <div class="container-fluid newsfeed d-flex" id="wrapper">
         <div class="row newsfeed-size">
             <div class="col-md-12 p-0">
-                @include('employee.user.layouts.navbar')
+                <nav class="container-fluid nav navbar navbar-light bg-light shadow-sm sticky-top">
+                    <ul class="nav navbar container-fluid">
+                        <ul class="d-content nav">
+                            <li class="nav-item" style="margin-left: 10px">
+                                <a class="btn btn-outline-dark nav-link"
+                                    href="{{ route('employee.profile') }}">Profile</a>
+                            </li>
+                            <li class="nav-item" style="margin-left: 10px">
+                                <a class="btn btn-outline-dark nav-link" href="{{ route('employee.job') }}">Posts
+                                    Jobs</a>
+                            </li>
+                            <li class="nav-item" style="margin-left: 10px">
+                                <a class="btn btn-outline-dark nav-link" href="{{ route('employee.editProfile') }}">Edit
+                                    Profile</a>
+                            </li>
+                        </ul>
+
+                        @guest
+                            @if (Route::has('login'))
+                                <li class="nav-item me-3">
+                                    <a class="btn btn-outline-dark nav-link"
+                                        href="{{ route('login') }}">{{ __('Login') }}</a>
+                                </li>
+                            @endif
+
+                            @if (Route::has('register'))
+                                <li class="nav-item me-3">
+                                    <a class="btn btn-outline-dark nav-link"
+                                        href="{{ route('register') }}">{{ __('Register') }}</a>
+                                </li>
+                            @endif
+                        @else
+                            <li class="nav-item">
+                                <a class="btn btn-outline-danger nav-link" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+                            </li>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                            </li>
+                        @endguest
+                    </ul>
+                </nav>
+
                 <div class="row profile-right-side-content">
                     <div class="user-profile">
                         <div class="profile-header-background">
@@ -188,53 +235,58 @@
 
                                             <h3 class="timeline-title text-center">Your Posts Job</h3>
                                             @foreach ($posts as $post)
-                                            <div class="post border-bottom p-3 bg-white w-shadow my-3">
-                                                <div class="media text-muted pt-3">
-                                                    <img src="{{ asset('images/user_images/' . Auth::user()->image) }}" alt="Online user"
-                                                        class="mr-3 post-user-image">
-                                                    <div class="media-body pb-3 mb-0 small lh-125">
-                                                        <div
-                                                            class="d-flex justify-content-between align-items-center w-100">
-                                                            <span class="post-type text-muted ">{{$user->name}} </span>
+                                                <div class="post border-bottom p-3 bg-white w-shadow my-3">
+                                                    <div class="media text-muted pt-3">
+                                                        <img src="{{ asset('images/user_images/' . Auth::user()->image) }}"
+                                                            alt="Online user" class="mr-3 post-user-image">
+                                                        <div class="media-body pb-3 mb-0 small lh-125">
+                                                            <div
+                                                                class="d-flex justify-content-between align-items-center w-100">
+                                                                <span
+                                                                    class="post-type text-muted ">{{ $user->name }}
+                                                                </span>
 
+                                                            </div>
+                                                            <span class="d-block">{{ $post->created_at }}<i
+                                                                    class='bx bx-globe ml-3'></i></span>
                                                         </div>
-                                                        <span class="d-block">{{$post->created_at}}<i
-                                                                class='bx bx-globe ml-3'></i></span>
                                                     </div>
-                                                </div>
-                                                <div class="mt-3">
-                                                    <h3>Title: {{$post->post->title}}</h3>
-                                                    <p>The Job Description: {{$post->post->description}}</p>
-                                                    <p>The Location: {{$post->post->location}}</p>
-                                                    <p>The Salary: {{$post->post->salary}}</p>
-                                                    <form action="{{ route('employee.cancel', $post->id) }}" method="post" onsubmit="return confirmCancel();">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <input type="submit" value="Cancel" class="btn btn-danger">
-                                                    </form>
+                                                    <div class="mt-3">
+                                                        <h3>Title: {{ $post->post->title }}</h3>
+                                                        <p>The Job Description: {{ $post->post->description }}</p>
+                                                        <p>The Location: {{ $post->post->location }}</p>
+                                                        <p>The Salary: {{ $post->post->salary }}</p>
+                                                        <form action="{{ route('employee.cancel', $post->id) }}"
+                                                            method="post" onsubmit="return confirmCancel();">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <input type="submit" value="Cancel"
+                                                                class="btn btn-danger">
+                                                        </form>
 
-                                                </div>
-                                                <div class="d-block mt-3">
-                                                    <img src="{{ asset('images/employer_images/' . $post->post->employer->image) }}"
-                                                        class="w-100 mb-3" alt="post image">
-                                                </div>
-                                                <div class="mb-2">
+                                                    </div>
+                                                    <div class="d-block mt-3">
+                                                        <img src="{{ asset('images/employer_images/' . $post->post->employer->image) }}"
+                                                            class="w-100 mb-3" alt="post image">
+                                                    </div>
+                                                    <div class="mb-2">
 
-                                                </div>
-                                                <div class="border-top pt-3 hide-comments" style="display: none;">
-                                                    <div class="row bootstrap snippets">
-                                                        <div class="col-md-12">
-                                                            <div class="comment-wrapper">
-                                                                <div class="panel panel-info">
-                                                                    <div class="panel-body">
-                                                                        <ul class="media-list comments-list">
-                                                                            <li class="media comment-form">
-                                                                                <a href="#" class="pull-left">
-                                                                                    <img src="front/assets/images/users/user-4.jpg"
-                                                                                        alt=""
-                                                                                        class="img-circle">
-                                                                                </a>
-                                                                                {{-- <div class="media-body">
+                                                    </div>
+                                                    <div class="border-top pt-3 hide-comments" style="display: none;">
+                                                        <div class="row bootstrap snippets">
+                                                            <div class="col-md-12">
+                                                                <div class="comment-wrapper">
+                                                                    <div class="panel panel-info">
+                                                                        <div class="panel-body">
+                                                                            <ul class="media-list comments-list">
+                                                                                <li class="media comment-form">
+                                                                                    <a href="#"
+                                                                                        class="pull-left">
+                                                                                        <img src="front/assets/images/users/user-4.jpg"
+                                                                                            alt=""
+                                                                                            class="img-circle">
+                                                                                    </a>
+                                                                                    {{-- <div class="media-body">
                                                                                     <form action=""
                                                                                         method="" role="form">
                                                                                         <div class="row">
@@ -282,133 +334,136 @@
                                                                                         </div>
                                                                                     </form>
                                                                                 </div> --}}
-                                                                            </li>
-                                                                            <li class="media">
-                                                                                <a href="#" class="pull-left">
-                                                                                    <img src="front/assets/images/users/user-2.jpg"
-                                                                                        alt=""
-                                                                                        class="img-circle">
-                                                                                </a>
-                                                                                <div class="media-body">
-                                                                                    <div
-                                                                                        class="d-flex justify-content-between align-items-center w-100">
-                                                                                        <strong
-                                                                                            class="text-gray-dark"><a
-                                                                                                href="#"
-                                                                                                class="fs-8">Karen
-                                                                                                Minas</a></strong>
-                                                                                        <a href="#"><i
-                                                                                                class='bx bx-dots-horizontal-rounded'></i></a>
+                                                                                </li>
+                                                                                <li class="media">
+                                                                                    <a href="#"
+                                                                                        class="pull-left">
+                                                                                        <img src="front/assets/images/users/user-2.jpg"
+                                                                                            alt=""
+                                                                                            class="img-circle">
+                                                                                    </a>
+                                                                                    <div class="media-body">
+                                                                                        <div
+                                                                                            class="d-flex justify-content-between align-items-center w-100">
+                                                                                            <strong
+                                                                                                class="text-gray-dark"><a
+                                                                                                    href="#"
+                                                                                                    class="fs-8">Karen
+                                                                                                    Minas</a></strong>
+                                                                                            <a href="#"><i
+                                                                                                    class='bx bx-dots-horizontal-rounded'></i></a>
+                                                                                        </div>
+                                                                                        <span
+                                                                                            class="d-block comment-created-time">30
+                                                                                            min ago</span>
+                                                                                        <p class="fs-8 pt-2">
+                                                                                            Lorem ipsum dolor sit amet,
+                                                                                            consectetur adipiscing elit.
+                                                                                            Lorem ipsum dolor sit amet,
+                                                                                            <a href="#">#consecteturadipiscing
+                                                                                            </a>.
+                                                                                        </p>
+                                                                                        <div class="commentLR">
+                                                                                            <button type="button"
+                                                                                                class="btn btn-link fs-8">Like</button>
+                                                                                            <button type="button"
+                                                                                                class="btn btn-link fs-8">Reply</button>
+                                                                                        </div>
                                                                                     </div>
-                                                                                    <span
-                                                                                        class="d-block comment-created-time">30
-                                                                                        min ago</span>
-                                                                                    <p class="fs-8 pt-2">
-                                                                                        Lorem ipsum dolor sit amet,
-                                                                                        consectetur adipiscing elit.
-                                                                                        Lorem ipsum dolor sit amet, <a
-                                                                                            href="#">#consecteturadipiscing
-                                                                                        </a>.
-                                                                                    </p>
-                                                                                    <div class="commentLR">
-                                                                                        <button type="button"
-                                                                                            class="btn btn-link fs-8">Like</button>
-                                                                                        <button type="button"
-                                                                                            class="btn btn-link fs-8">Reply</button>
+                                                                                </li>
+                                                                                <li class="media">
+                                                                                    <a href="#"
+                                                                                        class="pull-left">
+                                                                                        <img src="https://bootdey.com/img/Content/user_2.jpg"
+                                                                                            alt=""
+                                                                                            class="img-circle">
+                                                                                    </a>
+                                                                                    <div class="media-body">
+                                                                                        <div
+                                                                                            class="d-flex justify-content-between align-items-center w-100">
+                                                                                            <strong
+                                                                                                class="text-gray-dark"><a
+                                                                                                    href="#"
+                                                                                                    class="fs-8">Lia
+                                                                                                    Earnest</a></strong>
+                                                                                            <a href="#"><i
+                                                                                                    class='bx bx-dots-horizontal-rounded'></i></a>
+                                                                                        </div>
+                                                                                        <span
+                                                                                            class="d-block comment-created-time">2
+                                                                                            hours ago</span>
+                                                                                        <p class="fs-8 pt-2">
+                                                                                            Lorem ipsum dolor sit amet,
+                                                                                            consectetur adipiscing elit.
+                                                                                            Lorem ipsum dolor sit amet,
+                                                                                            <a href="#">#consecteturadipiscing
+                                                                                            </a>.
+                                                                                        </p>
+                                                                                        <div class="commentLR">
+                                                                                            <button type="button"
+                                                                                                class="btn btn-link fs-8">Like</button>
+                                                                                            <button type="button"
+                                                                                                class="btn btn-link fs-8">Reply</button>
+                                                                                        </div>
                                                                                     </div>
-                                                                                </div>
-                                                                            </li>
-                                                                            <li class="media">
-                                                                                <a href="#" class="pull-left">
-                                                                                    <img src="https://bootdey.com/img/Content/user_2.jpg"
-                                                                                        alt=""
-                                                                                        class="img-circle">
-                                                                                </a>
-                                                                                <div class="media-body">
-                                                                                    <div
-                                                                                        class="d-flex justify-content-between align-items-center w-100">
-                                                                                        <strong
-                                                                                            class="text-gray-dark"><a
-                                                                                                href="#"
-                                                                                                class="fs-8">Lia
-                                                                                                Earnest</a></strong>
-                                                                                        <a href="#"><i
-                                                                                                class='bx bx-dots-horizontal-rounded'></i></a>
+                                                                                </li>
+                                                                                <li class="media">
+                                                                                    <a href="#"
+                                                                                        class="pull-left">
+                                                                                        <img src="https://bootdey.com/img/Content/user_3.jpg"
+                                                                                            alt=""
+                                                                                            class="img-circle">
+                                                                                    </a>
+                                                                                    <div class="media-body">
+                                                                                        <div
+                                                                                            class="d-flex justify-content-between align-items-center w-100">
+                                                                                            <strong
+                                                                                                class="text-gray-dark"><a
+                                                                                                    href="#"
+                                                                                                    class="fs-8">Rusty
+                                                                                                    Mickelsen</a></strong>
+                                                                                            <a href="#"><i
+                                                                                                    class='bx bx-dots-horizontal-rounded'></i></a>
+                                                                                        </div>
+                                                                                        <span
+                                                                                            class="d-block comment-created-time">17
+                                                                                            hours ago</span>
+                                                                                        <p class="fs-8 pt-2">
+                                                                                            Lorem ipsum dolor sit amet,
+                                                                                            consectetur adipiscing elit.
+                                                                                            Lorem ipsum dolor sit amet,
+                                                                                            <a href="#">#consecteturadipiscing
+                                                                                            </a>.
+                                                                                        </p>
+                                                                                        <div class="commentLR">
+                                                                                            <button type="button"
+                                                                                                class="btn btn-link fs-8">Like</button>
+                                                                                            <button type="button"
+                                                                                                class="btn btn-link fs-8">Reply</button>
+                                                                                        </div>
                                                                                     </div>
-                                                                                    <span
-                                                                                        class="d-block comment-created-time">2
-                                                                                        hours ago</span>
-                                                                                    <p class="fs-8 pt-2">
-                                                                                        Lorem ipsum dolor sit amet,
-                                                                                        consectetur adipiscing elit.
-                                                                                        Lorem ipsum dolor sit amet, <a
-                                                                                            href="#">#consecteturadipiscing
-                                                                                        </a>.
-                                                                                    </p>
-                                                                                    <div class="commentLR">
-                                                                                        <button type="button"
-                                                                                            class="btn btn-link fs-8">Like</button>
-                                                                                        <button type="button"
-                                                                                            class="btn btn-link fs-8">Reply</button>
+                                                                                </li>
+                                                                                <li class="media">
+                                                                                    <div class="media-body">
+                                                                                        <div
+                                                                                            class="comment-see-more text-center">
+                                                                                            <button type="button"
+                                                                                                class="btn btn-link fs-8">See
+                                                                                                More</button>
+                                                                                        </div>
                                                                                     </div>
-                                                                                </div>
-                                                                            </li>
-                                                                            <li class="media">
-                                                                                <a href="#" class="pull-left">
-                                                                                    <img src="https://bootdey.com/img/Content/user_3.jpg"
-                                                                                        alt=""
-                                                                                        class="img-circle">
-                                                                                </a>
-                                                                                <div class="media-body">
-                                                                                    <div
-                                                                                        class="d-flex justify-content-between align-items-center w-100">
-                                                                                        <strong
-                                                                                            class="text-gray-dark"><a
-                                                                                                href="#"
-                                                                                                class="fs-8">Rusty
-                                                                                                Mickelsen</a></strong>
-                                                                                        <a href="#"><i
-                                                                                                class='bx bx-dots-horizontal-rounded'></i></a>
-                                                                                    </div>
-                                                                                    <span
-                                                                                        class="d-block comment-created-time">17
-                                                                                        hours ago</span>
-                                                                                    <p class="fs-8 pt-2">
-                                                                                        Lorem ipsum dolor sit amet,
-                                                                                        consectetur adipiscing elit.
-                                                                                        Lorem ipsum dolor sit amet, <a
-                                                                                            href="#">#consecteturadipiscing
-                                                                                        </a>.
-                                                                                    </p>
-                                                                                    <div class="commentLR">
-                                                                                        <button type="button"
-                                                                                            class="btn btn-link fs-8">Like</button>
-                                                                                        <button type="button"
-                                                                                            class="btn btn-link fs-8">Reply</button>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </li>
-                                                                            <li class="media">
-                                                                                <div class="media-body">
-                                                                                    <div
-                                                                                        class="comment-see-more text-center">
-                                                                                        <button type="button"
-                                                                                            class="btn btn-link fs-8">See
-                                                                                            More</button>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </li>
-                                                                        </ul>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
 
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
                                             @endforeach
-                                            
+
                                         </div>
                                         <div class="col-md-3 profile-quick-media">
                                             <h6 class="text-muted timeline-title">Recent Media</h6>
@@ -643,7 +698,7 @@
         function confirmCancel() {
             return confirm('Are you sure you want to cancel this application?');
         }
-        </script>
+    </script>
 </body>
 
 </html>
