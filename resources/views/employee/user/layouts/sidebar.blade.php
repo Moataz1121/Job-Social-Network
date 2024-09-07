@@ -6,7 +6,7 @@
             </li>
             @foreach ($categories as $category)
                 <li class="list-group-item d-flex justify-content-between align-items-center sd-active">
-                <a href="{{route('posts.filter_category',$category->id)}}" class="sidebar-item">
+                <a href="{{route('posts.filter_category',$category->id)}}" class="sidebar-item ">
                     <img
                         src="front/assets/images/icons/left-sidebar/Full-Stack.png" alt="newsfeed">{{$category->name}}</a>
             </li>
