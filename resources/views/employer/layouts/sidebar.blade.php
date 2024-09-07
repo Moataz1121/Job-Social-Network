@@ -81,7 +81,7 @@
                 <div data-i18n="Analytics">My Posts</div>
             </a>
         </li>
-        <li class="menu-item @yield('dasboard.active')">
+        <li class="menu-item @yield('edit.active')">
             <a href="{{route('employer.editProfile')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Edit Profile</div>

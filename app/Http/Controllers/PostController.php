@@ -17,7 +17,7 @@ class PostController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('Employer')->except(['index', 'show', 'addComment', 'DeleteComment']);
+        $this->middleware('Employer')->except(['index', 'show', 'addComment', 'DeleteComment' , 'editComment']);
     }
     /**
      * Display a listing of the resource.
@@ -111,59 +111,17 @@ class PostController extends Controller
         return redirect()->back()->with('success', 'Comment deleted successfully!');
     }
 
-    public function editComment(Request $request, $id)
-{
-    // التحقق من المدخلات
-    $validator = Validator::make($request->all(), [
-        'name' => ['required', 'string', 'max:255'],
-        'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $id],
-        'password' => ['nullable', 'string', 'min:8', 'confirmed'], // كلمة المرور اختيارية
-        'phone_number' => ['required', 'string', 'max:15'],
-        'gender' => ['required', 'in:male,female'],
-        'birth_date' => ['required', 'date'],
-        'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'], // الصورة اختيارية
-    ]);
+    public function editComment($id, Request $request)
+    {
 
-    // تحقق من فشل التحقق
-    if ($validator->fails()) {
-        return redirect()->back()->withErrors($validator)->withInput();
+        $comment = Comment::findOrFail($id);
+        $request->validate([
+            'body' => 'required',
+
+        ]);
+        //$comment->update($request->validated());
+        $comment->body = $request->input('body');
+        $comment->save();
+        return redirect()->back();
     }
-
-    // العثور على المستخدم المراد تحديثه
-    $user = Employer::findOrFail($id);
-
-    // إدارة رفع الصورة في حالة تقديم صورة جديدة
-    if ($request->hasFile('image')) {
-        // حذف الصورة القديمة إذا كانت موجودة
-        if ($user->image) {
-            $oldImagePath = public_path('images/user_images/' . $user->image);
-            if (file_exists($oldImagePath)) {
-                unlink($oldImagePath); // حذف الصورة القديمة
-            }
-        }
-
-        // رفع الصورة الجديدة
-        $imageName = time() . '.' . $request->image->extension();
-        $request->image->move(public_path('images/user_images'), $imageName);
-        $user->image = $imageName; // تحديث الصورة في قاعدة البيانات
-    }
-
-    // تحديث البيانات الأخرى
-    $user->name = $request->name;
-    $user->email = $request->email;
-    $user->phone_number = $request->phone_number;
-    $user->gender = $request->gender;
-    $user->birth_date = $request->birth_date;
-
-    // تحديث كلمة المرور فقط إذا تم إدخال كلمة مرور جديدة
-    if ($request->filled('password')) {
-        $user->password = Hash::make($request->password);
-    }
-
-    // حفظ التحديثات
-    $user->save();
-
-    // إعادة التوجيه بعد التحديث
-    return redirect()->back()->with('success', 'Profile updated successfully');
-}
 }

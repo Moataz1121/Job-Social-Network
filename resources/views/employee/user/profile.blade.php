@@ -187,7 +187,6 @@
                                             </ul>
 
                                             <h3 class="timeline-title text-center">Your Posts Job</h3>
-                                            <div class="w-75">
                                             @foreach ($posts as $post)
                                             <div class="post border-bottom p-3 bg-white w-shadow my-3">
                                                 <div class="media text-muted pt-3">
@@ -409,7 +408,7 @@
                                                 </div>
                                             </div>
                                             @endforeach
-                                            </div>
+                                            
                                         </div>
                                         <div class="col-md-3 profile-quick-media">
                                             <h6 class="text-muted timeline-title">Recent Media</h6>
