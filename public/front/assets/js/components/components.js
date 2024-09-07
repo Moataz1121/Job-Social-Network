@@ -1,12 +1,15 @@
 // Show comment section
-$(document).ready(function () {
-    $('#show-comments').click(function () {
-        $('.hide-comments').slideToggle("slow");
-        // Alternative animation for example
-        // slideToggle("fast");
+
+$(document).ready(function() {
+    // Attach a click event handler to all show-comments links
+    $('[id^=show-comments-]').click(function() {
+        // Extract the unique ID from the clicked link
+        var id = $(this).attr('id').replace('show-comments-', '');
+
+        // Toggle the comment section for the corresponding post
+        $('.hide-comments-' + id).slideToggle("slow");
     });
 });
-
 // Video.js
 $(function () {
     var $refreshButton = $('#refresh');

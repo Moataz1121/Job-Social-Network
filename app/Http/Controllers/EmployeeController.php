@@ -9,8 +9,11 @@ use App\Models\Employee;
 use App\Models\Employer;
 use App\Models\Post;
 use App\Models\PostsEmployee;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class EmployeeController extends Controller
 {
@@ -123,6 +126,7 @@ class EmployeeController extends Controller
                         ->orWhere('description', 'like', "%{$search}%")
                         ->orWhere('location', 'like', "%{$search}%")
                         ->orWhere('salary', 'like', "%{$search}%")
+                        ->orWhere('work_type', 'like', "%{$search}%")
                         ->orWhere('created_at', 'like', "%{$search}%");
                 });
             })->paginate(5);
@@ -142,6 +146,61 @@ class EmployeeController extends Controller
     {
         $post = PostsEmployee::find($id);
         $post->delete();
+        return to_route('employee.profile');
+    }
+
+    public function editProfile()
+    {
+        $categories = Category::all();
+        $user = Auth::guard('web')->user();
+        return view('employee.user.layouts.editprofile', compact('user', 'categories'));
+    }
+
+    public function updateprofile(Request $request, $id)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'name' => ['required'],
+            'email' => ['required'],
+            'password' => ['nullable'],
+            'phone_number' => ['required'],
+            'birth_date' => ['required'],
+            'gender' => ['required'],
+            'image' => ['nullable'],
+        ]);
+
+        if ($validator->fails()) {
+            dd($validator->errors());
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $user = User::findOrFail($id);
+
+        if ($request->hasFile('image')) {
+            if ($user->image) {
+                $oldImagePath = public_path('images/user_images/' . $user->image);
+                if (file_exists($oldImagePath)) {
+                    unlink($oldImagePath);
+                }
+            }
+
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('images/user_images'), $imageName);
+            $user->image = $imageName;
+        }
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone_number = $request->phone_number;
+        $user->birth_date = $request->birth_date;
+        $user->gender = $request->gender;
+
+        if ($request->filled('password')) {
+            $user->password = Hash::make($request->password);
+        }
+
+        $user->save();
+
         return to_route('employee.profile');
     }
 }

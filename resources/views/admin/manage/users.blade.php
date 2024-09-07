@@ -1,4 +1,5 @@
 @extends('admin.master')
+@section('title', 'Manage Users')
 @section('users', 'active')
 @section('content')
     <h1 class="text-center mt-3">Manage Users</h1>
@@ -23,10 +24,10 @@
                         <td>
                             <a href="{{ route('users.details', $user->id) }}" class="btn btn-primary">Show Details</a>
                             <form action="{{ route('users.delete', $user->id) }}" class="d-inline" method="POST"
-                                onsubmit="confirm('Are you sure?')">
+                                >
                                 @csrf
                                 @method('DELETE')
-                                <input type="submit" class="btn btn-danger" value="Delete">
+                                <input type="submit" onclick="return confirm('Are you sure?')" class="btn btn-danger" value="Delete">
                             </form>
                         </td>
                     </tr>

@@ -1,4 +1,5 @@
 @extends('employer.master')
+@section('title' , 'Dashboard')
 @section('dasboard.active' , 'active')
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">

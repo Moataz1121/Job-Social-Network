@@ -80,12 +80,14 @@ Route::get('/employer/index', function () {
     return view('employer.index');
 })->name('employer.index');
 Route::get('/employer/data',[EmployerController::class, 'index'])->name('employer.data')->middleware('Employer');
+Route::get('/employer/editprofile/', [EmployerController::class, 'editProfile'])->name('employer.editProfile')->middleware('Employer');
+Route::put('/employer/updateProfile/{id}', [EmployerController::class, 'updateprofile'])->name('employer.updateprofile')->middleware('Employer');
 // End Employer
 
 //===========posts & comments & search===============================
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::resource('post', PostController::class);
+Route::resource('post', PostController::class)->middleware('Employer');
 Route::get('/search', [EmployeeController::class, 'search'])->name('jobs.search');
 
 Route::get('/admin/mail/{id}', [CustomController::class, 'mail'])->name('send.mail')->middleware('Admin');
@@ -110,3 +112,6 @@ Route::delete('/profile/{id}', [EmployeeController::class, 'cancel'])->name('emp
 
 Route::post('employer/sendmail/{id}', [CustomController::class, 'employerSendMail'])->name('employer.sendMail')->middleware('Employer');
 Route::patch('employer/mail/{id}', [CustomController::class, 'employerMail'])->name('employer.mail')->middleware('Employer');
+
+Route::get('/employee/editprofile/', [EmployeeController::class, 'editProfile'])->name('employee.editProfile')->middleware('auth');
+Route::put('/employee/updateProfile/{id}', [EmployeeController::class, 'updateprofile'])->name('employee.updateprofile')->middleware('auth');
