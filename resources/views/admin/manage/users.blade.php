@@ -1,5 +1,5 @@
 @extends('admin.master')
-
+@section('users', 'active')
 @section('content')
     <h1 class="text-center mt-3">Manage Users</h1>
 
@@ -9,7 +9,7 @@
                 <th scope="col">id</th>
                 <th scope="col">Name</th>
                 <th scope="col">Email</th>
-                <th scope="col"   >Action</th>
+                <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>

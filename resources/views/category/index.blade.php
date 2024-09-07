@@ -1,4 +1,5 @@
 @extends('admin.master')
+@section('category' , 'active')
 @section('content')
 
     <a href="{{ route('category.create') }}" class="btn btn-primary w-25 my-5"> Create New Category</a>

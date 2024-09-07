@@ -1,5 +1,5 @@
 @extends('admin.master')
-
+@section('employers' , 'active')
 @section('content')
     <h1 class="text-center mt-3">Manage Employers</h1>
 

@@ -1,6 +1,6 @@
 
 @extends('employer.master')
-
+@section('create.active' , 'active')
 @section('title')
     Create Post
 @endsection
