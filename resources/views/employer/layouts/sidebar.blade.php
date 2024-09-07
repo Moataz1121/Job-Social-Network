@@ -75,5 +75,11 @@
                 <div data-i18n="Analytics">Applications</div>
             </a>
         </li>
+        <li class="menu-item">
+            <a href="{{ route('post.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Analytics">My Posts</div>
+            </a>
+        </li>
     </ul>
 </aside>

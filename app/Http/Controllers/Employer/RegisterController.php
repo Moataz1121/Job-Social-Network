@@ -30,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/emp';
+    protected $redirectTo = '/employer/index';
 
     public function showRegistrationForm()
     {
