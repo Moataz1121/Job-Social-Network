@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
-                    <input type="text" class="form-control" name="email" placeholder="Email Address">
+                    <input type="text" class="form-control" value="{{ old('email') }}" name="email" placeholder="Email Address">
                 </div>
                 @error('email')
                     <span class="text-danger">{{ $message }}</span>

@@ -150,6 +150,7 @@
                     name="email"
                     placeholder="Enter your email"
                     autofocus
+                    value="{{ old('email') }}"
                   />
                   @error('email')
                     <span class="text-danger">{{ $message }}</span>
