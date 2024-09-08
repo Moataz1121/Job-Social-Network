@@ -91,7 +91,7 @@
                 <div class="col-12">
                     <div class="mb-3">
                         <label  class="form-label fs-5">Description</label>
-                        <textarea name="description" class="form-control" style="height: 120px" id="" cols="30" rows="10"></textarea>
+                        <textarea name="description"  class="form-control" style="height: 120px" id="" cols="30" rows="10">{{ old('description') }}</textarea>
                         @error('description')
                         <div class="alert alert-danger mt-2">{{ $message }}</div>
                         @enderror
@@ -103,7 +103,7 @@
                 <div class="col-12">
                     <div class="mb-3">
                         <label  class="form-label fs-5">Skills</label>
-                        <textarea name="skills" class="form-control" style="height: 120px" id="" cols="30" rows="10"></textarea>
+                        <textarea name="skills" class="form-control" style="height: 120px" id="" cols="30" rows="10">{{ old('skills') }}</textarea>
                         @error('skills')
                         <div class="alert alert-danger mt-2">{{ $message }}</div>
                         @enderror

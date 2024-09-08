@@ -149,6 +149,7 @@
                     name="name"
                     placeholder="Enter your name"
                     autofocus
+                    value="{{ old('name') }}"
                   />
                   @error('name')
     <span class="text-danger">{{ $message }}</span>
@@ -156,7 +157,7 @@
                 </div>
                 <div class="mb-3">
                   <label for="phone_number" class="form-label">phone number</label>
-                  <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="Enter your phone_number" />
+                  <input type="text" value="{{ old('phone_number') }}" class="form-control" id="phone_number" name="phone_number" placeholder="Enter your phone_number" />
                   @error('phone_number')
     <span class="text-danger">{{ $message }}</span>
 @enderror
@@ -172,14 +173,14 @@
 
                 <div class="mb-3">
                   <label for="company_name" class="form-label">company name</label>
-                  <input type="text" class="form-control" id="company_name" name="company_name" placeholder="Enter your company_name" />
+                  <input type="text" class="form-control" value="{{ old('company_name') }}" id="company_name" name="company_name" placeholder="Enter your company_name" />
                   @error('company_name')
     <span class="text-danger">{{ $message }}</span>
 @enderror
                 </div>
                 <div class="mb-3">
                   <label for="email" class="form-label">Email</label>
-                  <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email" />
+                  <input type="text" class="form-control" value="{{ old('email') }}" id="email" name="email" placeholder="Enter your email" />
                   @error('email')
     <span class="text-danger">{{ $message }}</span>
 @enderror

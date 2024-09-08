@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
-                    <input type="text" class="form-control" name="name" placeholder="Full Name">
+                    <input type="text" class="form-control" value="{{ old('name') }}" name="name" placeholder="Full Name">
                 </div>
                 @error('name')
                     <span class="text-danger">{{ $message }}</span>
@@ -14,7 +14,7 @@
             </div>
             <div class="col-md-12">
                 <div class="form-group">
-                    <input type="text" class="form-control" name="email" placeholder="Email Address">
+                    <input type="text" class="form-control" value="{{ old('email') }}" name="email" placeholder="Email Address">
                 </div>
                 @error('email')
                     <span class="text-danger">{{ $message }}</span>
@@ -22,7 +22,7 @@
             </div>
             <div class="col-md-12">
                 <div class="form-group">
-                    <input type="text" class="form-control" id="from_date" name="birth_date"
+                    <input type="text" class="form-control" id="from_date" value="{{ old('birth_date') }}" name="birth_date"
                         placeholder="Enter Your Birth Date">
                 </div>
                 @error('birth_date')
@@ -31,7 +31,7 @@
             </div>
             <div class="col-md-12">
                 <div class="form-group">
-                    <input type="text" class="form-control" name="phone_number" placeholder="Phone Number">
+                    <input type="text" class="form-control" value="{{ old('phone_number') }}" name="phone_number" placeholder="Phone Number">
                 </div>
                 @error('phone_number')
                     <span class="text-danger">{{ $message }}</span>
