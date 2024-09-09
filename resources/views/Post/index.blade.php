@@ -1,6 +1,21 @@
 @extends('employer.master')
 @section('my.active','active')
 @section('content')
+@if (session('success'))
+<div class="alert alert-danger mt-1">
+    {{ session('success') }}
+</div>
+@endif
+@if (session('update_success'))
+<div class="alert alert-success text-dark mt-1">
+    {{ session('update_success') }}
+</div>
+@endif
+@if (session('create_success'))
+<div class="alert alert-success text-dark mt-1">
+    {{ session('create_success') }}
+</div>
+@endif
     <div class="container">
         <a href="{{ route('post.create') }}" class="btn btn-primary w-25 my-5"> Create New Post</a>
         <table class="table">
