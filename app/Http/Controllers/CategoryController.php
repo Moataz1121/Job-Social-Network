@@ -30,7 +30,7 @@ class CategoryController extends Controller
     {
         $validated = $request->validated();
         Category::create($validated);
-        return to_route('category.index');
+        return to_route('category.index')->with('create_success', 'Category created successfully!');
     }
 
     /**
@@ -56,7 +56,7 @@ class CategoryController extends Controller
     {
         $validated = $request->validated();
         $category->update($validated);
-        return to_route('category.index');
+        return to_route('category.index')->with('update_success', 'Category updated successfully!');
     }
 
     /**
@@ -65,6 +65,6 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        return to_route('category.index');
+        return redirect()->back()->with('success', 'Category deleted successfully!');
     }
 }

@@ -2,6 +2,13 @@
 @section('title', 'Manage Users')
 @section('users', 'active')
 @section('content')
+
+@if (session('success'))
+<div class="alert alert-danger">
+    {{ session('success') }}
+</div>
+@endif
+
     <h1 class="text-center mt-3">Manage Users</h1>
 
     <table class="table">

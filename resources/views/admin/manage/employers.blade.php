@@ -2,6 +2,12 @@
 @section('title', 'Manage Employers')
 @section('employers' , 'active')
 @section('content')
+@if (session('success'))
+<div class="alert alert-danger mt-1">
+    {{ session('success') }}
+</div>
+@endif
+
     <h1 class="text-center mt-3">Manage Employers</h1>
 
     <table class="table">

@@ -33,7 +33,7 @@
 
                     <td>
                     <div class="mb-5">
-                    <form action="{{ route('employer.sendMail', $item->user->id) }}" method="POST">
+                    <form action="{{ route('employer.sendMail', $item->id) }}" method="POST">
                         @csrf
                         @error('status')
                             <span class="alert alert-danger">{{ $message }}</span>

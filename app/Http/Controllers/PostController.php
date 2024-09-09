@@ -47,7 +47,8 @@ class PostController extends Controller
         //
         $post = $request->validated();
         Post::create($post);
-        return to_route('post.index');
+        return to_route('post.index')->with('create_success', 'post created successfully!');
+
     }
 
 
@@ -68,7 +69,7 @@ class PostController extends Controller
         $categories = Category::all();
         return view('Post.edit', compact('post', 'categories'));
     }
-
+  
     /**
      * Update the specified resource in storage.
      */
@@ -76,7 +77,8 @@ class PostController extends Controller
     {
 
         $post->update($request->validated());
-        return to_route('post.index');
+        return to_route('post.index')->with('update_success', 'post updated successfully!');
+
     }
 
     /**
@@ -86,7 +88,8 @@ class PostController extends Controller
     {
         //
         $post->delete();
-        return to_route('post.index');
+        return redirect()->back()->with('success', 'post deleted successfully!');
+
     }
 
     public function addComment(Request $request, $id)
