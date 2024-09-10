@@ -235,13 +235,13 @@
                                             {{-- Start apply --}}
                                             <!-- Button to Open the Modal -->
                                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                data-bs-target="#applyModal">
+                                                data-bs-target="#applyModal{{ $jobPost->id }}">
                                                 Apply Now
                                             </button>
 
                                             <!-- The Modal -->
-                                            <div class="modal fade" id="applyModal" tabindex="-1"
-                                                aria-labelledby="applyModalLabel" aria-hidden="true">
+                                            <div class="modal fade" id="applyModal{{ $jobPost->id }}"
+                                                tabindex="-1" aria-labelledby="applyModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <!-- Modal Header -->
