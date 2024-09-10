@@ -7,6 +7,8 @@
 
     </form>
     @foreach ($jobPosts as $jobPost)
+    
+        {{-- <p>You have an application pending.</p>   --}}
         <div style="" class="mx-5 mb-3">
             <div class="post border-bottom p-3 bg-white w-shadow">
                 <div class="media text-muted pt-1">
@@ -83,13 +85,14 @@
                     <p class="mb-3">{{ $jobPost->description }}</p>
                     <div id="job-content" class="job-content">
                         <p class="mb-0"><b>Requirement:</b></p>
-                        <ul>
+                        {{-- <ul>
                             @foreach (explode('-', $jobPost->skills) as $key => $skill)
                                 @if ($key > 0)
                                     <li>{{ $skill }}</li>
                                 @endif
                             @endforeach
-                        </ul>
+                        </ul> --}}
+                        <p> {!!nl2br($jobPost->skills)!!} </p>
                         <p> <b>Location: </b>{{ $jobPost->location }} </p>
                         <p> <b>Work Type: </b>{{ $jobPost->work_type }} </p>
                         <p> <b>Deadline for hiring: </b>{{ $formatDate = date('l dS F o', strtotime($jobPost->deadLine)) }}
@@ -99,12 +102,12 @@
 
                         {{-- Start apply --}}
                         <!-- Button to Open the Modal -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#applyModal">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#applyModal{{ $jobPost->id }}">
                             Apply Now
                         </button>
 
                         <!-- The Modal -->
-                        <div class="modal fade" id="applyModal" tabindex="-1" aria-labelledby="applyModalLabel"
+                        <div class="modal fade" id="applyModal{{ $jobPost->id }}" tabindex="-1" aria-labelledby="applyModalLabel"
                             aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -120,6 +123,7 @@
                                         <form action="{{ route('employee.apply', $jobPost->id) }}" method="POST"
                                             enctype="multipart/form-data">
                                             @csrf
+                                            <p>{{$jobPost->title}}</p>
                                             <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                                             <input type="hidden" name="post_id" value="{{ $jobPost->id }}">
 
@@ -362,7 +366,9 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>      
+    
+   
     @endforeach
     <div class="d-flex justify-content-center">
         {{ $jobPosts->links() }}

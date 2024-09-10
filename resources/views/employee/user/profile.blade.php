@@ -256,13 +256,20 @@
                                                         <p>The Job Description: {{ $post->post->description }}</p>
                                                         <p>The Location: {{ $post->post->location }}</p>
                                                         <p>The Salary: {{ $post->post->salary }}</p>
-                                                        <form action="{{ route('employee.cancel', $post->id) }}"
-                                                            method="post" onsubmit="return confirmCancel();">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <input type="submit" value="Cancel"
-                                                                class="btn btn-danger">
-                                                        </form>
+                                                        @if ($post->status == 'accepted')
+                                                            <p class="text-success fs-2">You are Accepted</p>
+                                                            @elseif ($post->status == 'pending')
+                                                            <form action="{{ route('employee.cancel', $post->id) }}"
+                                                                method="post" onsubmit="return confirmCancel();">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <input type="submit" value="Cancel"
+                                                                    class="btn btn-danger">
+                                                            </form>
+                                                            @else
+                                                            <p class="text-danger fs-2">You are Rejected</p>
+                                                        @endif
+                                                      
 
                                                     </div>
                                                     <div class="d-block mt-3">

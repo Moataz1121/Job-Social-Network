@@ -40,4 +40,7 @@ class Post extends Model
     {
         return $this->morphMany(Comment::class, 'commentable');
     }
+    public function postEmployee(){
+        return $this->belongsTo(PostsEmployee::class);
+    }
 }
