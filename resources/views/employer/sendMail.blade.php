@@ -1,6 +1,7 @@
 @extends('employer.master')
 @section('title', 'Send Mail')
 @section('content')
+<div class="container">
     <h1 class="mt-3 text-center">Send mail to {{ $postsEmployee->user->name }}</h1>
     <form action="{{ route('employer.mail', $postsEmployee->user->id) }}" method="Post">
         @csrf
@@ -31,4 +32,6 @@
         </div>
         <button type="submit" class="btn btn-success fs-5">Send Mail</button>
     </form>
+</div>
+    
 @endsection
