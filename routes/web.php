@@ -10,6 +10,7 @@ use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Models\Category;
+use App\Models\Employer;
 
 Route::get('/', function () {
     return view('welcome');
@@ -82,7 +83,8 @@ Route::post('employer/register', [RegisterController::class, 'register'])->name(
 // ===========================================
 // Start Employer
 Route::get('/employer/index', function () {
-    return view('employer.index');
+    $employers = Employer::all();
+    return view('employer.index' , compact('employers'));
 })->name('employer.index')->middleware('Employer');
 Route::get('/employer/data',[EmployerController::class, 'index'])->name('employer.data')->middleware('Employer');
 Route::get('/employer/editprofile/', [EmployerController::class, 'editProfile'])->name('employer.editProfile')->middleware('Employer');

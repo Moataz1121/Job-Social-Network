@@ -6,6 +6,7 @@
         <button type="submit" class="btn btn-primary">Search</button>
 
     </form>
+  
     @foreach ($jobPosts as $jobPost)
     
         {{-- <p>You have an application pending.</p>   --}}
@@ -120,7 +121,8 @@
 
                                     <!-- Modal Body -->
                                     <div class="modal-body">
-                                        <form action="{{ route('employee.apply', $jobPost->id) }}" method="POST"
+                                      
+                                        <form  action="{{ route('employee.apply', $jobPost->id) }}" method="POST"
                                             enctype="multipart/form-data">
                                             @csrf
                                             <p>{{$jobPost->title}}</p>
@@ -374,3 +376,5 @@
         {{ $jobPosts->links() }}
     </div>
 @endsection
+
+

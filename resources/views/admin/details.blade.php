@@ -64,7 +64,7 @@
         </div>
         <div class="item2 bg-light rounded p-5 shadow">
 
-            @if ($post->status == 'pending')
+            {{-- @if ($post->status == 'pending') --}}
                 <div class="mb-5">
                     <form action="{{ route('admin.update', $post->id) }}" method="POST">
                         @csrf
@@ -83,15 +83,8 @@
                         </div>
                     </form>
                 </div>
-            @elseif ($post->status == 'accepted')
-                <h4 class="text-white bg-success rounded p-3 text-center mb-5">
-                    Job has been accepted.
-                </h4>
-            @elseif ($post->status == 'rejected')
-                <h4 class="text-white bg-danger rounded p-3 text-center mb-5">
-                    Job has been rejected.
-                </h4>
-            @endif
+            {{-- @elseif ($post->status == 'accepted') --}}
+           
             <div class="mb-4">
                 <h5 class="mb-2 me-4"><i class="fa-solid fa-briefcase me-4 text-danger"></i>Job Type</h5>
                 @if ($post->work_type === 'onSite')

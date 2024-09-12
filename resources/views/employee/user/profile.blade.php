@@ -120,15 +120,15 @@
                                                     class="fs-8">More</span></button>
                                             <div class="dropdown-menu dropdown-menu-right profile-ql-dropdown"
                                                 aria-labelledby="moreMobile">
-                                                <a href="newsfeed.html" class="dropdown-item">Timeline</a>
-                                                <a href="about.html" class="dropdown-item">About</a>
-                                                <a href="followers.html" class="dropdown-item">Followers</a>
-                                                <a href="following.html" class="dropdown-item">Following</a>
-                                                <a href="photos.html" class="dropdown-item">Photos</a>
-                                                <a href="videos.html" class="dropdown-item">Videos</a>
-                                                <a href="check-ins.html" class="dropdown-item">Check-Ins</a>
-                                                <a href="events.html" class="dropdown-item">Events</a>
-                                                <a href="likes.html" class="dropdown-item">Likes</a>
+                                                <a href="#" class="dropdown-item">Timeline</a>
+                                                <a href="#" class="dropdown-item">About</a>
+                                                <a href="#" class="dropdown-item">Followers</a>
+                                                <a href="#" class="dropdown-item">Following</a>
+                                                <a href="#" class="dropdown-item">Photos</a>
+                                                <a href="#" class="dropdown-item">Videos</a>
+                                                <a href="#" class="dropdown-item">Check-Ins</a>
+                                                <a href="#" class="dropdown-item">Events</a>
+                                                <a href="#" class="dropdown-item">Likes</a>
                                             </div>
                                         </div>
                                     </div>
@@ -234,6 +234,12 @@
                                             </ul>
 
                                             <h3 class="timeline-title text-center">Your Posts Job</h3>
+                                            @if (count($posts) == 0)
+                                                <h1>No Posts</h1>
+                                                <img src="front/assets/images/users/album/album-2.jpg" class="w-100" alt="">
+
+                                            
+                                            @endif
                                             @foreach ($posts as $post)
                                                 <div class="post border-bottom p-3 bg-white w-shadow my-3">
                                                     <div class="media text-muted pt-3">

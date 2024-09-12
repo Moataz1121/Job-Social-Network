@@ -44,7 +44,7 @@
                                     </div>
                                 </div>
                                 <div class="flex-grow-1">
-                                    <span class="fw-semibold d-block">John Doe</span>
+                                    <span class="fw-semibold d-block">{{Auth::guard('employer')->user()->name}}}</span>
                                     <small class="text-muted">Employer</small>
                                 </div>
                             </div>
